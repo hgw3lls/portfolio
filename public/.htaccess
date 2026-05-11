@@ -1,0 +1,8 @@
+DirectoryIndex index.html
+Options -Indexes
+
+<IfModule mod_mime.c>
+  AddType application/pdf .pdf
+  AddType text/css .css
+  AddType application/javascript .js
+</IfModule>

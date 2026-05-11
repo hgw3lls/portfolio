@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "start": "vite --host 0.0.0.0",
-    "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "build": "node scripts/generate-doc-pdfs.mjs && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "package:dreamhost": "npm run build && rm -f tony-yanick-portfolio-dreamhost.zip && cd dist && zip -r ../tony-yanick-portfolio-dreamhost.zip ."
   },
   "devDependencies": {
     "vite": "latest"
