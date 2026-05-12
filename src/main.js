@@ -82,6 +82,15 @@ const defaultProjects = [
     documentation: ['system captures', 'prompt/interface studies', 'audiovisual excerpts', 'installation diagrams'],
     embed: 'A/V excerpt / computational system capture embed slot',
     pdf: 'docs/artificial-cinema-documentation.pdf',
+    media: [
+      {
+        type: 'video',
+        title: 'Artificial Cinema',
+        url: 'https://vimeo.com/506931329',
+        caption: '',
+        fileName: '',
+      },
+    ],
   },
   {
     id: 'variation-79-podkop',
@@ -96,6 +105,137 @@ const defaultProjects = [
     documentation: ['video stills', 'sound excerpts', 'screening notes', 'process documentation'],
     embed: 'Video excerpt / screening documentation embed slot',
     pdf: 'docs/variation-79-podkop-documentation.pdf',
+  },
+
+  {
+    id: 'the-fixers-naudia-loftis',
+    title: 'The Fixers: Naudia Loftis',
+    date: 'Selected film/video work',
+    format: 'Collaborative documentary film',
+    tags: ['film/video', 'documentary', 'community organizing', 'social practice'],
+    summary:
+      'A collaborative documentary centered on a seventeen-year-old community organizer in Cleveland’s Kinsman neighborhood.',
+    system:
+      'Structured through interviews with friends and family, the film foregrounds lived experience within conditions shaped by systemic violence and social instability. Rather than imposing an external narrative, the work creates space for participants to articulate their perspectives through dialogue, proximity, and trust.',
+    documentation: ['community screenings', 'gallery presentations', 'public events', '2016 Republican National Convention context'],
+    embed: 'Documentary excerpt / screening documentation embed slot',
+    pdf: 'docs/the-fixers-naudia-loftis-documentation.pdf',
+    media: [
+      {
+        type: 'video',
+        title: 'Project media',
+        url: 'https://vimeo.com/170722317',
+        caption: '',
+        fileName: '',
+      },
+    ],
+  },
+  {
+    id: 'make-america-great-again-and-again',
+    title: 'Make America Great Again ... And Again',
+    date: 'Selected film/video work',
+    format: 'Experimental video work',
+    tags: ['film/video', 'experimental video', 'political language', 'speculative fiction'],
+    summary:
+      'An experimental video work and Short and Sweet Festival Outstanding Film award winner drawing on Octavia E. Butler’s Parable trilogy.',
+    system:
+      'The project examines political language as a mechanism of narrative construction and control, exploring the relationship between speculative fiction and contemporary political reality. Through montage, abstraction, and layered imagery, it asks not what greatness is, but for whom it is constructed and at what cost.',
+    documentation: ['single-channel video', 'festival screening notes', 'montage stills', 'sound/image documentation'],
+    embed: 'Experimental video excerpt / screening documentation embed slot',
+    pdf: 'docs/make-america-great-again-and-again-documentation.pdf',
+    media: [
+      {
+        type: 'video',
+        title: 'Project media',
+        url: 'https://vimeo.com/201921786',
+        caption: '',
+        fileName: '',
+      },
+    ],
+  },
+  {
+    id: 'surface',
+    title: 'surFACE',
+    date: 'Selected film/video work',
+    format: 'Short film, analog recording systems, tape-based process',
+    tags: ['film/video', 'analog video', 'feedback', 'drawing', 'sound'],
+    summary:
+      'A short film produced as part of the larger TAPEHEADS project, investigating analog recording systems, tape-based processes, and the material conditions of image and sound.',
+    system:
+      'Built from a repetitive drawing practice centered on abstracted faces, the film treats marks as raw material within recording, layering, playback, and transformation. The screen becomes an apparatus where image and sound co-evolve through repetition, distortion, and feedback.',
+    documentation: ['TAPEHEADS project context', 'drawing sequences', 'feedback recordings', 'screening stills'],
+    embed: 'Short film excerpt / analog feedback documentation embed slot',
+    pdf: 'docs/surface-documentation.pdf',
+    media: [],
+  },
+  {
+    id: 'flow-lines',
+    title: 'Flow Lines (3-channel video)',
+    date: 'Selected film/video work',
+    format: 'Three-channel collaborative video installation',
+    tags: ['film/video', 'three-channel video', 'landscape', 'migration', 'Niagara River'],
+    summary:
+      'A collaborative video work developed in response to Isaac Julien’s Kapital, exploring the movement of value through geography, history, and narrative.',
+    system:
+      'Centered on the Niagara River as both physical flow and historical boundary connected to the Underground Railroad, the piece layers landscape, memory, and migration through image, rhythm, and poetic language. It approaches landscape as a living system through which histories are carried, transformed, and reinterpreted.',
+    documentation: ['three-channel installation', 'Niagara River research', 'poetic language score', 'installation stills'],
+    embed: 'Three-channel video excerpt / installation documentation embed slot',
+    pdf: 'docs/flow-lines-documentation.pdf',
+    media: [
+      {
+        type: 'video',
+        title: 'Project media',
+        url: 'https://vimeo.com/666394186',
+        caption: '',
+        fileName: '',
+      },
+    ],
+  },
+  {
+    id: 'bobbi-lynn',
+    title: 'BOBBI LYNN',
+    date: 'Selected film/video work',
+    format: 'Music video, generative image systems',
+    tags: ['film/video', 'music video', 'generative imagery', 'memory', 'family archive'],
+    summary:
+      'A music video that explores memory and familial relationships through generative image systems.',
+    system:
+      'Centered on a son’s recollection of his relationship with his mother, the work replaces photographic reconstruction with synthetic image generation. Drawing on Roland Barthes’ distinction between studium and punctum, it examines how memory, identity, intimacy, and representation become mediated through machine-generated imagery.',
+    documentation: ['music video', 'generative image studies', 'family memory framework', 'image-system process notes'],
+    embed: 'Music video excerpt / generative image documentation embed slot',
+    pdf: 'docs/bobbi-lynn-documentation.pdf',
+    media: [
+      {
+        type: 'video',
+        title: 'Project media',
+        url: 'https://vimeo.com/767634297',
+        caption: '',
+        fileName: '',
+      },
+    ],
+  },
+  {
+    id: 'dossier-37',
+    title: 'Dossier 37',
+    date: 'Selected film/video work',
+    format: 'Audiovisual work, forensic interface, data visualization',
+    tags: ['film/video', 'audiovisual work', 'AUDINT', 'data visualization', 'disinformation'],
+    summary:
+      'An audiovisual work developed in collaboration with AUDINT that investigates the unstable territory between sonic warfare, disinformation, and state narrative production.',
+    system:
+      'Emerging from discourse surrounding alleged sonic attacks on US diplomatic personnel in Cuba and South China, the project examines how fear, rumor, and geopolitical speculation circulate through media systems as forms of perceptual instability. Structured as a forensic and speculative timeline, it visualizes Twitter activity and signal environments around Havana Syndrome.',
+    documentation: ['AUDINT collaboration', 'IREX2 interface study', 'Twitter activity visualization', 'forensic timeline'],
+    embed: 'Audiovisual excerpt / forensic interface documentation embed slot',
+    pdf: 'docs/dossier-37-documentation.pdf',
+    media: [
+      {
+        type: 'video',
+        title: 'Project media',
+        url: 'https://www.youtube.com/watch?v=ludgSOJtHcQ',
+        caption: '',
+        fileName: '',
+      },
+    ],
   },
 ];
 
@@ -204,6 +344,34 @@ const fileToDataUrl = (file) => new Promise((resolve, reject) => {
   reader.readAsDataURL(file);
 });
 
+const mergeDefaultProjects = (savedProjects) => {
+  const savedProjectMap = new Map(savedProjects.map((project) => [project.id, project]));
+  const mergedProjects = savedProjects.map((project) => {
+    const defaultProject = defaultProjects.find((item) => item.id === project.id);
+    const defaultMedia = defaultProject?.media || [];
+    if (!defaultMedia.length) return project;
+
+    const projectMedia = project.media || [];
+    const projectMediaUrls = new Set(projectMedia.map((media) => media.url));
+    const missingDefaultMedia = defaultMedia
+      .filter((media) => !projectMediaUrls.has(media.url))
+      .map((media) => structuredClone(media));
+
+    if (!missingDefaultMedia.length) return project;
+
+    return {
+      ...project,
+      media: [...projectMedia, ...missingDefaultMedia],
+    };
+  });
+
+  const missingDefaultProjects = defaultProjects
+    .filter((project) => !savedProjectMap.has(project.id))
+    .map((project) => structuredClone(project));
+
+  return [...mergedProjects, ...missingDefaultProjects];
+};
+
 
 const updateAdminAccess = () => {
   if (!adminLogin || !adminLayout) return;
@@ -241,7 +409,8 @@ const loadProjects = () => {
     if (!saved) return;
     const parsed = JSON.parse(saved);
     if (Array.isArray(parsed) && parsed.length) {
-      projects = parsed;
+      projects = mergeDefaultProjects(parsed);
+      if (JSON.stringify(projects) !== JSON.stringify(parsed)) saveProjects({ silent: true });
       if (!projects.some((project) => project.id === activeProjectId)) activeProjectId = projects[0].id;
     }
   } catch (error) {
