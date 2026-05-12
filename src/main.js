@@ -128,69 +128,111 @@ const downloads = [
   ['Project documentation packet', 'docs/tony-yanick-project-documentation.pdf'],
 ];
 
-const projectIndex = document.querySelector('#project-index');
-const projectPages = document.querySelector('#project-pages');
+
+const projectList = document.querySelector('#project-list');
+const projectReader = document.querySelector('#project-reader');
 const teachingGrid = document.querySelector('#teaching-grid');
 const cvWorkList = document.querySelector('#cv-work-list');
 const downloadList = document.querySelector('#download-list');
 const toggle = document.querySelector('.mode-toggle');
+const menuToggle = document.querySelector('.menu-toggle');
+const menuClose = document.querySelector('.menu-close');
+const siteMenu = document.querySelector('#site-menu');
+const menuProjects = document.querySelector('#menu-projects');
+const routeLinks = document.querySelectorAll('[data-route]');
+const views = document.querySelectorAll('[data-view]');
+const sortButtons = document.querySelectorAll('[data-sort]');
+
+let activeProjectId = projects[0].id;
+let activeSort = 'date';
+let activeRoute = 'works';
 
 const slugNumber = (index) => String(index + 1).padStart(2, '0');
 
-const renderProjectIndex = () => {
-  projectIndex.innerHTML = projects
-    .map(
-      (project, index) => `
-        <a class="project-row" href="#${project.id}">
-          <span>${slugNumber(index)}</span>
-          <strong>${project.title}</strong>
-          <em>${project.format}</em>
-          <small>Open</small>
-        </a>
-      `,
-    )
+const sortedProjects = () => [...projects].sort((a, b) => {
+  if (activeSort === 'title') {
+    return a.title.localeCompare(b.title);
+  }
+
+  if (activeSort === 'format') {
+    return a.format.localeCompare(b.format);
+  }
+
+  return projects.indexOf(a) - projects.indexOf(b);
+});
+
+const setRoute = (route) => {
+  activeRoute = route;
+  views.forEach((view) => view.classList.toggle('is-active', view.dataset.view === route));
+  routeLinks.forEach((link) => link.classList.toggle('is-active', link.dataset.route === route));
+  document.body.dataset.route = route;
+};
+
+const renderMenuProjects = () => {
+  menuProjects.innerHTML = projects
+    .map((project, index) => `<a href="#works" data-project-jump="${project.id}">${slugNumber(index)} ${project.title}</a>`)
     .join('');
 };
 
-const renderProjectPages = () => {
-  projectPages.innerHTML = projects
-    .map(
-      (project, index) => `
-        <article class="project-page" id="${project.id}">
-          <div class="project-page__meta">
-            <span>${slugNumber(index)}</span>
-            <span>${project.date}</span>
-            <span>Text 🗎</span>
-            <a href="${project.pdf}" download>Download PDF 🖷</a>
-          </div>
-          <div class="project-page__body">
-            <header>
-              <p class="kicker">${project.format}</p>
-              <h3>${project.title}</h3>
-              <p>${project.summary}</p>
-            </header>
-            <div class="project-page__grid">
-              <section>
-                <h4>System / environment</h4>
-                <p>${project.system}</p>
-              </section>
-              <section>
-                <h4>Documentation</h4>
-                <ul>${project.documentation.map((item) => `<li>${item}</li>`).join('')}</ul>
-              </section>
-            </div>
-            <div class="media-module" aria-label="${project.title} media embed placeholder">
-              <div>
-                <span>Media embed / image-sequence 🡥</span>
-                <p>${project.embed}</p>
-              </div>
-              <ul>${project.tags.map((tag) => `<li>${tag}</li>`).join('')}</ul>
-            </div>
-          </div>
-        </article>
-      `,
-    )
+const renderProjectReader = () => {
+  const project = projects.find((item) => item.id === activeProjectId) || projects[0];
+  const index = projects.indexOf(project);
+
+  projectReader.innerHTML = `
+    <div class="reader-meta">
+      <span>${slugNumber(index)}</span>
+      <span>${project.date}</span>
+      <a href="${project.pdf}" download>PDF</a>
+    </div>
+    <p class="eyebrow">${project.format}</p>
+    <h3>${project.title}</h3>
+    <p class="reader-summary">${project.summary}</p>
+    <div class="reader-sections">
+      <section>
+        <h4>System / environment</h4>
+        <p>${project.system}</p>
+      </section>
+      <section>
+        <h4>Documentation</h4>
+        <ul>${project.documentation.map((item) => `<li>${item}</li>`).join('')}</ul>
+      </section>
+    </div>
+    <div class="media-module" aria-label="${project.title} media embed placeholder">
+      <span>media module</span>
+      <p>${project.embed}</p>
+    </div>
+    <ul class="tag-list">${project.tags.map((tag) => `<li>${tag}</li>`).join('')}</ul>
+  `;
+};
+
+const renderProjectList = () => {
+  projectList.innerHTML = sortedProjects()
+    .map((project) => {
+      const index = projects.indexOf(project);
+      return `
+        <button class="project-row" type="button" data-project="${project.id}" aria-pressed="${project.id === activeProjectId}">
+          <span>${slugNumber(index)}</span>
+          <strong>${project.title}</strong>
+          <em>${project.format}</em>
+          <small>${project.date}</small>
+        </button>
+      `;
+    })
     .join('');
+
+  projectList.querySelectorAll('[data-project]').forEach((button) => {
+    button.addEventListener('click', () => {
+      activeProjectId = button.dataset.project;
+      renderProjectList();
+      renderProjectReader();
+    });
+
+    button.addEventListener('pointerenter', () => {
+      activeProjectId = button.dataset.project;
+      renderProjectList();
+      renderProjectReader();
+    });
+  });
 };
 
 const renderTeaching = () => {
@@ -217,16 +259,68 @@ const renderCv = () => {
 
 const updateToggleLabel = () => {
   const isNight = document.body.classList.contains('night-mode');
-  toggle.textContent = isNight ? 'Day signal' : 'Night signal';
+  toggle.textContent = isNight ? 'paper' : 'invert';
   toggle.setAttribute('aria-pressed', String(isNight));
 };
+
+const openMenu = () => {
+  document.body.classList.add('menu-open');
+  menuToggle.setAttribute('aria-expanded', 'true');
+  siteMenu.setAttribute('aria-hidden', 'false');
+};
+
+const closeMenu = () => {
+  document.body.classList.remove('menu-open');
+  menuToggle.setAttribute('aria-expanded', 'false');
+  siteMenu.setAttribute('aria-hidden', 'true');
+};
+
+menuToggle.addEventListener('click', openMenu);
+menuClose.addEventListener('click', closeMenu);
 
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('night-mode');
   updateToggleLabel();
 });
 
-renderProjectIndex();
-renderProjectPages();
+routeLinks.forEach((link) => {
+  link.addEventListener('click', (event) => {
+    const route = link.dataset.route;
+    if (!route) return;
+    event.preventDefault();
+    history.replaceState(null, '', `#${route}`);
+    setRoute(route);
+    closeMenu();
+  });
+});
+
+sortButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    activeSort = button.dataset.sort;
+    sortButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+    renderProjectList();
+  });
+});
+
+menuProjects.addEventListener('click', (event) => {
+  const link = event.target.closest('[data-project-jump]');
+  if (!link) return;
+  event.preventDefault();
+  activeProjectId = link.dataset.projectJump;
+  setRoute('works');
+  closeMenu();
+  renderProjectList();
+  renderProjectReader();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMenu();
+});
+
+renderMenuProjects();
+renderProjectList();
+renderProjectReader();
 renderTeaching();
 renderCv();
+setRoute(location.hash.replace('#', '') || 'works');
+sortButtons[0]?.classList.add('is-active');
