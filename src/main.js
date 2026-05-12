@@ -82,6 +82,15 @@ const defaultProjects = [
     documentation: ['system captures', 'prompt/interface studies', 'audiovisual excerpts', 'installation diagrams'],
     embed: 'A/V excerpt / computational system capture embed slot',
     pdf: 'docs/artificial-cinema-documentation.pdf',
+    media: [
+      {
+        type: 'video',
+        title: 'Artificial Cinema',
+        url: 'https://vimeo.com/506931329',
+        caption: '',
+        fileName: '',
+      },
+    ],
   },
   {
     id: 'variation-79-podkop',
