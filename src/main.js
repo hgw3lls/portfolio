@@ -225,9 +225,15 @@ const renderProjectList = () => {
       activeProjectId = button.dataset.project;
       renderProjectList();
       renderProjectReader();
+
+      if (window.matchMedia('(max-width: 760px)').matches) {
+        projectReader.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      }
     });
 
-    button.addEventListener('pointerenter', () => {
+    button.addEventListener('pointerenter', (event) => {
+      if (event.pointerType && event.pointerType !== 'mouse') return;
+
       activeProjectId = button.dataset.project;
       renderProjectList();
       renderProjectReader();
