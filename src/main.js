@@ -102,6 +102,8 @@ const defaultProjects = [
 const STORAGE_KEY = 'tony-yanick-portfolio-projects';
 const ADMIN_SESSION_KEY = 'tony-yanick-admin-authenticated';
 const ADMIN_CREDENTIALS = { username: 'anon', password: '1984' };
+const LIVE_SAVE_MESSAGE = 'Public site updated just now.';
+
 
 let projects = structuredClone(defaultProjects);
 
@@ -161,11 +163,13 @@ const adminResetButton = document.querySelector('[data-admin-reset]');
 const adminLockButton = document.querySelector('[data-admin-lock]');
 const adminExportButton = document.querySelector('[data-admin-export]');
 const adminAssetList = document.querySelector('#admin-asset-list');
+const adminLiveStatus = document.querySelector('#admin-live-status');
 
 let activeProjectId = projects[0].id;
 let activeSort = 'date';
 let activeRoute = 'works';
 let isAdminAuthenticated = sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true';
+let liveStatusTimer;
 
 
 const escapeHtml = (value = '') => String(value)
@@ -245,8 +249,19 @@ const loadProjects = () => {
   }
 };
 
-const saveProjects = () => {
+const updateLiveStatus = (message = LIVE_SAVE_MESSAGE) => {
+  if (!adminLiveStatus) return;
+  adminLiveStatus.textContent = message;
+  adminLiveStatus.classList.remove('is-error');
+  window.clearTimeout(liveStatusTimer);
+  liveStatusTimer = window.setTimeout(() => {
+    adminLiveStatus.textContent = 'Edits publish instantly in this browser.';
+  }, 2600);
+};
+
+const saveProjects = ({ silent = false } = {}) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+  if (!silent) updateLiveStatus();
 };
 
 const createProjectId = (title) => {
@@ -346,13 +361,56 @@ const populateProjectEditor = () => {
   if (assetEditor) assetEditor.elements.pdfLink.value = project.pdf || '';
 };
 
-const refreshPortfolio = () => {
+const refreshPublicPortfolio = () => {
   renderMenuProjects();
   renderProjectList();
   renderProjectReader();
   renderCv();
+};
+
+const refreshAdminProjectShell = () => {
   renderAdminSelect();
+  renderAdminAssets();
+};
+
+const refreshPortfolio = () => {
+  refreshPublicPortfolio();
+  refreshAdminProjectShell();
   populateProjectEditor();
+};
+
+const applyProjectEditorValues = () => {
+  if (!projectEditor || !requireAdminAccess()) return false;
+  const form = new FormData(projectEditor);
+  const project = projects.find((item) => item.id === activeProjectId);
+  if (!project) return false;
+
+  const title = String(form.get('title') || '').trim();
+  project.title = title || project.title;
+  project.date = String(form.get('date') || '').trim();
+  project.format = String(form.get('format') || '').trim();
+  project.tags = listFromText(form.get('tags'));
+  project.summary = String(form.get('summary') || '').trim();
+  project.system = String(form.get('system') || '').trim();
+  project.documentation = String(form.get('documentation') || '').split('\n').map((item) => item.trim()).filter(Boolean);
+  return true;
+};
+
+const publishEditorChanges = () => {
+  if (!applyProjectEditorValues()) return;
+  saveProjects();
+  refreshPublicPortfolio();
+  refreshAdminProjectShell();
+};
+
+const publishPdfLinkChange = () => {
+  if (!assetEditor || !requireAdminAccess()) return;
+  const project = projects.find((item) => item.id === activeProjectId);
+  if (!project) return;
+
+  project.pdf = safeUrl(assetEditor.elements.pdfLink.value);
+  saveProjects();
+  refreshPublicPortfolio();
   renderAdminAssets();
 };
 
@@ -565,24 +623,13 @@ adminLockButton?.addEventListener('click', () => {
 adminProjectSelect?.addEventListener('change', () => {
   activeProjectId = adminProjectSelect.value;
   refreshPortfolio();
+  updateLiveStatus('Editing selected project.');
 });
 
+projectEditor?.addEventListener('input', publishEditorChanges);
 projectEditor?.addEventListener('submit', (event) => {
   event.preventDefault();
-  if (!requireAdminAccess()) return;
-  const form = new FormData(projectEditor);
-  const project = projects.find((item) => item.id === activeProjectId);
-  if (!project) return;
-
-  project.title = form.get('title').trim() || project.title;
-  project.date = form.get('date').trim();
-  project.format = form.get('format').trim();
-  project.tags = listFromText(form.get('tags'));
-  project.summary = form.get('summary').trim();
-  project.system = form.get('system').trim();
-  project.documentation = String(form.get('documentation')).split('\n').map((item) => item.trim()).filter(Boolean);
-  saveProjects();
-  refreshPortfolio();
+  publishEditorChanges();
 });
 
 adminNewButton?.addEventListener('click', () => {
@@ -605,6 +652,8 @@ adminNewButton?.addEventListener('click', () => {
   saveProjects();
   refreshPortfolio();
 });
+
+assetEditor?.elements.pdfLink?.addEventListener('input', publishPdfLinkChange);
 
 assetEditor?.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -666,6 +715,22 @@ adminResetButton?.addEventListener('click', () => {
   projects = structuredClone(defaultProjects);
   activeProjectId = projects[0].id;
   refreshPortfolio();
+  updateLiveStatus('Public site reset to default projects.');
+});
+
+window.addEventListener('storage', (event) => {
+  if (event.key !== STORAGE_KEY) return;
+
+  try {
+    const parsed = event.newValue ? JSON.parse(event.newValue) : structuredClone(defaultProjects);
+    if (Array.isArray(parsed) && parsed.length) {
+      projects = parsed;
+      if (!projects.some((project) => project.id === activeProjectId)) activeProjectId = projects[0].id;
+      refreshPortfolio();
+    }
+  } catch (error) {
+    console.warn('Unable to sync project edits from another tab.', error);
+  }
 });
 
 loadProjects();

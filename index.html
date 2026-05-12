@@ -142,7 +142,7 @@
         <section class="view admin-view" id="admin" data-view="admin" aria-labelledby="admin-title">
           <div class="view-head"><span>06</span><button class="admin-reset" type="button" data-admin-reset>Reset local edits</button></div>
           <h2 id="admin-title">Admin editor for project media, documents, and local links.</h2>
-          <p class="section-intro">Sign in to edit project records, media, and documents. Edits are saved in this browser; use Export JSON to copy the updated project data into the site code for permanent deployment.</p>
+          <p class="section-intro">Sign in to edit project records, media, and documents. Project edits update the public Works, menu, and CV views instantly in this browser; use Export JSON to copy the updated project data into the site code for permanent deployment.</p>
 
           <form class="admin-login" id="admin-login" aria-labelledby="admin-login-title">
             <span class="admin-kicker" id="admin-login-title">Admin sign in</span>
@@ -168,6 +168,7 @@
           <div class="admin-layout" id="admin-layout" hidden>
             <form class="admin-panel" id="project-editor">
               <span class="admin-kicker">Project record</span>
+              <p class="admin-live-status" id="admin-live-status" aria-live="polite">Edits publish instantly in this browser.</p>
               <label>
                 Select project
                 <select id="admin-project-select" name="projectId"></select>
@@ -201,7 +202,7 @@
                 <textarea name="documentation" rows="4"></textarea>
               </label>
               <div class="admin-actions">
-                <button type="submit">Save project</button>
+                <button type="submit">Save now</button>
                 <button type="button" data-admin-new>New project</button>
               </div>
             </form>
