@@ -57,6 +57,7 @@ const FIT_TEXT_SELECTOR = [
   '.route-tabs a',
   '.sticky-head button',
   '.project-row strong',
+  '.project-reader h3',
   '.project-row em',
   '.project-row small',
   '.project-row-cta',
@@ -637,6 +638,8 @@ const renderProjectReader = () => {
     </div>
     <ul class="tag-list">${(project.tags || []).map((tag) => `<li>${escapeHtml(tag)}</li>`).join('')}</ul>
   `;
+
+  fitSingleLineText(projectReader);
 };
 
 const renderProjectList = () => {
