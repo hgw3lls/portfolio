@@ -696,14 +696,22 @@ body.menu-open { overflow: hidden; }
   background: color-mix(in srgb, var(--accent) 14%, transparent);
 }
 .admin-session p,
-.admin-login-status {
+.admin-login-status,
+.admin-live-status {
   margin: 0;
 }
-.admin-login-status {
+.admin-login-status,
+.admin-live-status {
   min-height: 1.25rem;
   color: var(--muted);
 }
-.admin-login-status.is-error { color: var(--accent); }
+.admin-live-status {
+  padding: .45rem .55rem;
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.admin-login-status.is-error,
+.admin-live-status.is-error { color: var(--accent); }
 .admin-kicker,
 .admin-login label,
 .admin-panel label {
