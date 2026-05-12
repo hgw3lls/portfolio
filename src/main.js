@@ -100,6 +100,8 @@ const defaultProjects = [
 ];
 
 const STORAGE_KEY = 'tony-yanick-portfolio-projects';
+const ADMIN_SESSION_KEY = 'tony-yanick-admin-authenticated';
+const ADMIN_CREDENTIALS = { username: 'anon', password: '1984' };
 
 let projects = structuredClone(defaultProjects);
 
@@ -146,18 +148,24 @@ const menuProjects = document.querySelector('#menu-projects');
 const routeLinks = document.querySelectorAll('[data-route]');
 const views = document.querySelectorAll('[data-view]');
 const sortButtons = document.querySelectorAll('[data-sort]');
+const adminLogin = document.querySelector('#admin-login');
+const adminLoginStatus = document.querySelector('#admin-login-status');
+const adminSession = document.querySelector('#admin-session');
+const adminLayout = document.querySelector('#admin-layout');
 const adminProjectSelect = document.querySelector('#admin-project-select');
 const projectEditor = document.querySelector('#project-editor');
 const assetEditor = document.querySelector('#asset-editor');
 const adminExport = document.querySelector('#admin-export');
 const adminNewButton = document.querySelector('[data-admin-new]');
 const adminResetButton = document.querySelector('[data-admin-reset]');
+const adminLockButton = document.querySelector('[data-admin-lock]');
 const adminExportButton = document.querySelector('[data-admin-export]');
 const adminAssetList = document.querySelector('#admin-asset-list');
 
 let activeProjectId = projects[0].id;
 let activeSort = 'date';
 let activeRoute = 'works';
+let isAdminAuthenticated = sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true';
 
 
 const escapeHtml = (value = '') => String(value)
@@ -191,6 +199,37 @@ const fileToDataUrl = (file) => new Promise((resolve, reject) => {
   reader.addEventListener('error', () => reject(reader.error));
   reader.readAsDataURL(file);
 });
+
+
+const updateAdminAccess = () => {
+  if (!adminLogin || !adminLayout) return;
+
+  adminLogin.hidden = isAdminAuthenticated;
+  adminLayout.hidden = !isAdminAuthenticated;
+  if (adminSession) adminSession.hidden = !isAdminAuthenticated;
+  if (adminResetButton) adminResetButton.hidden = !isAdminAuthenticated;
+
+  if (adminLoginStatus) {
+    adminLoginStatus.textContent = '';
+    adminLoginStatus.classList.remove('is-error');
+  }
+};
+
+const setAdminAuthenticated = (authenticated) => {
+  isAdminAuthenticated = authenticated;
+  if (authenticated) {
+    sessionStorage.setItem(ADMIN_SESSION_KEY, 'true');
+  } else {
+    sessionStorage.removeItem(ADMIN_SESSION_KEY);
+  }
+  updateAdminAccess();
+};
+
+const requireAdminAccess = () => {
+  if (isAdminAuthenticated) return true;
+  setAdminAuthenticated(false);
+  return false;
+};
 
 const loadProjects = () => {
   try {
@@ -501,6 +540,28 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
 });
 
+adminLogin?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const form = new FormData(adminLogin);
+  const username = String(form.get('username')).trim();
+  const password = String(form.get('password'));
+
+  if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+    adminLogin.reset();
+    setAdminAuthenticated(true);
+    return;
+  }
+
+  if (adminLoginStatus) {
+    adminLoginStatus.textContent = 'Incorrect username or password.';
+    adminLoginStatus.classList.add('is-error');
+  }
+});
+
+adminLockButton?.addEventListener('click', () => {
+  setAdminAuthenticated(false);
+});
+
 adminProjectSelect?.addEventListener('change', () => {
   activeProjectId = adminProjectSelect.value;
   refreshPortfolio();
@@ -508,6 +569,7 @@ adminProjectSelect?.addEventListener('change', () => {
 
 projectEditor?.addEventListener('submit', (event) => {
   event.preventDefault();
+  if (!requireAdminAccess()) return;
   const form = new FormData(projectEditor);
   const project = projects.find((item) => item.id === activeProjectId);
   if (!project) return;
@@ -524,6 +586,7 @@ projectEditor?.addEventListener('submit', (event) => {
 });
 
 adminNewButton?.addEventListener('click', () => {
+  if (!requireAdminAccess()) return;
   const project = {
     id: createProjectId('new project'),
     title: 'NEW PROJECT',
@@ -545,6 +608,7 @@ adminNewButton?.addEventListener('click', () => {
 
 assetEditor?.addEventListener('submit', async (event) => {
   event.preventDefault();
+  if (!requireAdminAccess()) return;
   const project = projects.find((item) => item.id === activeProjectId);
   if (!project) return;
   const form = new FormData(assetEditor);
@@ -580,12 +644,13 @@ assetEditor?.addEventListener('submit', async (event) => {
 });
 
 adminExportButton?.addEventListener('click', () => {
-  if (!adminExport) return;
+  if (!requireAdminAccess() || !adminExport) return;
   adminExport.value = JSON.stringify(projects, null, 2);
   adminExport.select();
 });
 
 adminAssetList?.addEventListener('click', (event) => {
+  if (!requireAdminAccess()) return;
   const button = event.target.closest('[data-remove-media]');
   if (!button) return;
   const project = projects.find((item) => item.id === activeProjectId);
@@ -596,6 +661,7 @@ adminAssetList?.addEventListener('click', (event) => {
 });
 
 adminResetButton?.addEventListener('click', () => {
+  if (!requireAdminAccess()) return;
   localStorage.removeItem(STORAGE_KEY);
   projects = structuredClone(defaultProjects);
   activeProjectId = projects[0].id;
@@ -603,6 +669,7 @@ adminResetButton?.addEventListener('click', () => {
 });
 
 loadProjects();
+updateAdminAccess();
 
 renderMenuProjects();
 renderProjectList();
