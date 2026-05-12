@@ -1,4 +1,4 @@
-const projects = [
+const defaultProjects = [
   {
     id: 'hypnagnosis',
     title: 'HYPNAGNOSIS',
@@ -99,6 +99,10 @@ const projects = [
   },
 ];
 
+const STORAGE_KEY = 'tony-yanick-portfolio-projects';
+
+let projects = structuredClone(defaultProjects);
+
 const teachingMaterials = [
   {
     title: 'Systems-based media studio',
@@ -142,10 +146,176 @@ const menuProjects = document.querySelector('#menu-projects');
 const routeLinks = document.querySelectorAll('[data-route]');
 const views = document.querySelectorAll('[data-view]');
 const sortButtons = document.querySelectorAll('[data-sort]');
+const adminProjectSelect = document.querySelector('#admin-project-select');
+const projectEditor = document.querySelector('#project-editor');
+const assetEditor = document.querySelector('#asset-editor');
+const adminExport = document.querySelector('#admin-export');
+const adminNewButton = document.querySelector('[data-admin-new]');
+const adminResetButton = document.querySelector('[data-admin-reset]');
+const adminExportButton = document.querySelector('[data-admin-export]');
+const adminAssetList = document.querySelector('#admin-asset-list');
 
 let activeProjectId = projects[0].id;
 let activeSort = 'date';
 let activeRoute = 'works';
+
+
+const escapeHtml = (value = '') => String(value)
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&#39;');
+
+const safeUrl = (value = '') => {
+  const url = String(value).trim();
+  if (!url || url.startsWith('//')) return '';
+  if (/^(https?:|mailto:|data:|blob:)/i.test(url)) return url;
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(url)) return url;
+  return '';
+};
+
+const listFromText = (value = '') => String(value)
+  .split(/[\n,]/)
+  .map((item) => item.trim())
+  .filter(Boolean);
+
+const fileToDataUrl = (file) => new Promise((resolve, reject) => {
+  if (!file) {
+    resolve('');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.addEventListener('load', () => resolve(reader.result));
+  reader.addEventListener('error', () => reject(reader.error));
+  reader.readAsDataURL(file);
+});
+
+const loadProjects = () => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return;
+    const parsed = JSON.parse(saved);
+    if (Array.isArray(parsed) && parsed.length) {
+      projects = parsed;
+      if (!projects.some((project) => project.id === activeProjectId)) activeProjectId = projects[0].id;
+    }
+  } catch (error) {
+    console.warn('Unable to load saved project edits.', error);
+  }
+};
+
+const saveProjects = () => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+};
+
+const createProjectId = (title) => {
+  const base = String(title || 'new-project')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '') || 'new-project';
+  let id = base;
+  let count = 2;
+  while (projects.some((project) => project.id === id)) {
+    id = `${base}-${count}`;
+    count += 1;
+  }
+  return id;
+};
+
+const getEmbeddableVideoUrl = (url) => {
+  try {
+    const parsed = new URL(url, window.location.href);
+    if (parsed.hostname.includes('youtube.com')) {
+      const videoId = parsed.searchParams.get('v');
+      return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+    }
+    if (parsed.hostname.includes('youtu.be')) return `https://www.youtube.com/embed/${parsed.pathname.slice(1)}`;
+    if (parsed.hostname.includes('vimeo.com')) return `https://player.vimeo.com/video/${parsed.pathname.split('/').filter(Boolean).pop()}`;
+  } catch (error) {
+    return url;
+  }
+
+  return url;
+};
+
+const renderMediaItem = (media) => {
+  const url = safeUrl(media.url);
+  if (!url) return '';
+  const title = escapeHtml(media.title || media.fileName || 'Project media');
+  const caption = media.caption ? `<p>${escapeHtml(media.caption)}</p>` : '';
+  const download = media.fileName ? ` download="${escapeHtml(media.fileName)}"` : '';
+
+  if (media.type === 'image') {
+    return `<figure class="media-item"><img src="${url}" alt="${title}" /><figcaption>${title}${caption}</figcaption></figure>`;
+  }
+
+  if (media.type === 'video') {
+    const embedUrl = getEmbeddableVideoUrl(url);
+    const player = /youtube\.com\/embed|player\.vimeo\.com/.test(embedUrl)
+      ? `<iframe src="${embedUrl}" title="${title}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
+      : `<video src="${url}" controls playsinline preload="metadata"></video>`;
+    return `<figure class="media-item media-item--video">${player}<figcaption>${title}${caption}</figcaption></figure>`;
+  }
+
+  if (media.type === 'audio') {
+    return `<figure class="media-item"><audio src="${url}" controls preload="metadata"></audio><figcaption>${title}${caption}</figcaption></figure>`;
+  }
+
+  return `<article class="media-item media-item--link"><h4>${title}</h4>${caption}<a href="${url}"${download} target="_blank" rel="noreferrer">Open ${escapeHtml(media.type || 'asset')}</a></article>`;
+};
+
+const renderAdminSelect = () => {
+  if (!adminProjectSelect) return;
+  adminProjectSelect.innerHTML = projects
+    .map((project) => `<option value="${project.id}">${escapeHtml(project.title)}</option>`)
+    .join('');
+  adminProjectSelect.value = activeProjectId;
+};
+
+
+const renderAdminAssets = () => {
+  if (!adminAssetList) return;
+  const project = projects.find((item) => item.id === activeProjectId) || projects[0];
+  const media = project.media || [];
+  adminAssetList.innerHTML = `
+    <span class="admin-kicker">Current assets</span>
+    ${project.pdf ? `<article><strong>Project PDF</strong><a href="${safeUrl(project.pdf)}" target="_blank" rel="noreferrer">Open PDF</a></article>` : '<article>No project PDF set.</article>'}
+    ${media.length ? media.map((item, index) => `
+      <article>
+        <strong>${escapeHtml(item.title || item.fileName || item.type)}</strong>
+        <span>${escapeHtml(item.type)}</span>
+        <button type="button" data-remove-media="${index}">Remove</button>
+      </article>
+    `).join('') : '<article>No media items yet.</article>'}
+  `;
+};
+
+const populateProjectEditor = () => {
+  if (!projectEditor) return;
+  const project = projects.find((item) => item.id === activeProjectId) || projects[0];
+  if (!project) return;
+  projectEditor.elements.projectId.value = project.id;
+  projectEditor.elements.title.value = project.title || '';
+  projectEditor.elements.date.value = project.date || '';
+  projectEditor.elements.format.value = project.format || '';
+  projectEditor.elements.tags.value = (project.tags || []).join(', ');
+  projectEditor.elements.summary.value = project.summary || '';
+  projectEditor.elements.system.value = project.system || '';
+  projectEditor.elements.documentation.value = (project.documentation || []).join('\n');
+  if (assetEditor) assetEditor.elements.pdfLink.value = project.pdf || '';
+};
+
+const refreshPortfolio = () => {
+  renderMenuProjects();
+  renderProjectList();
+  renderProjectReader();
+  renderCv();
+  renderAdminSelect();
+  populateProjectEditor();
+  renderAdminAssets();
+};
 
 const slugNumber = (index) => String(index + 1).padStart(2, '0');
 
@@ -174,38 +344,40 @@ const setRoute = (route) => {
 
 const renderMenuProjects = () => {
   menuProjects.innerHTML = projects
-    .map((project, index) => `<a href="#works" data-project-jump="${project.id}">${slugNumber(index)} ${project.title}</a>`)
+    .map((project, index) => `<a href="#works" data-project-jump="${project.id}">${slugNumber(index)} ${escapeHtml(project.title)}</a>`)
     .join('');
 };
 
 const renderProjectReader = () => {
   const project = projects.find((item) => item.id === activeProjectId) || projects[0];
   const index = projects.indexOf(project);
+  const pdf = safeUrl(project.pdf);
+  const mediaItems = (project.media || []).map(renderMediaItem).join('');
 
   projectReader.innerHTML = `
     <div class="reader-meta">
       <span>${slugNumber(index)}</span>
-      <span>${project.date}</span>
-      <a href="${project.pdf}" download>PDF</a>
+      <span>${escapeHtml(project.date)}</span>
+      ${pdf ? `<a href="${pdf}" download>PDF</a>` : '<span>No PDF</span>'}
     </div>
-    <p class="eyebrow">${project.format}</p>
-    <h3>${project.title}</h3>
-    <p class="reader-summary">${project.summary}</p>
+    <p class="eyebrow">${escapeHtml(project.format)}</p>
+    <h3>${escapeHtml(project.title)}</h3>
+    <p class="reader-summary">${escapeHtml(project.summary)}</p>
     <div class="reader-sections">
       <section>
         <h4>System / environment</h4>
-        <p>${project.system}</p>
+        <p>${escapeHtml(project.system)}</p>
       </section>
       <section>
         <h4>Documentation</h4>
-        <ul>${project.documentation.map((item) => `<li>${item}</li>`).join('')}</ul>
+        <ul>${(project.documentation || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
       </section>
     </div>
-    <div class="media-module" aria-label="${project.title} media embed placeholder">
+    <div class="media-module" aria-label="${escapeHtml(project.title)} media">
       <span>media module</span>
-      <p>${project.embed}</p>
+      ${mediaItems || `<p>${escapeHtml(project.embed || 'Add project media in Admin.')}</p>`}
     </div>
-    <ul class="tag-list">${project.tags.map((tag) => `<li>${tag}</li>`).join('')}</ul>
+    <ul class="tag-list">${(project.tags || []).map((tag) => `<li>${escapeHtml(tag)}</li>`).join('')}</ul>
   `;
 };
 
@@ -216,10 +388,10 @@ const renderProjectList = () => {
       return `
         <button class="project-row" type="button" data-project="${project.id}" aria-pressed="${project.id === activeProjectId}">
           <span>${slugNumber(index)}</span>
-          <strong>${project.title}</strong>
-          <em>${project.format}</em>
-          <small>${project.date}</small>
-          <p class="project-row-summary">${project.summary}</p>
+          <strong>${escapeHtml(project.title)}</strong>
+          <em>${escapeHtml(project.format)}</em>
+          <small>${escapeHtml(project.date)}</small>
+          <p class="project-row-summary">${escapeHtml(project.summary)}</p>
           <span class="project-row-cta" aria-hidden="true">View details ↓</span>
         </button>
       `;
@@ -263,7 +435,7 @@ const renderTeaching = () => {
 };
 
 const renderCv = () => {
-  cvWorkList.innerHTML = projects.map((project) => `<li>${project.title}</li>`).join('');
+  cvWorkList.innerHTML = projects.map((project) => `<li>${escapeHtml(project.title)}</li>`).join('');
   downloadList.innerHTML = downloads
     .map(([label, href]) => `<li><a href="${href}" download>${label}</a></li>`)
     .join('');
@@ -329,11 +501,117 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
 });
 
+adminProjectSelect?.addEventListener('change', () => {
+  activeProjectId = adminProjectSelect.value;
+  refreshPortfolio();
+});
+
+projectEditor?.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const form = new FormData(projectEditor);
+  const project = projects.find((item) => item.id === activeProjectId);
+  if (!project) return;
+
+  project.title = form.get('title').trim() || project.title;
+  project.date = form.get('date').trim();
+  project.format = form.get('format').trim();
+  project.tags = listFromText(form.get('tags'));
+  project.summary = form.get('summary').trim();
+  project.system = form.get('system').trim();
+  project.documentation = String(form.get('documentation')).split('\n').map((item) => item.trim()).filter(Boolean);
+  saveProjects();
+  refreshPortfolio();
+});
+
+adminNewButton?.addEventListener('click', () => {
+  const project = {
+    id: createProjectId('new project'),
+    title: 'NEW PROJECT',
+    date: 'Draft',
+    format: 'Media environment',
+    tags: ['draft'],
+    summary: 'Add a project summary in the admin editor.',
+    system: 'Describe the system, environment, or process.',
+    documentation: ['Add documentation notes'],
+    embed: 'Add media, a local file, or a hosted link in Admin.',
+    pdf: '',
+    media: [],
+  };
+  projects.unshift(project);
+  activeProjectId = project.id;
+  saveProjects();
+  refreshPortfolio();
+});
+
+assetEditor?.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const project = projects.find((item) => item.id === activeProjectId);
+  if (!project) return;
+  const form = new FormData(assetEditor);
+  const pdfFile = assetEditor.elements.pdfFile.files[0];
+  const mediaFile = assetEditor.elements.mediaFile.files[0];
+  const pdfLink = safeUrl(form.get('pdfLink'));
+
+  if (pdfFile) {
+    project.pdf = await fileToDataUrl(pdfFile);
+  } else if (pdfLink) {
+    project.pdf = pdfLink;
+  }
+
+  const mediaUrl = mediaFile ? await fileToDataUrl(mediaFile) : safeUrl(form.get('mediaUrl'));
+  if (mediaUrl) {
+    project.media = project.media || [];
+    project.media.push({
+      type: form.get('mediaType'),
+      title: form.get('mediaTitle').trim() || mediaFile?.name || 'Project media',
+      url: mediaUrl,
+      caption: form.get('mediaCaption').trim(),
+      fileName: mediaFile?.name || '',
+    });
+  }
+
+  saveProjects();
+  assetEditor.elements.pdfFile.value = '';
+  assetEditor.elements.mediaFile.value = '';
+  assetEditor.elements.mediaTitle.value = '';
+  assetEditor.elements.mediaUrl.value = '';
+  assetEditor.elements.mediaCaption.value = '';
+  refreshPortfolio();
+});
+
+adminExportButton?.addEventListener('click', () => {
+  if (!adminExport) return;
+  adminExport.value = JSON.stringify(projects, null, 2);
+  adminExport.select();
+});
+
+adminAssetList?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-remove-media]');
+  if (!button) return;
+  const project = projects.find((item) => item.id === activeProjectId);
+  if (!project?.media) return;
+  project.media.splice(Number(button.dataset.removeMedia), 1);
+  saveProjects();
+  refreshPortfolio();
+});
+
+adminResetButton?.addEventListener('click', () => {
+  localStorage.removeItem(STORAGE_KEY);
+  projects = structuredClone(defaultProjects);
+  activeProjectId = projects[0].id;
+  refreshPortfolio();
+});
+
+loadProjects();
+
 renderMenuProjects();
 renderProjectList();
 renderProjectReader();
 renderTeaching();
 renderCv();
+renderAdminSelect();
+populateProjectEditor();
+renderAdminAssets();
 const initialRoute = [...views].some((view) => view.dataset.view === location.hash.replace('#', ''))
   ? location.hash.replace('#', '')
   : 'works';

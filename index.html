@@ -30,6 +30,7 @@
       <a href="#research" data-route="research">Research</a>
       <a href="#teaching" data-route="teaching">Teaching</a>
       <a href="#cv" data-route="cv">CV</a>
+      <a href="#admin" data-route="admin">Admin</a>
     </nav>
 
     <aside class="site-menu" id="site-menu" aria-label="Expanded navigation" aria-hidden="true">
@@ -43,6 +44,7 @@
           <a href="#research" data-route="research">Research</a>
           <a href="#teaching" data-route="teaching">Teaching</a>
           <a href="#cv" data-route="cv">CV / files</a>
+          <a href="#admin" data-route="admin">Admin editor</a>
         </section>
         <section>
           <h2>Project jump</h2>
@@ -134,6 +136,99 @@
             </article>
             <article><h3>Selected works</h3><ul id="cv-work-list"></ul></article>
             <article><h3>Downloadable materials</h3><ul class="download-list" id="download-list"></ul></article>
+          </div>
+        </section>
+
+        <section class="view admin-view" id="admin" data-view="admin" aria-labelledby="admin-title">
+          <div class="view-head"><span>06</span><button class="admin-reset" type="button" data-admin-reset>Reset local edits</button></div>
+          <h2 id="admin-title">Admin editor for project media, documents, and local links.</h2>
+          <p class="section-intro">Use this local editor to add projects, replace project PDFs, attach uploaded files, or provide hosted links. Edits are saved in this browser; use Export JSON to copy the updated project data into the site code for permanent deployment.</p>
+
+          <div class="admin-layout">
+            <form class="admin-panel" id="project-editor">
+              <span class="admin-kicker">Project record</span>
+              <label>
+                Select project
+                <select id="admin-project-select" name="projectId"></select>
+              </label>
+              <label>
+                Project title
+                <input name="title" type="text" required />
+              </label>
+              <label>
+                Date / status
+                <input name="date" type="text" />
+              </label>
+              <label>
+                Format
+                <input name="format" type="text" />
+              </label>
+              <label>
+                Tags, comma separated
+                <input name="tags" type="text" />
+              </label>
+              <label>
+                Summary
+                <textarea name="summary" rows="4"></textarea>
+              </label>
+              <label>
+                System / environment
+                <textarea name="system" rows="4"></textarea>
+              </label>
+              <label>
+                Documentation notes, one per line
+                <textarea name="documentation" rows="4"></textarea>
+              </label>
+              <div class="admin-actions">
+                <button type="submit">Save project</button>
+                <button type="button" data-admin-new>New project</button>
+              </div>
+            </form>
+
+            <form class="admin-panel" id="asset-editor">
+              <span class="admin-kicker">Media and documents</span>
+              <label>
+                Project PDF link
+                <input name="pdfLink" type="text" placeholder="docs/project.pdf or https://…" />
+              </label>
+              <label>
+                Or upload PDF
+                <input name="pdfFile" type="file" accept="application/pdf" />
+              </label>
+              <div class="admin-asset-list" id="admin-asset-list" aria-live="polite"></div>
+              <hr />
+              <label>
+                Media type
+                <select name="mediaType">
+                  <option value="video">Video player</option>
+                  <option value="image">Image</option>
+                  <option value="audio">Audio</option>
+                  <option value="document">Document / PDF</option>
+                  <option value="link">External link</option>
+                </select>
+              </label>
+              <label>
+                Media title
+                <input name="mediaTitle" type="text" placeholder="Installation excerpt" />
+              </label>
+              <label>
+                Media link
+                <input name="mediaUrl" type="text" placeholder="https://… or docs/file.pdf" />
+              </label>
+              <label>
+                Or upload media/document
+                <input name="mediaFile" type="file" accept="image/*,video/*,audio/*,application/pdf" />
+              </label>
+              <label>
+                Caption / note
+                <textarea name="mediaCaption" rows="3"></textarea>
+              </label>
+              <div class="admin-actions">
+                <button type="submit">Update PDF / add media</button>
+                <button type="button" data-admin-export>Export JSON</button>
+              </div>
+              <textarea class="admin-export" id="admin-export" rows="8" readonly placeholder="Exported project data appears here."></textarea>
+            </form>
           </div>
         </section>
       </section>
