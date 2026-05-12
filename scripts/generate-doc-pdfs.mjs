@@ -54,6 +54,31 @@ const documents = {
     'VARIATION 79 / PODKOP — Project Documentation',
     'Experimental audiovisual works, repetition, recursion, mediated memory.',
   ],
+
+  'the-fixers-naudia-loftis-documentation.pdf': [
+    'The Fixers: Naudia Loftis — Project Documentation',
+    'Collaborative documentary film centered on community organizing in Cleveland.',
+  ],
+  'make-america-great-again-and-again-documentation.pdf': [
+    'Make America Great Again ... And Again — Project Documentation',
+    'Experimental video work, political language, speculative fiction, and montage.',
+  ],
+  'surface-documentation.pdf': [
+    'surFACE — Project Documentation',
+    'Short film from TAPEHEADS investigating analog recording, drawing, and feedback.',
+  ],
+  'flow-lines-documentation.pdf': [
+    'Flow Lines (3-channel video) — Project Documentation',
+    'Collaborative three-channel video on landscape, migration, memory, and the Niagara River.',
+  ],
+  'bobbi-lynn-documentation.pdf': [
+    'BOBBI LYNN — Project Documentation',
+    'Music video exploring memory, family archive, and generative image systems.',
+  ],
+  'dossier-37-documentation.pdf': [
+    'Dossier 37 — Project Documentation',
+    'Audiovisual work with AUDINT on sonic warfare, disinformation, and forensic visualization.',
+  ],
   'systems-based-media-studio.pdf': [
     'Systems-based Media Studio — Teaching Material',
     'Course framework for image, sound, code, archive, and spatial systems.',
