@@ -164,7 +164,11 @@ const sortedProjects = () => [...projects].sort((a, b) => {
 const setRoute = (route) => {
   activeRoute = route;
   views.forEach((view) => view.classList.toggle('is-active', view.dataset.view === route));
-  routeLinks.forEach((link) => link.classList.toggle('is-active', link.dataset.route === route));
+  routeLinks.forEach((link) => {
+    const isActive = link.dataset.route === route;
+    link.classList.toggle('is-active', isActive);
+    link.setAttribute('aria-current', isActive ? 'page' : 'false');
+  });
   document.body.dataset.route = route;
 };
 
@@ -215,6 +219,8 @@ const renderProjectList = () => {
           <strong>${project.title}</strong>
           <em>${project.format}</em>
           <small>${project.date}</small>
+          <p class="project-row-summary">${project.summary}</p>
+          <span class="project-row-cta" aria-hidden="true">View details ↓</span>
         </button>
       `;
     })
@@ -328,5 +334,8 @@ renderProjectList();
 renderProjectReader();
 renderTeaching();
 renderCv();
-setRoute(location.hash.replace('#', '') || 'works');
+const initialRoute = [...views].some((view) => view.dataset.view === location.hash.replace('#', ''))
+  ? location.hash.replace('#', '')
+  : 'works';
+setRoute(initialRoute);
 sortButtons[0]?.classList.add('is-active');
