@@ -145,6 +145,7 @@ const renderProjectIndex = () => {
           <span>${slugNumber(index)}</span>
           <strong>${project.title}</strong>
           <em>${project.format}</em>
+          <small>Open</small>
         </a>
       `,
     )
@@ -159,7 +160,8 @@ const renderProjectPages = () => {
           <div class="project-page__meta">
             <span>${slugNumber(index)}</span>
             <span>${project.date}</span>
-            <a href="${project.pdf}" download>Download project PDF</a>
+            <span>Text 🗎</span>
+            <a href="${project.pdf}" download>Download PDF 🖷</a>
           </div>
           <div class="project-page__body">
             <header>
@@ -179,7 +181,7 @@ const renderProjectPages = () => {
             </div>
             <div class="media-module" aria-label="${project.title} media embed placeholder">
               <div>
-                <span>Media embed</span>
+                <span>Media embed / image-sequence 🡥</span>
                 <p>${project.embed}</p>
               </div>
               <ul>${project.tags.map((tag) => `<li>${tag}</li>`).join('')}</ul>
