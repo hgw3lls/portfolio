@@ -120,15 +120,7 @@ const defaultProjects = [
     documentation: ['community screenings', 'gallery presentations', 'public events', '2016 Republican National Convention context'],
     embed: 'Documentary excerpt / screening documentation embed slot',
     pdf: 'docs/the-fixers-naudia-loftis-documentation.pdf',
-    media: [
-      {
-        type: 'video',
-        title: 'Project media',
-        url: 'https://vimeo.com/170722317',
-        caption: '',
-        fileName: '',
-      },
-    ],
+    media: [],
   },
   {
     id: 'make-america-great-again-and-again',
@@ -143,15 +135,7 @@ const defaultProjects = [
     documentation: ['single-channel video', 'festival screening notes', 'montage stills', 'sound/image documentation'],
     embed: 'Experimental video excerpt / screening documentation embed slot',
     pdf: 'docs/make-america-great-again-and-again-documentation.pdf',
-    media: [
-      {
-        type: 'video',
-        title: 'Project media',
-        url: 'https://vimeo.com/201921786',
-        caption: '',
-        fileName: '',
-      },
-    ],
+    media: [],
   },
   {
     id: 'surface',
@@ -181,15 +165,7 @@ const defaultProjects = [
     documentation: ['three-channel installation', 'Niagara River research', 'poetic language score', 'installation stills'],
     embed: 'Three-channel video excerpt / installation documentation embed slot',
     pdf: 'docs/flow-lines-documentation.pdf',
-    media: [
-      {
-        type: 'video',
-        title: 'Project media',
-        url: 'https://vimeo.com/666394186',
-        caption: '',
-        fileName: '',
-      },
-    ],
+    media: [],
   },
   {
     id: 'bobbi-lynn',
@@ -204,15 +180,7 @@ const defaultProjects = [
     documentation: ['music video', 'generative image studies', 'family memory framework', 'image-system process notes'],
     embed: 'Music video excerpt / generative image documentation embed slot',
     pdf: 'docs/bobbi-lynn-documentation.pdf',
-    media: [
-      {
-        type: 'video',
-        title: 'Project media',
-        url: 'https://vimeo.com/767634297',
-        caption: '',
-        fileName: '',
-      },
-    ],
+    media: [],
   },
   {
     id: 'dossier-37',
@@ -227,15 +195,7 @@ const defaultProjects = [
     documentation: ['AUDINT collaboration', 'IREX2 interface study', 'Twitter activity visualization', 'forensic timeline'],
     embed: 'Audiovisual excerpt / forensic interface documentation embed slot',
     pdf: 'docs/dossier-37-documentation.pdf',
-    media: [
-      {
-        type: 'video',
-        title: 'Project media',
-        url: 'https://www.youtube.com/watch?v=ludgSOJtHcQ',
-        caption: '',
-        fileName: '',
-      },
-    ],
+    media: [],
   },
 ];
 
@@ -345,31 +305,12 @@ const fileToDataUrl = (file) => new Promise((resolve, reject) => {
 });
 
 const mergeDefaultProjects = (savedProjects) => {
-  const savedProjectMap = new Map(savedProjects.map((project) => [project.id, project]));
-  const mergedProjects = savedProjects.map((project) => {
-    const defaultProject = defaultProjects.find((item) => item.id === project.id);
-    const defaultMedia = defaultProject?.media || [];
-    if (!defaultMedia.length) return project;
-
-    const projectMedia = project.media || [];
-    const projectMediaUrls = new Set(projectMedia.map((media) => media.url));
-    const missingDefaultMedia = defaultMedia
-      .filter((media) => !projectMediaUrls.has(media.url))
-      .map((media) => structuredClone(media));
-
-    if (!missingDefaultMedia.length) return project;
-
-    return {
-      ...project,
-      media: [...projectMedia, ...missingDefaultMedia],
-    };
-  });
-
+  const savedProjectIds = new Set(savedProjects.map((project) => project.id));
   const missingDefaultProjects = defaultProjects
-    .filter((project) => !savedProjectMap.has(project.id))
+    .filter((project) => !savedProjectIds.has(project.id))
     .map((project) => structuredClone(project));
 
-  return [...mergedProjects, ...missingDefaultProjects];
+  return [...savedProjects, ...missingDefaultProjects];
 };
 
 
@@ -410,7 +351,7 @@ const loadProjects = () => {
     const parsed = JSON.parse(saved);
     if (Array.isArray(parsed) && parsed.length) {
       projects = mergeDefaultProjects(parsed);
-      if (JSON.stringify(projects) !== JSON.stringify(parsed)) saveProjects({ silent: true });
+      if (projects.length !== parsed.length) saveProjects({ silent: true });
       if (!projects.some((project) => project.id === activeProjectId)) activeProjectId = projects[0].id;
     }
   } catch (error) {
