@@ -1,0 +1,664 @@
+{
+  "meta": {
+    "title": "T Yanick / active index",
+    "description": "Tony Yanick portfolio: experimental audiovisual media, computational systems, installation, sound, film/video, speculative fiction systems, teaching, research, and CV materials."
+  },
+  "site": {
+    "skipLink": "Skip to content",
+    "wordmark": "Tony Yanick",
+    "wordmarkAriaLabel": "Tony Yanick home",
+    "ticker": [
+      "artist / educator",
+      "fiction \u00b7 signal \u00b7 code \u00b7 space",
+      "active portfolio index"
+    ],
+    "modeToggle": {
+      "default": "invert",
+      "active": "paper"
+    },
+    "menuToggleLabel": "+",
+    "menuCloseLabel": "\u2212",
+    "menuCloseAriaLabel": "Close navigation"
+  },
+  "navigation": [
+    {
+      "route": "works",
+      "label": "Works"
+    },
+    {
+      "route": "statement",
+      "label": "Statement"
+    },
+    {
+      "route": "research",
+      "label": "Research"
+    },
+    {
+      "route": "teaching",
+      "label": "Teaching"
+    },
+    {
+      "route": "cv",
+      "label": "CV"
+    },
+    {
+      "route": "admin",
+      "label": "Admin"
+    }
+  ],
+  "menu": {
+    "ariaLabel": "Expanded navigation",
+    "sections": [
+      {
+        "title": "Output",
+        "links": [
+          {
+            "route": "works",
+            "label": "All works"
+          },
+          {
+            "route": "statement",
+            "label": "Artist statement"
+          },
+          {
+            "route": "research",
+            "label": "Research"
+          },
+          {
+            "route": "teaching",
+            "label": "Teaching"
+          },
+          {
+            "route": "cv",
+            "label": "CV / files"
+          },
+          {
+            "route": "admin",
+            "label": "Admin editor"
+          }
+        ]
+      },
+      {
+        "title": "Project jump",
+        "projectJump": true
+      },
+      {
+        "title": "Documents",
+        "links": [
+          {
+            "href": "docs/tony-yanick-cv.pdf",
+            "label": "Curriculum vitae",
+            "download": true
+          },
+          {
+            "href": "docs/tony-yanick-artist-statement.pdf",
+            "label": "Artist statement PDF",
+            "download": true
+          },
+          {
+            "href": "docs/tony-yanick-research-statement.pdf",
+            "label": "Research statement PDF",
+            "download": true
+          },
+          {
+            "href": "docs/tony-yanick-teaching-portfolio.pdf",
+            "label": "Teaching portfolio PDF",
+            "download": true
+          },
+          {
+            "href": "docs/tony-yanick-project-documentation.pdf",
+            "label": "Project documentation",
+            "download": true
+          }
+        ]
+      },
+      {
+        "title": "Contact",
+        "links": [
+          {
+            "href": "mailto:tony@tonyyanick.com",
+            "label": "tony@tonyyanick.com"
+          }
+        ],
+        "button": "Out of control"
+      }
+    ]
+  },
+  "hero": {
+    "eyebrow": "Experimental audiovisual media \u00b7 computational systems \u00b7 installation \u00b7 sound \u00b7 film/video",
+    "title": "Fiction as operational structure for image / sound / code / space.",
+    "lede": "Tony Yanick is a transdisciplinary artist-educator whose work treats media systems as environments: infrastructural, relational, temporal, participatory, and materially unstable."
+  },
+  "works": {
+    "sortButtons": {
+      "date": "Date",
+      "title": "Name",
+      "format": "Format"
+    },
+    "openLabel": "Open",
+    "title": "Works as environments to enter, activate, and never fully resolve.",
+    "projectListAriaLabel": "Selectable project list",
+    "projectReaderAriaLabel": "Selected project detail",
+    "pdfLabel": "PDF",
+    "noPdfLabel": "No PDF",
+    "systemHeading": "System / environment",
+    "documentationHeading": "Documentation",
+    "mediaModuleLabel": "media module",
+    "mediaAriaSuffix": "media",
+    "fallbackMediaText": "Add project media in Admin.",
+    "viewDetailsLabel": "View details \u2193",
+    "mediaDefaultTitle": "Project media",
+    "openAssetPrefix": "Open"
+  },
+  "statement": {
+    "number": "02",
+    "pdfHref": "docs/tony-yanick-artist-statement.pdf",
+    "pdfLabel": "Download PDF",
+    "title": "My work operates through fiction\u2014not as representation, but as a force that produces conditions.",
+    "paragraphs": [
+      "I am interested in how narrative, myth, mediated images, and technological systems organize collective desire, and how these structures persist, circulate, and mutate across media environments.",
+      "The work develops across film, sound, installation, performance, and computational media\u2014not as movement between disciplines, but as interference between forms. Image, sound, code, and spatial systems interact to produce unstable relationships between perception, atmosphere, and interpretation.",
+      "I return repeatedly to temporal displacement. Fragments of possible worlds appear out of sequence\u2014past events reconfigured as future projections, speculative structures embedded within existing archives, signals that arrive too early or too late.",
+      "Computational systems extend this condition. I engage generative and networked media not simply as tools for production, but as infrastructures that compress, redistribute, and reorganize perception.",
+      "There is no stable image at the end of this process\u2014only signals that continue to circulate."
+    ]
+  },
+  "research": {
+    "number": "03",
+    "pdfHref": "docs/tony-yanick-research-statement.pdf",
+    "pdfLabel": "Download PDF",
+    "title": "Computational systems as environments whose internal conditions can be examined, altered, and reorganized.",
+    "cards": [
+      {
+        "title": "Limits of CTRL",
+        "text": "Limits of CTRL: Neural Bending and the Generic Machine reframes generative AI models as relational systems rather than systems for generating outputs."
+      },
+      {
+        "title": "Neural bending",
+        "text": "Neural bending functions as controlled intervention within operative media, using constraint, feedback, recursion, and distributed internal operations as artistic and research methods."
+      },
+      {
+        "title": "Media environments",
+        "text": "The research investigates how computational, audiovisual, and infrastructural interventions shape perception, meaning, and social experience."
+      }
+    ]
+  },
+  "teaching": {
+    "number": "04",
+    "pdfHref": "docs/tony-yanick-teaching-portfolio.pdf",
+    "pdfLabel": "Teaching PDF",
+    "title": "Teaching across systems rather than fixed disciplines.",
+    "intro": "Courses are structured around process, participation, experimentation, collaboration, infrastructural literacy, and multiple entry points into analog, digital, and computational media.",
+    "downloadLabel": "Download material",
+    "materials": [
+      {
+        "title": "Systems-based media studio",
+        "type": "Course framework",
+        "text": "A studio model that asks students to build relationships between image, sound, code, archive, and spatial experience rather than treating media as separate disciplines.",
+        "href": "docs/systems-based-media-studio.pdf"
+      },
+      {
+        "title": "Computational media as environment",
+        "type": "Workshop / seminar",
+        "text": "Assignments introduce computational systems as cultural and perceptual infrastructures, foregrounding constraints, feedback, iteration, and critical technical literacy.",
+        "href": "docs/computational-media-environment.pdf"
+      },
+      {
+        "title": "Analog / digital publication systems",
+        "type": "Teaching material",
+        "text": "A hybrid print and screen sequence connecting risograph processes, archives, typography, sequencing, and networked distribution.",
+        "href": "docs/analog-digital-publication-systems.pdf"
+      }
+    ]
+  },
+  "cv": {
+    "number": "05",
+    "pdfHref": "docs/tony-yanick-cv.pdf",
+    "pdfLabel": "Download CV",
+    "title": "Education, works, teaching materials, and institutional documents.",
+    "educationHeading": "Education",
+    "education": [
+      "<strong>Ph.D. Candidate, Media Study</strong>, University at Buffalo (SUNY). Expected May 2027.",
+      "<strong>Dissertation:</strong> Limits of CTRL: Neural Bending and the Generic Machine.",
+      "<strong>M.A., Philosophy and World Literature</strong>, Case Western Reserve University.",
+      "<strong>M.S., Computer Engineering</strong>, Case Western Reserve University.",
+      "<strong>B.S., Computer Science</strong> (AI / Software Engineering), Case Western Reserve University."
+    ],
+    "selectedWorksHeading": "Selected works",
+    "downloadsHeading": "Downloadable materials",
+    "downloads": [
+      {
+        "label": "Curriculum vitae",
+        "href": "docs/tony-yanick-cv.pdf",
+        "download": true
+      },
+      {
+        "label": "Artist statement",
+        "href": "docs/tony-yanick-artist-statement.pdf",
+        "download": true
+      },
+      {
+        "label": "Research statement",
+        "href": "docs/tony-yanick-research-statement.pdf",
+        "download": true
+      },
+      {
+        "label": "Teaching portfolio",
+        "href": "docs/tony-yanick-teaching-portfolio.pdf",
+        "download": true
+      },
+      {
+        "label": "Project documentation packet",
+        "href": "docs/tony-yanick-project-documentation.pdf",
+        "download": true
+      }
+    ]
+  },
+  "admin": {
+    "number": "06",
+    "resetLabel": "Reset local edits",
+    "title": "Admin editor for project media, documents, and local links.",
+    "intro": "Sign in to edit project records, media, and documents. Project edits update the public Works, menu, and CV views instantly in this browser; use Export JSON to copy the updated project data into content.json for permanent deployment.",
+    "loginTitle": "Admin sign in",
+    "usernameLabel": "Username",
+    "passwordLabel": "Password",
+    "unlockLabel": "Unlock admin",
+    "sessionPrefix": "Signed in as",
+    "sessionUser": "anon",
+    "lockLabel": "Lock admin",
+    "projectPanelTitle": "Project record",
+    "liveStatusDefault": "Edits publish instantly in this browser.",
+    "selectProjectLabel": "Select project",
+    "projectTitleLabel": "Project title",
+    "dateLabel": "Date / status",
+    "formatLabel": "Format",
+    "tagsLabel": "Tags, comma separated",
+    "summaryLabel": "Summary",
+    "systemLabel": "System / environment",
+    "documentationLabel": "Documentation notes, one per line",
+    "saveLabel": "Save now",
+    "newProjectLabel": "New project",
+    "assetPanelTitle": "Media and documents",
+    "pdfLinkLabel": "Project PDF link",
+    "pdfLinkPlaceholder": "docs/project.pdf or https://\u2026",
+    "pdfUploadLabel": "Or upload PDF",
+    "currentAssetsLabel": "Current assets",
+    "currentPdfLabel": "Project PDF",
+    "openPdfLabel": "Open PDF",
+    "noProjectPdfLabel": "No project PDF set.",
+    "noMediaLabel": "No media items yet.",
+    "removeMediaLabel": "Remove",
+    "mediaTypeLabel": "Media type",
+    "mediaTypeOptions": [
+      {
+        "value": "video",
+        "label": "Video player"
+      },
+      {
+        "value": "image",
+        "label": "Image"
+      },
+      {
+        "value": "audio",
+        "label": "Audio"
+      },
+      {
+        "value": "document",
+        "label": "Document / PDF"
+      },
+      {
+        "value": "link",
+        "label": "External link"
+      }
+    ],
+    "mediaTitleLabel": "Media title",
+    "mediaTitlePlaceholder": "Installation excerpt",
+    "mediaLinkLabel": "Media link",
+    "mediaLinkPlaceholder": "https://\u2026 or docs/file.pdf",
+    "mediaUploadLabel": "Or upload media/document",
+    "captionLabel": "Caption / note",
+    "updateAssetLabel": "Update PDF / add media",
+    "exportLabel": "Export JSON",
+    "exportPlaceholder": "Exported site data appears here.",
+    "incorrectLogin": "Incorrect username or password.",
+    "savedMessage": "Public site updated just now.",
+    "editingMessage": "Editing selected project.",
+    "resetMessage": "Public site reset to content.json projects.",
+    "newProject": {
+      "title": "NEW PROJECT",
+      "date": "Draft",
+      "format": "Media environment",
+      "tags": [
+        "draft"
+      ],
+      "summary": "Add a project summary in the admin editor.",
+      "system": "Describe the system, environment, or process.",
+      "documentation": [
+        "Add documentation notes"
+      ],
+      "embed": "Add media, a local file, or a hosted link in Admin."
+    },
+    "projectPdfLabel": "Project PDF"
+  },
+  "footer": {
+    "text": "Tony Yanick \u00b7 Portfolio for institutional review, faculty applications, residencies, and visiting artist contexts.",
+    "links": [
+      {
+        "href": "mailto:tony@tonyyanick.com",
+        "label": "tony@tonyyanick.com"
+      },
+      {
+        "href": "#top",
+        "label": "Back to top"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "hypnagnosis",
+      "title": "HYPNAGNOSIS",
+      "date": "Ongoing",
+      "format": "Risograph works, altered-state artifacts, print/media environment",
+      "tags": [
+        "printmaking",
+        "risograph aesthetics",
+        "sleep paralysis",
+        "liminal perception"
+      ],
+      "summary": "Artifacts of altered states: risograph works and media structures concerned with sleep paralysis, liminal perception, unstable embodiment, dream architectures, and psychological thresholds.",
+      "system": "The project treats the printed artifact as a perceptual interface: color separation, repetition, grain, and registration drift become evidence of an unstable body moving between waking and dream states.",
+      "documentation": [
+        "Risograph editions",
+        "installation views",
+        "detail scans",
+        "process plates"
+      ],
+      "embed": "Image sequence / print documentation embed slot",
+      "pdf": "docs/hypnagnosis-documentation.pdf"
+    },
+    {
+      "id": "cosmomorphosis",
+      "title": "COSMOMORPHOSIS",
+      "date": "Ongoing",
+      "format": "Generative audiovisual installation driven by ISS telemetry",
+      "tags": [
+        "telemetry",
+        "audiovisual installation",
+        "live data",
+        "temporal drift"
+      ],
+      "summary": "A generative audiovisual installation in which ISS telemetry modulates image, sound, duration, and nonlinear temporal behavior.",
+      "system": "Orbital data functions as more than input; it becomes an environmental condition that produces evolving audiovisual drift, delayed perception, and a sense of scale between body, signal, and planetary infrastructure.",
+      "documentation": [
+        "single-channel excerpt",
+        "installation diagram",
+        "telemetry mapping",
+        "sound/image stills"
+      ],
+      "embed": "Video / live data capture embed slot",
+      "pdf": "docs/cosmomorphosis-documentation.pdf"
+    },
+    {
+      "id": "transmissions",
+      "title": "TRANSMISSIONS",
+      "date": "Ongoing",
+      "format": "Speculative transmission system, sound, voice, distributed media",
+      "tags": [
+        "hip-hop",
+        "spoken word",
+        "science fiction",
+        "pirate radio",
+        "participatory media"
+      ],
+      "summary": "A speculative transmission system mixing hip-hop, spoken word, science fiction, pirate radio aesthetics, distributed signal structures, and broken broadcast environments.",
+      "system": "TRANSMISSIONS frames broadcast as a fractured commons: voice, rhythm, and signal circulate through unstable infrastructures where participation changes the conditions of reception.",
+      "documentation": [
+        "audio excerpts",
+        "broadcast scripts",
+        "installation views",
+        "participant signal traces"
+      ],
+      "embed": "Audio player / transmission archive embed slot",
+      "pdf": "docs/transmissions-documentation.pdf"
+    },
+    {
+      "id": "shape-of-a-packet",
+      "title": "SHAPE OF A PACKET",
+      "date": "Ongoing",
+      "format": "Networked participatory installation",
+      "tags": [
+        "mobile systems",
+        "local networks",
+        "mesh-style connectivity",
+        "archives"
+      ],
+      "summary": "A networked participatory installation involving mobile systems, local connectivity, archives, participant contribution, and distributed media.",
+      "system": "The work makes network behavior perceptible as social and spatial form: packets, contributions, and local archives become a temporary media environment assembled by participants.",
+      "documentation": [
+        "interface captures",
+        "network diagram",
+        "participant archive",
+        "installation documentation"
+      ],
+      "embed": "Local network interface / documentation embed slot",
+      "pdf": "docs/shape-of-a-packet-documentation.pdf"
+    },
+    {
+      "id": "n2-the-secretary",
+      "title": "N2: THE SECRETARY",
+      "date": "Selected work",
+      "format": "Language, signal, archive, synthetic image/sound system",
+      "tags": [
+        "fictional archive",
+        "language systems",
+        "signal",
+        "synthetic media"
+      ],
+      "summary": "A layered configuration of language, signal, sound, and image in which archives and synthetic media operate as unstable evidence.",
+      "system": "Documents, recordings, and generated images are organized as a speculative administrative system whose authority remains unresolved.",
+      "documentation": [
+        "archive fragments",
+        "scripted documents",
+        "synthetic image sets",
+        "sound documentation"
+      ],
+      "embed": "Archive reader / moving-image excerpt slot",
+      "pdf": "docs/n2-the-secretary-documentation.pdf"
+    },
+    {
+      "id": "artificial-cinema",
+      "title": "ARTIFICIAL CINEMA",
+      "date": "Ongoing",
+      "format": "Computational audiovisual environment",
+      "tags": [
+        "computational media",
+        "AI systems",
+        "expanded cinema",
+        "operative environments"
+      ],
+      "summary": "A computational audiovisual environment treating AI and media systems as operative environments rather than output generators.",
+      "system": "The project approaches model behavior as cinematic condition: perception is reorganized through prompts, constraints, recursive feedback, generated fragments, and temporal arrangement.",
+      "documentation": [
+        "system captures",
+        "prompt/interface studies",
+        "audiovisual excerpts",
+        "installation diagrams"
+      ],
+      "embed": "A/V excerpt / computational system capture embed slot",
+      "pdf": "docs/artificial-cinema-documentation.pdf",
+      "media": [
+        {
+          "type": "video",
+          "title": "Artificial Cinema",
+          "url": "https://vimeo.com/506931329",
+          "caption": "",
+          "fileName": ""
+        }
+      ]
+    },
+    {
+      "id": "variation-79-podkop",
+      "title": "VARIATION 79 / PODKOP",
+      "date": "Selected works",
+      "format": "Experimental audiovisual works",
+      "tags": [
+        "film/video",
+        "sound",
+        "recursion",
+        "mediated memory"
+      ],
+      "summary": "Experimental audiovisual works concerned with repetition, recursion, mediated memory, and the residues of speculative systems.",
+      "system": "These works extend a recurring concern with temporal displacement: fragments return as altered signals, producing a field of repetition, delay, and unresolved evidence.",
+      "documentation": [
+        "video stills",
+        "sound excerpts",
+        "screening notes",
+        "process documentation"
+      ],
+      "embed": "Video excerpt / screening documentation embed slot",
+      "pdf": "docs/variation-79-podkop-documentation.pdf"
+    },
+    {
+      "id": "the-fixers-naudia-loftis",
+      "title": "The Fixers: Naudia Loftis",
+      "date": "Selected film/video work",
+      "format": "Collaborative documentary film",
+      "tags": [
+        "film/video",
+        "documentary",
+        "community organizing",
+        "social practice"
+      ],
+      "summary": "A collaborative documentary centered on a seventeen-year-old community organizer in Cleveland\u2019s Kinsman neighborhood.",
+      "system": "Structured through interviews with friends and family, the film foregrounds lived experience within conditions shaped by systemic violence and social instability. Rather than imposing an external narrative, the work creates space for participants to articulate their perspectives through dialogue, proximity, and trust.",
+      "documentation": [
+        "community screenings",
+        "gallery presentations",
+        "public events",
+        "2016 Republican National Convention context"
+      ],
+      "embed": "Documentary excerpt / screening documentation embed slot",
+      "pdf": "docs/the-fixers-naudia-loftis-documentation.pdf",
+      "media": []
+    },
+    {
+      "id": "make-america-great-again-and-again",
+      "title": "Make America Great Again ... And Again",
+      "date": "Selected film/video work",
+      "format": "Experimental video work",
+      "tags": [
+        "film/video",
+        "experimental video",
+        "political language",
+        "speculative fiction"
+      ],
+      "summary": "An experimental video work and Short and Sweet Festival Outstanding Film award winner drawing on Octavia E. Butler\u2019s Parable trilogy.",
+      "system": "The project examines political language as a mechanism of narrative construction and control, exploring the relationship between speculative fiction and contemporary political reality. Through montage, abstraction, and layered imagery, it asks not what greatness is, but for whom it is constructed and at what cost.",
+      "documentation": [
+        "single-channel video",
+        "festival screening notes",
+        "montage stills",
+        "sound/image documentation"
+      ],
+      "embed": "Experimental video excerpt / screening documentation embed slot",
+      "pdf": "docs/make-america-great-again-and-again-documentation.pdf",
+      "media": []
+    },
+    {
+      "id": "surface",
+      "title": "surFACE",
+      "date": "Selected film/video work",
+      "format": "Short film, analog recording systems, tape-based process",
+      "tags": [
+        "film/video",
+        "analog video",
+        "feedback",
+        "drawing",
+        "sound"
+      ],
+      "summary": "A short film produced as part of the larger TAPEHEADS project, investigating analog recording systems, tape-based processes, and the material conditions of image and sound.",
+      "system": "Built from a repetitive drawing practice centered on abstracted faces, the film treats marks as raw material within recording, layering, playback, and transformation. The screen becomes an apparatus where image and sound co-evolve through repetition, distortion, and feedback.",
+      "documentation": [
+        "TAPEHEADS project context",
+        "drawing sequences",
+        "feedback recordings",
+        "screening stills"
+      ],
+      "embed": "Short film excerpt / analog feedback documentation embed slot",
+      "pdf": "docs/surface-documentation.pdf",
+      "media": []
+    },
+    {
+      "id": "flow-lines",
+      "title": "Flow Lines (3-channel video)",
+      "date": "Selected film/video work",
+      "format": "Three-channel collaborative video installation",
+      "tags": [
+        "film/video",
+        "three-channel video",
+        "landscape",
+        "migration",
+        "Niagara River"
+      ],
+      "summary": "A collaborative video work developed in response to Isaac Julien\u2019s Kapital, exploring the movement of value through geography, history, and narrative.",
+      "system": "Centered on the Niagara River as both physical flow and historical boundary connected to the Underground Railroad, the piece layers landscape, memory, and migration through image, rhythm, and poetic language. It approaches landscape as a living system through which histories are carried, transformed, and reinterpreted.",
+      "documentation": [
+        "three-channel installation",
+        "Niagara River research",
+        "poetic language score",
+        "installation stills"
+      ],
+      "embed": "Three-channel video excerpt / installation documentation embed slot",
+      "pdf": "docs/flow-lines-documentation.pdf",
+      "media": []
+    },
+    {
+      "id": "bobbi-lynn",
+      "title": "BOBBI LYNN",
+      "date": "Selected film/video work",
+      "format": "Music video, generative image systems",
+      "tags": [
+        "film/video",
+        "music video",
+        "generative imagery",
+        "memory",
+        "family archive"
+      ],
+      "summary": "A music video that explores memory and familial relationships through generative image systems.",
+      "system": "Centered on a son\u2019s recollection of his relationship with his mother, the work replaces photographic reconstruction with synthetic image generation. Drawing on Roland Barthes\u2019 distinction between studium and punctum, it examines how memory, identity, intimacy, and representation become mediated through machine-generated imagery.",
+      "documentation": [
+        "music video",
+        "generative image studies",
+        "family memory framework",
+        "image-system process notes"
+      ],
+      "embed": "Music video excerpt / generative image documentation embed slot",
+      "pdf": "docs/bobbi-lynn-documentation.pdf",
+      "media": []
+    },
+    {
+      "id": "dossier-37",
+      "title": "Dossier 37",
+      "date": "Selected film/video work",
+      "format": "Audiovisual work, forensic interface, data visualization",
+      "tags": [
+        "film/video",
+        "audiovisual work",
+        "AUDINT",
+        "data visualization",
+        "disinformation"
+      ],
+      "summary": "An audiovisual work developed in collaboration with AUDINT that investigates the unstable territory between sonic warfare, disinformation, and state narrative production.",
+      "system": "Emerging from discourse surrounding alleged sonic attacks on US diplomatic personnel in Cuba and South China, the project examines how fear, rumor, and geopolitical speculation circulate through media systems as forms of perceptual instability. Structured as a forensic and speculative timeline, it visualizes Twitter activity and signal environments around Havana Syndrome.",
+      "documentation": [
+        "AUDINT collaboration",
+        "IREX2 interface study",
+        "Twitter activity visualization",
+        "forensic timeline"
+      ],
+      "embed": "Audiovisual excerpt / forensic interface documentation embed slot",
+      "pdf": "docs/dossier-37-documentation.pdf",
+      "media": []
+    }
+  ]
+}

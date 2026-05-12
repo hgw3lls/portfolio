@@ -1,241 +1,238 @@
-const defaultProjects = [
-  {
-    id: 'hypnagnosis',
-    title: 'HYPNAGNOSIS',
-    date: 'Ongoing',
-    format: 'Risograph works, altered-state artifacts, print/media environment',
-    tags: ['printmaking', 'risograph aesthetics', 'sleep paralysis', 'liminal perception'],
-    summary:
-      'Artifacts of altered states: risograph works and media structures concerned with sleep paralysis, liminal perception, unstable embodiment, dream architectures, and psychological thresholds.',
-    system:
-      'The project treats the printed artifact as a perceptual interface: color separation, repetition, grain, and registration drift become evidence of an unstable body moving between waking and dream states.',
-    documentation: ['Risograph editions', 'installation views', 'detail scans', 'process plates'],
-    embed: 'Image sequence / print documentation embed slot',
-    pdf: 'docs/hypnagnosis-documentation.pdf',
-  },
-  {
-    id: 'cosmomorphosis',
-    title: 'COSMOMORPHOSIS',
-    date: 'Ongoing',
-    format: 'Generative audiovisual installation driven by ISS telemetry',
-    tags: ['telemetry', 'audiovisual installation', 'live data', 'temporal drift'],
-    summary:
-      'A generative audiovisual installation in which ISS telemetry modulates image, sound, duration, and nonlinear temporal behavior.',
-    system:
-      'Orbital data functions as more than input; it becomes an environmental condition that produces evolving audiovisual drift, delayed perception, and a sense of scale between body, signal, and planetary infrastructure.',
-    documentation: ['single-channel excerpt', 'installation diagram', 'telemetry mapping', 'sound/image stills'],
-    embed: 'Video / live data capture embed slot',
-    pdf: 'docs/cosmomorphosis-documentation.pdf',
-  },
-  {
-    id: 'transmissions',
-    title: 'TRANSMISSIONS',
-    date: 'Ongoing',
-    format: 'Speculative transmission system, sound, voice, distributed media',
-    tags: ['hip-hop', 'spoken word', 'science fiction', 'pirate radio', 'participatory media'],
-    summary:
-      'A speculative transmission system mixing hip-hop, spoken word, science fiction, pirate radio aesthetics, distributed signal structures, and broken broadcast environments.',
-    system:
-      'TRANSMISSIONS frames broadcast as a fractured commons: voice, rhythm, and signal circulate through unstable infrastructures where participation changes the conditions of reception.',
-    documentation: ['audio excerpts', 'broadcast scripts', 'installation views', 'participant signal traces'],
-    embed: 'Audio player / transmission archive embed slot',
-    pdf: 'docs/transmissions-documentation.pdf',
-  },
-  {
-    id: 'shape-of-a-packet',
-    title: 'SHAPE OF A PACKET',
-    date: 'Ongoing',
-    format: 'Networked participatory installation',
-    tags: ['mobile systems', 'local networks', 'mesh-style connectivity', 'archives'],
-    summary:
-      'A networked participatory installation involving mobile systems, local connectivity, archives, participant contribution, and distributed media.',
-    system:
-      'The work makes network behavior perceptible as social and spatial form: packets, contributions, and local archives become a temporary media environment assembled by participants.',
-    documentation: ['interface captures', 'network diagram', 'participant archive', 'installation documentation'],
-    embed: 'Local network interface / documentation embed slot',
-    pdf: 'docs/shape-of-a-packet-documentation.pdf',
-  },
-  {
-    id: 'n2-the-secretary',
-    title: 'N2: THE SECRETARY',
-    date: 'Selected work',
-    format: 'Language, signal, archive, synthetic image/sound system',
-    tags: ['fictional archive', 'language systems', 'signal', 'synthetic media'],
-    summary:
-      'A layered configuration of language, signal, sound, and image in which archives and synthetic media operate as unstable evidence.',
-    system:
-      'Documents, recordings, and generated images are organized as a speculative administrative system whose authority remains unresolved.',
-    documentation: ['archive fragments', 'scripted documents', 'synthetic image sets', 'sound documentation'],
-    embed: 'Archive reader / moving-image excerpt slot',
-    pdf: 'docs/n2-the-secretary-documentation.pdf',
-  },
-  {
-    id: 'artificial-cinema',
-    title: 'ARTIFICIAL CINEMA',
-    date: 'Ongoing',
-    format: 'Computational audiovisual environment',
-    tags: ['computational media', 'AI systems', 'expanded cinema', 'operative environments'],
-    summary:
-      'A computational audiovisual environment treating AI and media systems as operative environments rather than output generators.',
-    system:
-      'The project approaches model behavior as cinematic condition: perception is reorganized through prompts, constraints, recursive feedback, generated fragments, and temporal arrangement.',
-    documentation: ['system captures', 'prompt/interface studies', 'audiovisual excerpts', 'installation diagrams'],
-    embed: 'A/V excerpt / computational system capture embed slot',
-    pdf: 'docs/artificial-cinema-documentation.pdf',
-    media: [
-      {
-        type: 'video',
-        title: 'Artificial Cinema',
-        url: 'https://vimeo.com/506931329',
-        caption: '',
-        fileName: '',
-      },
-    ],
-  },
-  {
-    id: 'variation-79-podkop',
-    title: 'VARIATION 79 / PODKOP',
-    date: 'Selected works',
-    format: 'Experimental audiovisual works',
-    tags: ['film/video', 'sound', 'recursion', 'mediated memory'],
-    summary:
-      'Experimental audiovisual works concerned with repetition, recursion, mediated memory, and the residues of speculative systems.',
-    system:
-      'These works extend a recurring concern with temporal displacement: fragments return as altered signals, producing a field of repetition, delay, and unresolved evidence.',
-    documentation: ['video stills', 'sound excerpts', 'screening notes', 'process documentation'],
-    embed: 'Video excerpt / screening documentation embed slot',
-    pdf: 'docs/variation-79-podkop-documentation.pdf',
-  },
-
-  {
-    id: 'the-fixers-naudia-loftis',
-    title: 'The Fixers: Naudia Loftis',
-    date: 'Selected film/video work',
-    format: 'Collaborative documentary film',
-    tags: ['film/video', 'documentary', 'community organizing', 'social practice'],
-    summary:
-      'A collaborative documentary centered on a seventeen-year-old community organizer in Cleveland’s Kinsman neighborhood.',
-    system:
-      'Structured through interviews with friends and family, the film foregrounds lived experience within conditions shaped by systemic violence and social instability. Rather than imposing an external narrative, the work creates space for participants to articulate their perspectives through dialogue, proximity, and trust.',
-    documentation: ['community screenings', 'gallery presentations', 'public events', '2016 Republican National Convention context'],
-    embed: 'Documentary excerpt / screening documentation embed slot',
-    pdf: 'docs/the-fixers-naudia-loftis-documentation.pdf',
-    media: [],
-  },
-  {
-    id: 'make-america-great-again-and-again',
-    title: 'Make America Great Again ... And Again',
-    date: 'Selected film/video work',
-    format: 'Experimental video work',
-    tags: ['film/video', 'experimental video', 'political language', 'speculative fiction'],
-    summary:
-      'An experimental video work and Short and Sweet Festival Outstanding Film award winner drawing on Octavia E. Butler’s Parable trilogy.',
-    system:
-      'The project examines political language as a mechanism of narrative construction and control, exploring the relationship between speculative fiction and contemporary political reality. Through montage, abstraction, and layered imagery, it asks not what greatness is, but for whom it is constructed and at what cost.',
-    documentation: ['single-channel video', 'festival screening notes', 'montage stills', 'sound/image documentation'],
-    embed: 'Experimental video excerpt / screening documentation embed slot',
-    pdf: 'docs/make-america-great-again-and-again-documentation.pdf',
-    media: [],
-  },
-  {
-    id: 'surface',
-    title: 'surFACE',
-    date: 'Selected film/video work',
-    format: 'Short film, analog recording systems, tape-based process',
-    tags: ['film/video', 'analog video', 'feedback', 'drawing', 'sound'],
-    summary:
-      'A short film produced as part of the larger TAPEHEADS project, investigating analog recording systems, tape-based processes, and the material conditions of image and sound.',
-    system:
-      'Built from a repetitive drawing practice centered on abstracted faces, the film treats marks as raw material within recording, layering, playback, and transformation. The screen becomes an apparatus where image and sound co-evolve through repetition, distortion, and feedback.',
-    documentation: ['TAPEHEADS project context', 'drawing sequences', 'feedback recordings', 'screening stills'],
-    embed: 'Short film excerpt / analog feedback documentation embed slot',
-    pdf: 'docs/surface-documentation.pdf',
-    media: [],
-  },
-  {
-    id: 'flow-lines',
-    title: 'Flow Lines (3-channel video)',
-    date: 'Selected film/video work',
-    format: 'Three-channel collaborative video installation',
-    tags: ['film/video', 'three-channel video', 'landscape', 'migration', 'Niagara River'],
-    summary:
-      'A collaborative video work developed in response to Isaac Julien’s Kapital, exploring the movement of value through geography, history, and narrative.',
-    system:
-      'Centered on the Niagara River as both physical flow and historical boundary connected to the Underground Railroad, the piece layers landscape, memory, and migration through image, rhythm, and poetic language. It approaches landscape as a living system through which histories are carried, transformed, and reinterpreted.',
-    documentation: ['three-channel installation', 'Niagara River research', 'poetic language score', 'installation stills'],
-    embed: 'Three-channel video excerpt / installation documentation embed slot',
-    pdf: 'docs/flow-lines-documentation.pdf',
-    media: [],
-  },
-  {
-    id: 'bobbi-lynn',
-    title: 'BOBBI LYNN',
-    date: 'Selected film/video work',
-    format: 'Music video, generative image systems',
-    tags: ['film/video', 'music video', 'generative imagery', 'memory', 'family archive'],
-    summary:
-      'A music video that explores memory and familial relationships through generative image systems.',
-    system:
-      'Centered on a son’s recollection of his relationship with his mother, the work replaces photographic reconstruction with synthetic image generation. Drawing on Roland Barthes’ distinction between studium and punctum, it examines how memory, identity, intimacy, and representation become mediated through machine-generated imagery.',
-    documentation: ['music video', 'generative image studies', 'family memory framework', 'image-system process notes'],
-    embed: 'Music video excerpt / generative image documentation embed slot',
-    pdf: 'docs/bobbi-lynn-documentation.pdf',
-    media: [],
-  },
-  {
-    id: 'dossier-37',
-    title: 'Dossier 37',
-    date: 'Selected film/video work',
-    format: 'Audiovisual work, forensic interface, data visualization',
-    tags: ['film/video', 'audiovisual work', 'AUDINT', 'data visualization', 'disinformation'],
-    summary:
-      'An audiovisual work developed in collaboration with AUDINT that investigates the unstable territory between sonic warfare, disinformation, and state narrative production.',
-    system:
-      'Emerging from discourse surrounding alleged sonic attacks on US diplomatic personnel in Cuba and South China, the project examines how fear, rumor, and geopolitical speculation circulate through media systems as forms of perceptual instability. Structured as a forensic and speculative timeline, it visualizes Twitter activity and signal environments around Havana Syndrome.',
-    documentation: ['AUDINT collaboration', 'IREX2 interface study', 'Twitter activity visualization', 'forensic timeline'],
-    embed: 'Audiovisual excerpt / forensic interface documentation embed slot',
-    pdf: 'docs/dossier-37-documentation.pdf',
-    media: [],
-  },
-];
-
+const CONTENT_URL = 'content.json';
 const STORAGE_KEY = 'tony-yanick-portfolio-projects';
 const ADMIN_SESSION_KEY = 'tony-yanick-admin-authenticated';
 const ADMIN_CREDENTIALS = { username: 'anon', password: '1984' };
-const LIVE_SAVE_MESSAGE = 'Public site updated just now.';
 
+const loadSiteContent = async () => {
+  const response = await fetch(CONTENT_URL, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`Unable to load ${CONTENT_URL}: ${response.status}`);
+  return response.json();
+};
 
+const siteContent = await loadSiteContent();
+const defaultProjects = structuredClone(siteContent.projects || []);
 let projects = structuredClone(defaultProjects);
+let teachingMaterials = siteContent.teaching?.materials || [];
+let downloads = siteContent.cv?.downloads || [];
 
-const teachingMaterials = [
-  {
-    title: 'Systems-based media studio',
-    type: 'Course framework',
-    text: 'A studio model that asks students to build relationships between image, sound, code, archive, and spatial experience rather than treating media as separate disciplines.',
-    href: 'docs/systems-based-media-studio.pdf',
-  },
-  {
-    title: 'Computational media as environment',
-    type: 'Workshop / seminar',
-    text: 'Assignments introduce computational systems as cultural and perceptual infrastructures, foregrounding constraints, feedback, iteration, and critical technical literacy.',
-    href: 'docs/computational-media-environment.pdf',
-  },
-  {
-    title: 'Analog / digital publication systems',
-    type: 'Teaching material',
-    text: 'A hybrid print and screen sequence connecting risograph processes, archives, typography, sequencing, and networked distribution.',
-    href: 'docs/analog-digital-publication-systems.pdf',
-  },
-];
+const setDocumentMeta = ({ meta = {} } = {}) => {
+  if (meta.title) document.title = meta.title;
+  const description = document.querySelector('meta[name="description"]');
+  if (description && meta.description) description.setAttribute('content', meta.description);
+};
 
-const downloads = [
-  ['Curriculum vitae', 'docs/tony-yanick-cv.pdf'],
-  ['Artist statement', 'docs/tony-yanick-artist-statement.pdf'],
-  ['Research statement', 'docs/tony-yanick-research-statement.pdf'],
-  ['Teaching portfolio', 'docs/tony-yanick-teaching-portfolio.pdf'],
-  ['Project documentation packet', 'docs/tony-yanick-project-documentation.pdf'],
-];
+const setText = (selector, value) => {
+  const element = document.querySelector(selector);
+  if (element && value !== undefined) element.textContent = value;
+};
 
+const setLink = (selector, { href, label, download } = {}) => {
+  const element = document.querySelector(selector);
+  if (!element) return;
+  if (href) element.setAttribute('href', href);
+  if (label !== undefined) element.textContent = label;
+  if (download) element.setAttribute('download', '');
+};
+
+const createNavLink = ({ route, label }) => {
+  const link = document.createElement('a');
+  link.href = `#${route}`;
+  link.dataset.route = route;
+  link.textContent = label;
+  return link;
+};
+
+const createMenuLink = ({ route, href, label, download }) => {
+  const link = document.createElement('a');
+  link.href = route ? `#${route}` : href;
+  if (route) link.dataset.route = route;
+  if (download) link.setAttribute('download', '');
+  link.textContent = label;
+  return link;
+};
+
+const replaceChildren = (element, children) => {
+  if (!element) return;
+  element.replaceChildren(...children.filter(Boolean));
+};
+
+const populateMenu = ({ menu = {} } = {}) => {
+  const columns = document.querySelector('.menu-columns');
+  if (!columns) return;
+  document.querySelector('#site-menu')?.setAttribute('aria-label', menu.ariaLabel || 'Expanded navigation');
+  columns.replaceChildren(...(menu.sections || []).map((section) => {
+    const wrapper = document.createElement('section');
+    const title = document.createElement('h2');
+    title.textContent = section.title;
+    wrapper.append(title);
+
+    if (section.projectJump) {
+      const jump = document.createElement('div');
+      jump.className = 'menu-projects';
+      jump.id = 'menu-projects';
+      wrapper.append(jump);
+      return wrapper;
+    }
+
+    (section.links || []).forEach((link) => wrapper.append(createMenuLink(link)));
+    if (section.button) {
+      const button = document.createElement('button');
+      button.className = 'menu-note';
+      button.type = 'button';
+      button.textContent = section.button;
+      wrapper.append(button);
+    }
+    return wrapper;
+  }));
+};
+
+const populateStaticContent = (content) => {
+  setDocumentMeta(content);
+  setText('.skip-link', content.site?.skipLink);
+  setText('.wordmark', content.site?.wordmark);
+  document.querySelector('.wordmark')?.setAttribute('aria-label', content.site?.wordmarkAriaLabel || content.site?.wordmark || 'Home');
+  document.querySelector('.menu-toggle').textContent = content.site?.menuToggleLabel || '+';
+  document.querySelector('.menu-close').textContent = content.site?.menuCloseLabel || '−';
+  document.querySelector('.menu-close')?.setAttribute('aria-label', content.site?.menuCloseAriaLabel || 'Close navigation');
+
+  const ticker = document.querySelector('.ticker');
+  replaceChildren(ticker, (content.site?.ticker || []).map((item) => {
+    const span = document.createElement('span');
+    span.textContent = item;
+    return span;
+  }));
+
+  replaceChildren(document.querySelector('.route-tabs'), (content.navigation || []).map(createNavLink));
+  populateMenu(content);
+
+  setText('.identity-panel .eyebrow', content.hero?.eyebrow);
+  setText('#hero-title', content.hero?.title);
+  setText('.identity-panel .lede', content.hero?.lede);
+
+  const sortLabels = content.works?.sortButtons || {};
+  Object.entries(sortLabels).forEach(([key, label]) => setText(`[data-sort="${key}"]`, label));
+  setText('.sticky-head span', content.works?.openLabel);
+  setText('#works-title', content.works?.title);
+  document.querySelector('#project-list')?.setAttribute('aria-label', content.works?.projectListAriaLabel || 'Selectable project list');
+  document.querySelector('#project-reader')?.setAttribute('aria-label', content.works?.projectReaderAriaLabel || 'Selected project detail');
+
+  setText('#statement .view-head span', content.statement?.number);
+  setLink('#statement .view-head a', { href: content.statement?.pdfHref, label: content.statement?.pdfLabel, download: true });
+  setText('#statement-title', content.statement?.title);
+  const statement = document.querySelector('#statement');
+  statement?.querySelectorAll('p').forEach((paragraph) => paragraph.remove());
+  (content.statement?.paragraphs || []).forEach((copy) => {
+    const paragraph = document.createElement('p');
+    paragraph.textContent = copy;
+    statement?.append(paragraph);
+  });
+
+  setText('#research .view-head span', content.research?.number);
+  setLink('#research .view-head a', { href: content.research?.pdfHref, label: content.research?.pdfLabel, download: true });
+  setText('#research-title', content.research?.title);
+  const researchGrid = document.querySelector('#research .card-grid');
+  replaceChildren(researchGrid, (content.research?.cards || []).map((card) => {
+    const article = document.createElement('article');
+    const heading = document.createElement('h3');
+    const paragraph = document.createElement('p');
+    heading.textContent = card.title;
+    paragraph.textContent = card.text;
+    article.append(heading, paragraph);
+    return article;
+  }));
+
+  setText('#teaching .view-head span', content.teaching?.number);
+  setLink('#teaching .view-head a', { href: content.teaching?.pdfHref, label: content.teaching?.pdfLabel, download: true });
+  setText('#teaching-title', content.teaching?.title);
+  setText('#teaching .section-intro', content.teaching?.intro);
+
+  setText('#cv .view-head span', content.cv?.number);
+  setLink('#cv .view-head a', { href: content.cv?.pdfHref, label: content.cv?.pdfLabel, download: true });
+  setText('#cv-title', content.cv?.title);
+  setText('#cv article:nth-child(1) h3', content.cv?.educationHeading);
+  const educationList = document.querySelector('#cv article:nth-child(1) ul');
+  replaceChildren(educationList, (content.cv?.education || []).map((item) => {
+    const li = document.createElement('li');
+    li.innerHTML = item;
+    return li;
+  }));
+  setText('#cv article:nth-child(2) h3', content.cv?.selectedWorksHeading);
+  setText('#cv article:nth-child(3) h3', content.cv?.downloadsHeading);
+
+  setText('#admin .view-head span', content.admin?.number);
+  setText('[data-admin-reset]', content.admin?.resetLabel);
+  setText('#admin-title', content.admin?.title);
+  setText('#admin .section-intro', content.admin?.intro);
+  setText('#admin-login-title', content.admin?.loginTitle);
+  setText('#admin-login button[type="submit"]', content.admin?.unlockLabel);
+  setText('#admin-session p', `${content.admin?.sessionPrefix || 'Signed in as'} `);
+  const sessionUser = document.createElement('strong');
+  sessionUser.textContent = content.admin?.sessionUser || 'anon';
+  document.querySelector('#admin-session p')?.append(sessionUser, '.');
+  setText('[data-admin-lock]', content.admin?.lockLabel);
+  setText('#project-editor .admin-kicker', content.admin?.projectPanelTitle);
+  setText('#admin-live-status', content.admin?.liveStatusDefault);
+  setText('#asset-editor .admin-kicker', content.admin?.assetPanelTitle);
+
+  const setLabelText = (formSelector, controlName, labelText) => {
+    const control = document.querySelector(`${formSelector} [name="${controlName}"]`);
+    const label = control?.closest('label');
+    if (!label || labelText === undefined) return;
+    const textNode = [...label.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+    if (textNode) textNode.textContent = `\n                ${labelText}\n                `;
+  };
+
+  setLabelText('#admin-login', 'username', content.admin?.usernameLabel);
+  setLabelText('#admin-login', 'password', content.admin?.passwordLabel);
+  setLabelText('#project-editor', 'projectId', content.admin?.selectProjectLabel);
+  setLabelText('#project-editor', 'title', content.admin?.projectTitleLabel);
+  setLabelText('#project-editor', 'date', content.admin?.dateLabel);
+  setLabelText('#project-editor', 'format', content.admin?.formatLabel);
+  setLabelText('#project-editor', 'tags', content.admin?.tagsLabel);
+  setLabelText('#project-editor', 'summary', content.admin?.summaryLabel);
+  setLabelText('#project-editor', 'system', content.admin?.systemLabel);
+  setLabelText('#project-editor', 'documentation', content.admin?.documentationLabel);
+  setLabelText('#asset-editor', 'pdfLink', content.admin?.pdfLinkLabel);
+  setLabelText('#asset-editor', 'pdfFile', content.admin?.pdfUploadLabel);
+  setLabelText('#asset-editor', 'mediaType', content.admin?.mediaTypeLabel);
+  setLabelText('#asset-editor', 'mediaTitle', content.admin?.mediaTitleLabel);
+  setLabelText('#asset-editor', 'mediaUrl', content.admin?.mediaLinkLabel);
+  setLabelText('#asset-editor', 'mediaFile', content.admin?.mediaUploadLabel);
+  setLabelText('#asset-editor', 'mediaCaption', content.admin?.captionLabel);
+
+  const pdfLink = document.querySelector('#asset-editor [name="pdfLink"]');
+  if (pdfLink) pdfLink.placeholder = content.admin?.pdfLinkPlaceholder || '';
+  const mediaTitle = document.querySelector('#asset-editor [name="mediaTitle"]');
+  if (mediaTitle) mediaTitle.placeholder = content.admin?.mediaTitlePlaceholder || '';
+  const mediaUrl = document.querySelector('#asset-editor [name="mediaUrl"]');
+  if (mediaUrl) mediaUrl.placeholder = content.admin?.mediaLinkPlaceholder || '';
+
+  const mediaType = document.querySelector('#asset-editor [name="mediaType"]');
+  if (mediaType) {
+    mediaType.replaceChildren(...(content.admin?.mediaTypeOptions || []).map((option) => {
+      const element = document.createElement('option');
+      element.value = option.value;
+      element.textContent = option.label;
+      return element;
+    }));
+  }
+  setText('#project-editor button[type="submit"]', content.admin?.saveLabel);
+  setText('[data-admin-new]', content.admin?.newProjectLabel);
+  setText('#asset-editor button[type="submit"]', content.admin?.updateAssetLabel);
+  setText('[data-admin-export]', content.admin?.exportLabel);
+  const adminExport = document.querySelector('#admin-export');
+  if (adminExport) adminExport.placeholder = content.admin?.exportPlaceholder || '';
+
+  const footer = document.querySelector('.site-footer');
+  if (footer) {
+    footer.replaceChildren();
+    const paragraph = document.createElement('p');
+    paragraph.textContent = content.footer?.text || '';
+    footer.append(paragraph, ...(content.footer?.links || []).map(createMenuLink));
+  }
+};
+
+populateStaticContent(siteContent);
 
 const projectList = document.querySelector('#project-list');
 const projectReader = document.querySelector('#project-reader');
@@ -359,13 +356,13 @@ const loadProjects = () => {
   }
 };
 
-const updateLiveStatus = (message = LIVE_SAVE_MESSAGE) => {
+const updateLiveStatus = (message = siteContent.admin?.savedMessage || 'Public site updated just now.') => {
   if (!adminLiveStatus) return;
   adminLiveStatus.textContent = message;
   adminLiveStatus.classList.remove('is-error');
   window.clearTimeout(liveStatusTimer);
   liveStatusTimer = window.setTimeout(() => {
-    adminLiveStatus.textContent = 'Edits publish instantly in this browser.';
+    adminLiveStatus.textContent = siteContent.admin?.liveStatusDefault || 'Edits publish instantly in this browser.';
   }, 2600);
 };
 
@@ -407,7 +404,7 @@ const getEmbeddableVideoUrl = (url) => {
 const renderMediaItem = (media) => {
   const url = safeUrl(media.url);
   if (!url) return '';
-  const title = escapeHtml(media.title || media.fileName || 'Project media');
+  const title = escapeHtml(media.title || media.fileName || siteContent.works?.mediaDefaultTitle || 'Project media');
   const caption = media.caption ? `<p>${escapeHtml(media.caption)}</p>` : '';
   const download = media.fileName ? ` download="${escapeHtml(media.fileName)}"` : '';
 
@@ -427,7 +424,7 @@ const renderMediaItem = (media) => {
     return `<figure class="media-item"><audio src="${url}" controls preload="metadata"></audio><figcaption>${title}${caption}</figcaption></figure>`;
   }
 
-  return `<article class="media-item media-item--link"><h4>${title}</h4>${caption}<a href="${url}"${download} target="_blank" rel="noreferrer">Open ${escapeHtml(media.type || 'asset')}</a></article>`;
+  return `<article class="media-item media-item--link"><h4>${title}</h4>${caption}<a href="${url}"${download} target="_blank" rel="noreferrer">${escapeHtml(siteContent.works?.openAssetPrefix || 'Open')} ${escapeHtml(media.type || 'asset')}</a></article>`;
 };
 
 const renderAdminSelect = () => {
@@ -444,15 +441,15 @@ const renderAdminAssets = () => {
   const project = projects.find((item) => item.id === activeProjectId) || projects[0];
   const media = project.media || [];
   adminAssetList.innerHTML = `
-    <span class="admin-kicker">Current assets</span>
-    ${project.pdf ? `<article><strong>Project PDF</strong><a href="${safeUrl(project.pdf)}" target="_blank" rel="noreferrer">Open PDF</a></article>` : '<article>No project PDF set.</article>'}
+    <span class="admin-kicker">${escapeHtml(siteContent.admin?.currentAssetsLabel || 'Current assets')}</span>
+    ${project.pdf ? `<article><strong>${escapeHtml(siteContent.admin?.projectPdfLabel || 'Project PDF')}</strong><a href="${safeUrl(project.pdf)}" target="_blank" rel="noreferrer">${escapeHtml(siteContent.admin?.openPdfLabel || 'Open PDF')}</a></article>` : `<article>${escapeHtml(siteContent.admin?.noProjectPdfLabel || 'No project PDF set.')}</article>`}
     ${media.length ? media.map((item, index) => `
       <article>
         <strong>${escapeHtml(item.title || item.fileName || item.type)}</strong>
         <span>${escapeHtml(item.type)}</span>
-        <button type="button" data-remove-media="${index}">Remove</button>
+        <button type="button" data-remove-media="${index}">${escapeHtml(siteContent.admin?.removeMediaLabel || 'Remove')}</button>
       </article>
-    `).join('') : '<article>No media items yet.</article>'}
+    `).join('') : `<article>${escapeHtml(siteContent.admin?.noMediaLabel || 'No media items yet.')}</article>`}
   `;
 };
 
@@ -580,24 +577,24 @@ const renderProjectReader = () => {
     <div class="reader-meta">
       <span>${slugNumber(index)}</span>
       <span>${escapeHtml(project.date)}</span>
-      ${pdf ? `<a href="${pdf}" download>PDF</a>` : '<span>No PDF</span>'}
+      ${pdf ? `<a href="${pdf}" download>${escapeHtml(siteContent.works?.pdfLabel || 'PDF')}</a>` : `<span>${escapeHtml(siteContent.works?.noPdfLabel || 'No PDF')}</span>`}
     </div>
     <p class="eyebrow">${escapeHtml(project.format)}</p>
     <h3>${escapeHtml(project.title)}</h3>
     <p class="reader-summary">${escapeHtml(project.summary)}</p>
     <div class="reader-sections">
       <section>
-        <h4>System / environment</h4>
+        <h4>${escapeHtml(siteContent.works?.systemHeading || 'System / environment')}</h4>
         <p>${escapeHtml(project.system)}</p>
       </section>
       <section>
-        <h4>Documentation</h4>
+        <h4>${escapeHtml(siteContent.works?.documentationHeading || 'Documentation')}</h4>
         <ul>${(project.documentation || []).map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
       </section>
     </div>
-    <div class="media-module" aria-label="${escapeHtml(project.title)} media">
-      <span>media module</span>
-      ${mediaItems || `<p>${escapeHtml(project.embed || 'Add project media in Admin.')}</p>`}
+    <div class="media-module" aria-label="${escapeHtml(`${project.title} ${siteContent.works?.mediaAriaSuffix || 'media'}`)}">
+      <span>${escapeHtml(siteContent.works?.mediaModuleLabel || 'media module')}</span>
+      ${mediaItems || `<p>${escapeHtml(project.embed || siteContent.works?.fallbackMediaText || 'Add project media in Admin.')}</p>`}
     </div>
     <ul class="tag-list">${(project.tags || []).map((tag) => `<li>${escapeHtml(tag)}</li>`).join('')}</ul>
   `;
@@ -614,7 +611,7 @@ const renderProjectList = () => {
           <em>${escapeHtml(project.format)}</em>
           <small>${escapeHtml(project.date)}</small>
           <p class="project-row-summary">${escapeHtml(project.summary)}</p>
-          <span class="project-row-cta" aria-hidden="true">View details ↓</span>
+          <span class="project-row-cta" aria-hidden="true">${escapeHtml(siteContent.works?.viewDetailsLabel || 'View details ↓')}</span>
         </button>
       `;
     })
@@ -646,10 +643,10 @@ const renderTeaching = () => {
     .map(
       (item) => `
         <article>
-          <span>${item.type}</span>
-          <h3>${item.title}</h3>
-          <p>${item.text}</p>
-          <a href="${item.href}" download>Download material</a>
+          <span>${escapeHtml(item.type)}</span>
+          <h3>${escapeHtml(item.title)}</h3>
+          <p>${escapeHtml(item.text)}</p>
+          <a href="${item.href}" download>${escapeHtml(siteContent.teaching?.downloadLabel || 'Download material')}</a>
         </article>
       `,
     )
@@ -659,13 +656,13 @@ const renderTeaching = () => {
 const renderCv = () => {
   cvWorkList.innerHTML = projects.map((project) => `<li>${escapeHtml(project.title)}</li>`).join('');
   downloadList.innerHTML = downloads
-    .map(([label, href]) => `<li><a href="${href}" download>${label}</a></li>`)
+    .map(({ label, href, download = true }) => `<li><a href="${safeUrl(href)}"${download ? ' download' : ''}>${escapeHtml(label)}</a></li>`)
     .join('');
 };
 
 const updateToggleLabel = () => {
   const isNight = document.body.classList.contains('night-mode');
-  toggle.textContent = isNight ? 'paper' : 'invert';
+  toggle.textContent = isNight ? (siteContent.site?.modeToggle?.active || 'paper') : (siteContent.site?.modeToggle?.default || 'invert');
   toggle.setAttribute('aria-pressed', String(isNight));
 };
 
@@ -736,7 +733,7 @@ adminLogin?.addEventListener('submit', (event) => {
   }
 
   if (adminLoginStatus) {
-    adminLoginStatus.textContent = 'Incorrect username or password.';
+    adminLoginStatus.textContent = siteContent.admin?.incorrectLogin || 'Incorrect username or password.';
     adminLoginStatus.classList.add('is-error');
   }
 });
@@ -750,7 +747,7 @@ adminProjectSelect?.addEventListener('change', () => {
   refreshPublicPortfolio();
   renderAdminSelect();
   refreshAdminEditableContent({ clearDrafts: true });
-  updateLiveStatus('Editing selected project.');
+  updateLiveStatus(siteContent.admin?.editingMessage || 'Editing selected project.');
 });
 
 projectEditor?.addEventListener('input', (event) => {
@@ -766,14 +763,14 @@ adminNewButton?.addEventListener('click', () => {
   if (!requireAdminAccess()) return;
   const project = {
     id: createProjectId('new project'),
-    title: 'NEW PROJECT',
-    date: 'Draft',
-    format: 'Media environment',
-    tags: ['draft'],
-    summary: 'Add a project summary in the admin editor.',
-    system: 'Describe the system, environment, or process.',
-    documentation: ['Add documentation notes'],
-    embed: 'Add media, a local file, or a hosted link in Admin.',
+    title: siteContent.admin?.newProject?.title || 'NEW PROJECT',
+    date: siteContent.admin?.newProject?.date || 'Draft',
+    format: siteContent.admin?.newProject?.format || 'Media environment',
+    tags: siteContent.admin?.newProject?.tags || ['draft'],
+    summary: siteContent.admin?.newProject?.summary || 'Add a project summary in the admin editor.',
+    system: siteContent.admin?.newProject?.system || 'Describe the system, environment, or process.',
+    documentation: siteContent.admin?.newProject?.documentation || ['Add documentation notes'],
+    embed: siteContent.admin?.newProject?.embed || 'Add media, a local file, or a hosted link in Admin.',
     pdf: '',
     media: [],
   };
@@ -820,7 +817,7 @@ assetEditor?.addEventListener('submit', async (event) => {
 
 adminExportButton?.addEventListener('click', () => {
   if (!requireAdminAccess() || !adminExport) return;
-  adminExport.value = JSON.stringify(projects, null, 2);
+  adminExport.value = JSON.stringify({ ...siteContent, projects }, null, 2);
   adminExport.select();
 });
 
@@ -841,7 +838,7 @@ adminResetButton?.addEventListener('click', () => {
   projects = structuredClone(defaultProjects);
   activeProjectId = projects[0].id;
   refreshPortfolio();
-  updateLiveStatus('Public site reset to default projects.');
+  updateLiveStatus(siteContent.admin?.resetMessage || 'Public site reset to content.json projects.');
 });
 
 window.addEventListener('storage', (event) => {
