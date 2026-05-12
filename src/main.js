@@ -51,6 +51,44 @@ const createMenuLink = ({ route, href, label, download }) => {
   return link;
 };
 
+const FIT_TEXT_SELECTOR = [
+  '.wordmark',
+  '.mode-toggle',
+  '.route-tabs a',
+  '.sticky-head button',
+  '.project-row strong',
+  '.project-row em',
+  '.project-row small',
+  '.project-row-cta',
+].join(', ');
+
+const fitSingleLineText = (root = document) => {
+  const scope = root instanceof Element ? root : document;
+  const elements = scope.matches?.(FIT_TEXT_SELECTOR)
+    ? [scope]
+    : [...scope.querySelectorAll(FIT_TEXT_SELECTOR)];
+
+  requestAnimationFrame(() => {
+    elements.forEach((element) => {
+      element.style.fontSize = '';
+      if (!element.isConnected || element.clientWidth <= 0 || element.scrollWidth <= element.clientWidth) return;
+
+      const baseSize = Number.parseFloat(getComputedStyle(element).fontSize);
+      const minSize = Number.parseFloat(element.dataset.fitMin || '8');
+      if (!Number.isFinite(baseSize) || baseSize <= minSize) return;
+
+      let nextSize = baseSize;
+      let attempts = 0;
+      while (element.scrollWidth > element.clientWidth && nextSize > minSize && attempts < 12) {
+        const ratio = element.clientWidth / element.scrollWidth;
+        nextSize = Math.max(minSize, nextSize * Math.min(0.98, ratio * 0.98));
+        element.style.fontSize = `${nextSize}px`;
+        attempts += 1;
+      }
+    });
+  });
+};
+
 const replaceChildren = (element, children) => {
   if (!element) return;
   element.replaceChildren(...children.filter(Boolean));
@@ -104,6 +142,7 @@ const populateStaticContent = (content) => {
 
   replaceChildren(document.querySelector('.route-tabs'), (content.navigation || []).map(createNavLink));
   populateMenu(content);
+  fitSingleLineText();
 
   setText('.identity-panel .eyebrow', content.hero?.eyebrow);
   setText('#hero-title', content.hero?.title);
@@ -617,6 +656,8 @@ const renderProjectList = () => {
     })
     .join('');
 
+  fitSingleLineText(projectList);
+
   projectList.querySelectorAll('[data-project]').forEach((button) => {
     button.addEventListener('click', () => {
       activeProjectId = button.dataset.project;
@@ -872,3 +913,5 @@ const initialRoute = [...views].some((view) => view.dataset.view === location.ha
   : 'works';
 setRoute(initialRoute);
 sortButtons[0]?.classList.add('is-active');
+fitSingleLineText();
+window.addEventListener('resize', () => fitSingleLineText());

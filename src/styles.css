@@ -74,6 +74,12 @@ body.night-mode {
   word-break: normal;
 }
 
+:where(.wordmark, .mode-toggle, .route-tabs a, .sticky-head button, .project-row strong, .project-row em, .project-row small, .project-row-cta) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
 .skip-link {
   position: fixed;
   left: 0.5rem;
