@@ -361,6 +361,22 @@ const populateProjectEditor = () => {
   if (assetEditor) assetEditor.elements.pdfLink.value = project.pdf || '';
 };
 
+const clearAssetDraftFields = () => {
+  if (!assetEditor) return;
+  assetEditor.elements.pdfFile.value = '';
+  assetEditor.elements.mediaFile.value = '';
+  assetEditor.elements.mediaTitle.value = '';
+  assetEditor.elements.mediaUrl.value = '';
+  assetEditor.elements.mediaCaption.value = '';
+  if (adminExport) adminExport.value = '';
+};
+
+const refreshAdminEditableContent = ({ clearDrafts = false } = {}) => {
+  populateProjectEditor();
+  renderAdminAssets();
+  if (clearDrafts) clearAssetDraftFields();
+};
+
 const refreshPublicPortfolio = () => {
   renderMenuProjects();
   renderProjectList();
@@ -370,13 +386,12 @@ const refreshPublicPortfolio = () => {
 
 const refreshAdminProjectShell = () => {
   renderAdminSelect();
-  renderAdminAssets();
+  refreshAdminEditableContent();
 };
 
 const refreshPortfolio = () => {
   refreshPublicPortfolio();
   refreshAdminProjectShell();
-  populateProjectEditor();
 };
 
 const applyProjectEditorValues = () => {
@@ -622,11 +637,16 @@ adminLockButton?.addEventListener('click', () => {
 
 adminProjectSelect?.addEventListener('change', () => {
   activeProjectId = adminProjectSelect.value;
-  refreshPortfolio();
+  refreshPublicPortfolio();
+  renderAdminSelect();
+  refreshAdminEditableContent({ clearDrafts: true });
   updateLiveStatus('Editing selected project.');
 });
 
-projectEditor?.addEventListener('input', publishEditorChanges);
+projectEditor?.addEventListener('input', (event) => {
+  if (event.target === adminProjectSelect) return;
+  publishEditorChanges();
+});
 projectEditor?.addEventListener('submit', (event) => {
   event.preventDefault();
   publishEditorChanges();
@@ -684,11 +704,7 @@ assetEditor?.addEventListener('submit', async (event) => {
   }
 
   saveProjects();
-  assetEditor.elements.pdfFile.value = '';
-  assetEditor.elements.mediaFile.value = '';
-  assetEditor.elements.mediaTitle.value = '';
-  assetEditor.elements.mediaUrl.value = '';
-  assetEditor.elements.mediaCaption.value = '';
+  clearAssetDraftFields();
   refreshPortfolio();
 });
 
