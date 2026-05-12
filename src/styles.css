@@ -7,6 +7,9 @@
   --accent: #00ff66;
   --warn: #ff4b00;
   --max: 100vw;
+  --topbar-height: 3.25rem;
+  --route-tabs-height: 5rem;
+  --sticky-controls-height: 2.9rem;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--ink);
   background: var(--bg);
@@ -128,13 +131,13 @@ a:hover, a:focus, button:hover, button:focus { background: var(--accent); color:
 .interface-shell {
   display: grid;
   grid-template-columns: minmax(22rem, 36vw) minmax(0, 1fr);
-  min-height: calc(100vh - 3.25rem);
+  min-height: calc(100vh - var(--topbar-height) - var(--route-tabs-height));
 }
 .identity-panel {
   position: sticky;
-  top: 3.25rem;
+  top: calc(var(--topbar-height) + var(--route-tabs-height));
   align-self: start;
-  min-height: calc(100vh - 3.25rem);
+  min-height: calc(100vh - var(--topbar-height) - var(--route-tabs-height));
   padding: .8rem .8rem 7rem;
   border-right: 2px solid var(--line);
   background: color-mix(in srgb, var(--paper) 76%, transparent);
@@ -156,18 +159,22 @@ h1 {
   letter-spacing: -.045em;
 }
 .route-tabs {
-  position: static;
-  margin-top: 1.2rem;
+  position: sticky;
+  top: var(--topbar-height);
+  z-index: 25;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  border: 2px solid var(--line);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  min-height: var(--route-tabs-height);
+  border-bottom: 2px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 96%, transparent);
+  backdrop-filter: blur(8px);
 }
-.route-tabs a { min-height: 5rem; padding: .45rem; border-right: 2px solid var(--line); text-transform: uppercase; }
+.route-tabs a { min-height: var(--route-tabs-height); padding: .55rem .7rem; border-right: 2px solid var(--line); text-transform: uppercase; }
 .route-tabs a:last-child { border-right: 0; }
 .route-tabs a.is-active { background: var(--ink); color: var(--bg); }
 
 .browser-panel { min-width: 0; }
-.view { display: none; min-height: calc(100vh - 3.25rem); padding: .8rem; }
+.view { display: none; min-height: calc(100vh - var(--topbar-height) - var(--route-tabs-height)); padding: .8rem; }
 .view.is-active { display: block; }
 .view h2 { max-width: 15ch; font-size: clamp(2.2rem, 3.8vw, 4.8rem); line-height: .78; letter-spacing: -.13em; }
 .view-head { display: flex; justify-content: space-between; gap: 1rem; border-bottom: 2px solid var(--line); padding-bottom: .5rem; }
@@ -175,7 +182,7 @@ h1 {
 
 .sticky-head {
   position: sticky;
-  top: 3.25rem;
+  top: calc(var(--topbar-height) + var(--route-tabs-height));
   z-index: 10;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -201,7 +208,7 @@ h1 {
 .project-row strong { font-size: clamp(1rem, 1.22vw, 1.55rem); line-height: .84; letter-spacing: -.075em; text-transform: uppercase; }
 .project-row[aria-pressed='true'] { background: var(--ink); color: var(--bg); }
 .project-row[aria-pressed='true'] em, .project-row[aria-pressed='true'] small { color: var(--bg); }
-.project-reader { position: sticky; top: 6.7rem; border: 2px solid var(--line); background: var(--paper); }
+.project-reader { position: sticky; top: calc(var(--topbar-height) + var(--route-tabs-height) + var(--sticky-controls-height) + .8rem); border: 2px solid var(--line); background: var(--paper); }
 .project-reader > * { padding: .7rem; border-bottom: 2px solid var(--line); }
 .project-reader > *:last-child { border-bottom: 0; }
 .reader-meta { display: flex; justify-content: space-between; gap: 1rem; margin: 0; }
@@ -237,9 +244,9 @@ strong { color: var(--ink); }
   .topbar, .interface-shell, .work-layout, .menu-columns, .reader-sections, .card-grid, .site-footer { grid-template-columns: 1fr; }
   .topbar > *, .identity-panel, .menu-columns section, .site-footer > * { border-right: 0; }
   .ticker { display: none; }
-  .identity-panel, .project-reader, .sticky-head { position: static; }
+  .identity-panel, .project-reader { position: static; }
   .identity-panel { min-height: auto; border-bottom: 2px solid var(--line); }
-  .route-tabs { position: static; margin-top: 1.25rem; }
+  .route-tabs { margin-top: 0; }
   .project-row { grid-template-columns: 3.5rem 1fr; }
   .project-row em, .project-row small { grid-column: 2; }
   .project-row > * { border-right: 0; }
@@ -253,32 +260,29 @@ strong { color: var(--ink); }
 }
 
 /* Mobile-first navigation and visibility refinements */
-.route-tabs {
-  position: sticky;
-  top: 3.25rem;
-  z-index: 20;
-  display: flex;
-  gap: .45rem;
-  margin: 1rem -.8rem 0;
-  padding: .55rem .8rem;
-  overflow-x: auto;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: x proximity;
-  border-width: 2px 0;
-  background: color-mix(in srgb, var(--bg) 96%, transparent);
-  backdrop-filter: blur(8px);
+@media (max-width: 980px) {
+  .route-tabs {
+    display: flex;
+    gap: .45rem;
+    margin: 0;
+    padding: .55rem .8rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: x proximity;
+    border-width: 0 0 2px;
+  }
+  .route-tabs a {
+    flex: 0 0 auto;
+    min-height: auto;
+    min-width: 7.2rem;
+    padding: .7rem .75rem;
+    border: 2px solid var(--line);
+    scroll-snap-align: start;
+    text-align: center;
+  }
+  .route-tabs a:last-child { border-right: 2px solid var(--line); }
+  .route-tabs a.is-active { box-shadow: inset 0 -.35rem 0 var(--accent); }
 }
-.route-tabs a {
-  flex: 0 0 auto;
-  min-height: auto;
-  min-width: 7.2rem;
-  padding: .7rem .75rem;
-  border: 2px solid var(--line);
-  scroll-snap-align: start;
-  text-align: center;
-}
-.route-tabs a:last-child { border-right: 2px solid var(--line); }
-.route-tabs a.is-active { box-shadow: inset 0 -.35rem 0 var(--accent); }
 
 @media (max-width: 980px) {
   .grid-lines { background-size: 50vw 100%; }
@@ -339,7 +343,7 @@ strong { color: var(--ink); }
 
   .sticky-head {
     position: sticky;
-    top: 3.25rem;
+    top: calc(var(--topbar-height) + var(--route-tabs-height));
     z-index: 18;
     display: flex;
     gap: .45rem;
@@ -425,27 +429,10 @@ strong { color: var(--ink); }
 }
 
 @media (min-width: 981px) {
-  .route-tabs {
-    position: static;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-    margin-top: 1.2rem;
-    padding: 0;
-    overflow: visible;
-    border: 2px solid var(--line);
-    background: transparent;
-    backdrop-filter: none;
-  }
   .route-tabs a {
-    min-height: 5rem;
     min-width: 0;
-    padding: .45rem;
-    border: 0;
-    border-right: 2px solid var(--line);
     text-align: left;
   }
-  .route-tabs a:last-child { border-right: 0; }
   .route-tabs a.is-active { box-shadow: none; }
 }
 
@@ -457,9 +444,9 @@ strong { color: var(--ink); }
   .ticker { display: none; }
   .identity-panel { padding-top: .7rem; }
   .eyebrow { margin-bottom: .7rem; }
-  .route-tabs { top: 3rem; margin-left: -.8rem; margin-right: -.8rem; }
+  .route-tabs { top: var(--topbar-height); margin-left: 0; margin-right: 0; }
   .route-tabs a { min-width: 6.4rem; padding: .65rem .55rem; }
-  .sticky-head { top: 3rem; }
+  .sticky-head { top: calc(var(--topbar-height) + var(--route-tabs-height)); }
   .reader-meta { flex-wrap: wrap; row-gap: .35rem; }
   .reader-summary { font-size: clamp(1.35rem, 7.4vw, 2rem); }
   .site-menu a, .menu-note { font-size: clamp(1.45rem, 9.8vw, 2.6rem); }
@@ -471,6 +458,7 @@ body.menu-open { overflow: hidden; }
 .project-row-cta { display: none; }
 
 @media (max-width: 760px) {
+  :root { --topbar-height: 3rem; --route-tabs-height: 3.7rem; --sticky-controls-height: 3.85rem; }
   .topbar {
     grid-template-columns: 3rem minmax(0, 1fr) 4.35rem;
     min-height: 3rem;
@@ -497,9 +485,8 @@ body.menu-open { overflow: hidden; }
   }
   .identity-panel > .eyebrow { margin-top: .85rem; }
   .route-tabs {
-    order: -1;
-    top: 3rem;
-    margin: 0 -.8rem .9rem;
+    top: var(--topbar-height);
+    margin: 0 0 .9rem;
     padding: .5rem .8rem;
     border-top: 0;
     box-shadow: 0 2px 0 var(--line), 0 .75rem 1rem color-mix(in srgb, var(--bg) 85%, transparent);
@@ -528,7 +515,7 @@ body.menu-open { overflow: hidden; }
 
   .view-head {
     position: sticky;
-    top: 3rem;
+    top: calc(var(--topbar-height) + var(--route-tabs-height));
     z-index: 17;
     border-top: 2px solid var(--line);
     box-shadow: 0 .6rem .85rem color-mix(in srgb, var(--bg) 88%, transparent);
@@ -539,7 +526,7 @@ body.menu-open { overflow: hidden; }
   }
 
   .sticky-head {
-    top: 3rem;
+    top: calc(var(--topbar-height) + var(--route-tabs-height));
     z-index: 18;
     margin: -.8rem -.8rem .75rem;
     padding: .5rem .8rem;
