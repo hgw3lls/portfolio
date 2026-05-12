@@ -7,161 +7,121 @@
       name="description"
       content="Tony Yanick portfolio: experimental audiovisual media, computational systems, installation, sound, film/video, speculative fiction systems, teaching, research, and CV materials."
     />
-    <title>T Yanick / index</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@85,300;100,500;112,700&family=Instrument+Serif:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
+    <title>T Yanick / active index</title>
     <link rel="stylesheet" href="src/styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <div class="page-field" aria-hidden="true"></div>
+    <div class="grid-lines" aria-hidden="true"></div>
 
-    <header class="site-header" id="top">
-      <a class="wordmark" href="#top" aria-label="Tony Yanick portfolio home">
-        <span>T</span>
-        <span>Yanick</span>
-      </a>
-      <nav class="main-nav" aria-label="Primary navigation">
-        <a href="#works">Works</a>
-        <a href="#statement">Statement</a>
-        <a href="#research">Research</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#cv">CV</a>
-      </nav>
-      <button class="mode-toggle" type="button" aria-pressed="false">Night signal</button>
+    <header class="topbar" id="top">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">+</button>
+      <a class="wordmark" href="#works" data-route="works" aria-label="Tony Yanick home">Tony Yanick</a>
+      <div class="ticker" aria-label="Site description">
+        <span>artist / educator</span>
+        <span>fiction · signal · code · space</span>
+        <span>active portfolio index</span>
+      </div>
+      <button class="mode-toggle" type="button" aria-pressed="false">invert</button>
     </header>
 
-    <main id="main-content">
-      <section class="hero section-grid" aria-labelledby="hero-title">
-        <div class="section-label">
-          <span>Index</span>
-          <span>Artist / educator</span>
-          <span>Media systems</span>
-        </div>
-        <div class="hero-copy">
-          <p class="kicker">Experimental audiovisual media · computational systems · installation · sound · film/video · speculative fiction systems</p>
-          <h1 id="hero-title">Fiction as operational structure for image / sound / code / space.</h1>
-          <p class="lede">
-            Tony Yanick is a transdisciplinary artist-educator whose work treats media systems as environments:
-            infrastructural, relational, temporal, participatory, and materially unstable.
-          </p>
+    <aside class="site-menu" id="site-menu" aria-label="Expanded navigation" aria-hidden="true">
+      <button class="menu-close" type="button" aria-label="Close navigation">−</button>
+      <div class="menu-grid" aria-hidden="true"></div>
+      <nav class="menu-columns">
+        <section>
+          <h2>Output</h2>
+          <a href="#works" data-route="works">All works</a>
+          <a href="#statement" data-route="statement">Artist statement</a>
+          <a href="#research" data-route="research">Research</a>
+          <a href="#teaching" data-route="teaching">Teaching</a>
+          <a href="#cv" data-route="cv">CV / files</a>
+        </section>
+        <section>
+          <h2>Project jump</h2>
+          <div class="menu-projects" id="menu-projects"></div>
+        </section>
+        <section>
+          <h2>Documents</h2>
+          <a href="docs/tony-yanick-cv.pdf" download>Curriculum vitae</a>
+          <a href="docs/tony-yanick-artist-statement.pdf" download>Artist statement PDF</a>
+          <a href="docs/tony-yanick-research-statement.pdf" download>Research statement PDF</a>
+          <a href="docs/tony-yanick-teaching-portfolio.pdf" download>Teaching portfolio PDF</a>
+          <a href="docs/tony-yanick-project-documentation.pdf" download>Project documentation</a>
+        </section>
+        <section>
+          <h2>Contact</h2>
+          <a href="mailto:tony@tonyyanick.com">tony@tonyyanick.com</a>
+          <button class="menu-note" type="button">Out of control</button>
+        </section>
+      </nav>
+    </aside>
+
+    <main id="main-content" class="interface-shell">
+      <section class="identity-panel" aria-labelledby="hero-title">
+        <p class="eyebrow">Experimental audiovisual media · computational systems · installation · sound · film/video</p>
+        <h1 id="hero-title">Fiction as operational structure for image / sound / code / space.</h1>
+        <p class="lede">
+          Tony Yanick is a transdisciplinary artist-educator whose work treats media systems as environments:
+          infrastructural, relational, temporal, participatory, and materially unstable.
+        </p>
+        <div class="route-tabs" aria-label="Portfolio sections">
+          <a href="#works" data-route="works">Works</a>
+          <a href="#statement" data-route="statement">Statement</a>
+          <a href="#research" data-route="research">Research</a>
+          <a href="#teaching" data-route="teaching">Teaching</a>
+          <a href="#cv" data-route="cv">CV</a>
         </div>
       </section>
 
-      <section class="index-panel" aria-label="Portfolio architecture">
-        <a href="#works"><span>01</span>Selected works 🗀</a>
-        <a href="#statement"><span>02</span>Statement 🗎</a>
-        <a href="#research"><span>03</span>Research ⟲</a>
-        <a href="#teaching"><span>04</span>Teaching □</a>
-        <a href="#cv"><span>05</span>CV / files 🖷</a>
-      </section>
-
-      <section class="section-grid overview" aria-labelledby="overview-title">
-        <div class="section-label">
-          <span>Practice frame</span>
-          <span>Systems / media / environment</span>
-        </div>
-        <div>
-          <h2 id="overview-title">The portfolio is organized as an index of systems rather than a sequence of objects.</h2>
-          <div class="overview-grid">
-            <article>
-              <h3>Media systems</h3>
-              <p>Film, sound, installation, performance, code, and spatial systems interfere with one another to produce unstable relationships between perception, atmosphere, and interpretation.</p>
-            </article>
-            <article>
-              <h3>Speculative infrastructures</h3>
-              <p>Fiction operates as a condition-producing force: signals arrive early or late, archives behave as unstable evidence, and narratives become operational environments.</p>
-            </article>
-            <article>
-              <h3>Pedagogical position</h3>
-              <p>Teaching foregrounds experimentation, participation, infrastructural literacy, and cross-disciplinary practice over rigid medium silos or mastery-based outcomes.</p>
-            </article>
+      <section class="browser-panel" aria-live="polite">
+        <div class="view view--works is-active" id="works" data-view="works" aria-labelledby="works-title">
+          <div class="sticky-head">
+            <button type="button" data-sort="date">Date</button>
+            <button type="button" data-sort="title">Name</button>
+            <button type="button" data-sort="format">Format</button>
+            <span>Open</span>
+          </div>
+          <div class="work-layout">
+            <div>
+              <h2 id="works-title">Works as environments to enter, activate, and never fully resolve.</h2>
+              <div class="project-list" id="project-list" aria-label="Selectable project list"></div>
+            </div>
+            <article class="project-reader" id="project-reader" aria-label="Selected project detail"></article>
           </div>
         </div>
-      </section>
 
-      <section class="works section-grid" id="works" aria-labelledby="works-title">
-        <div class="section-label">
-          <span>01</span>
-          <span>Selected works</span>
-          <span>Project pages + media modules</span>
-        </div>
-        <div>
-          <h2 id="works-title">Works as environments to enter, activate, and never fully resolve.</h2>
-          <div class="project-index" id="project-index" aria-label="Project index"></div>
-          <div class="project-pages" id="project-pages"></div>
-        </div>
-      </section>
-
-      <section class="statement section-grid" id="statement" aria-labelledby="statement-title">
-        <div class="section-label">
-          <span>02</span>
-          <span>Artist statement</span>
-          <a href="docs/tony-yanick-artist-statement.pdf" download>Download PDF</a>
-        </div>
-        <article class="longform" id="artist-statement">
+        <article class="view longform" id="statement" data-view="statement" aria-labelledby="statement-title">
+          <div class="view-head"><span>02</span><a href="docs/tony-yanick-artist-statement.pdf" download>Download PDF</a></div>
           <h2 id="statement-title">My work operates through fiction—not as representation, but as a force that produces conditions.</h2>
           <p>I am interested in how narrative, myth, mediated images, and technological systems organize collective desire, and how these structures persist, circulate, and mutate across media environments.</p>
-          <p>The work develops across film, sound, installation, performance, and computational media—not as movement between disciplines, but as interference between forms. Image, sound, code, and spatial systems interact to produce unstable relationships between perception, atmosphere, and interpretation. Rather than constructing fixed narratives, these works build environments that audiences enter, navigate, and activate through participation and duration.</p>
-          <p>I return repeatedly to temporal displacement. Fragments of possible worlds appear out of sequence—past events reconfigured as future projections, speculative structures embedded within existing archives, signals that arrive too early or too late. These works accumulate through repetition, drift, and recursion, allowing fiction to operate not as storytelling alone, but as an active condition shaping perception and experience.</p>
-          <p>Installations and audiovisual environments often unfold through projected image, fragmented archives, distorted voice, live transmission, feedback systems, and accumulated audiovisual residue. Sound functions as an affective force before interpretation stabilizes, producing atmospheres of instability, delay, and pressure.</p>
-          <p>Computational systems extend this condition. I engage generative and networked media not simply as tools for production, but as infrastructures that compress, redistribute, and reorganize perception. Works such as Artificial Cinema, N2: The Secretary, HYPNAGNOSIS, and TRANSMISSIONS operate as layered configurations of language, signal, sound, and image—systems that can be entered, but never fully resolved.</p>
-          <p>Archives—both real and fictional—are treated as material. Documents, recordings, found media, and synthetic images are recombined into unstable configurations that blur distinctions between memory, projection, simulation, and historical trace.</p>
+          <p>The work develops across film, sound, installation, performance, and computational media—not as movement between disciplines, but as interference between forms. Image, sound, code, and spatial systems interact to produce unstable relationships between perception, atmosphere, and interpretation.</p>
+          <p>I return repeatedly to temporal displacement. Fragments of possible worlds appear out of sequence—past events reconfigured as future projections, speculative structures embedded within existing archives, signals that arrive too early or too late.</p>
+          <p>Computational systems extend this condition. I engage generative and networked media not simply as tools for production, but as infrastructures that compress, redistribute, and reorganize perception.</p>
           <p>There is no stable image at the end of this process—only signals that continue to circulate.</p>
         </article>
-      </section>
 
-      <section class="research section-grid" id="research" aria-labelledby="research-title">
-        <div class="section-label">
-          <span>03</span>
-          <span>Research</span>
-          <a href="docs/tony-yanick-research-statement.pdf" download>Download PDF</a>
-        </div>
-        <div>
+        <section class="view" id="research" data-view="research" aria-labelledby="research-title">
+          <div class="view-head"><span>03</span><a href="docs/tony-yanick-research-statement.pdf" download>Download PDF</a></div>
           <h2 id="research-title">Computational systems as environments whose internal conditions can be examined, altered, and reorganized.</h2>
-          <div class="research-grid">
-            <article>
-              <h3>Limits of CTRL</h3>
-              <p>Limits of CTRL: Neural Bending and the Generic Machine reframes generative AI models as relational systems rather than systems for generating outputs.</p>
-            </article>
-            <article>
-              <h3>Neural bending</h3>
-              <p>Neural bending functions as controlled intervention within operative media, using constraint, feedback, recursion, and distributed internal operations as artistic and research methods.</p>
-            </article>
-            <article>
-              <h3>Media environments</h3>
-              <p>The research investigates how computational, audiovisual, and infrastructural interventions shape perception, meaning, and social experience.</p>
-            </article>
+          <div class="card-grid">
+            <article><h3>Limits of CTRL</h3><p>Limits of CTRL: Neural Bending and the Generic Machine reframes generative AI models as relational systems rather than systems for generating outputs.</p></article>
+            <article><h3>Neural bending</h3><p>Neural bending functions as controlled intervention within operative media, using constraint, feedback, recursion, and distributed internal operations as artistic and research methods.</p></article>
+            <article><h3>Media environments</h3><p>The research investigates how computational, audiovisual, and infrastructural interventions shape perception, meaning, and social experience.</p></article>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="teaching section-grid" id="teaching" aria-labelledby="teaching-title">
-        <div class="section-label">
-          <span>04</span>
-          <span>Teaching</span>
-          <a href="docs/tony-yanick-teaching-portfolio.pdf" download>Teaching PDF</a>
-        </div>
-        <div>
+        <section class="view" id="teaching" data-view="teaching" aria-labelledby="teaching-title">
+          <div class="view-head"><span>04</span><a href="docs/tony-yanick-teaching-portfolio.pdf" download>Teaching PDF</a></div>
           <h2 id="teaching-title">Teaching across systems rather than fixed disciplines.</h2>
           <p class="section-intro">Courses are structured around process, participation, experimentation, collaboration, infrastructural literacy, and multiple entry points into analog, digital, and computational media.</p>
-          <div class="teaching-grid" id="teaching-grid"></div>
-        </div>
-      </section>
+          <div class="card-grid" id="teaching-grid"></div>
+        </section>
 
-      <section class="cv section-grid" id="cv" aria-labelledby="cv-title">
-        <div class="section-label">
-          <span>05</span>
-          <span>CV</span>
-          <a href="docs/tony-yanick-cv.pdf" download>Download CV</a>
-        </div>
-        <div>
+        <section class="view" id="cv" data-view="cv" aria-labelledby="cv-title">
+          <div class="view-head"><span>05</span><a href="docs/tony-yanick-cv.pdf" download>Download CV</a></div>
           <h2 id="cv-title">Education, works, teaching materials, and institutional documents.</h2>
-          <div class="cv-grid">
+          <div class="card-grid cv-grid">
             <article>
               <h3>Education</h3>
               <ul>
@@ -172,16 +132,10 @@
                 <li><strong>B.S., Computer Science</strong> (AI / Software Engineering), Case Western Reserve University.</li>
               </ul>
             </article>
-            <article>
-              <h3>Selected works</h3>
-              <ul id="cv-work-list"></ul>
-            </article>
-            <article>
-              <h3>Downloadable materials</h3>
-              <ul class="download-list" id="download-list"></ul>
-            </article>
+            <article><h3>Selected works</h3><ul id="cv-work-list"></ul></article>
+            <article><h3>Downloadable materials</h3><ul class="download-list" id="download-list"></ul></article>
           </div>
-        </div>
+        </section>
       </section>
     </main>
 
