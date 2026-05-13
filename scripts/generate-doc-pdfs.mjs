@@ -58,6 +58,10 @@ const documents = {
     'ARTIFICIAL CINEMA — Project Documentation',
     'Computational audiovisual environment and operative AI media system.',
   ],
+  'podkop-documentation.pdf': [
+    'PODKOP — Project Documentation',
+    'AI-driven urban fiction platform and participatory infrastructure.',
+  ],
   'variation-79-podkop-documentation.pdf': [
     'VARIATION 79 / PODKOP — Project Documentation',
     'Experimental audiovisual works, repetition, recursion, mediated memory.',
