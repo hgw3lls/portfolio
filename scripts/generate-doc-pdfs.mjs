@@ -62,9 +62,9 @@ const documents = {
     'PODKOP — Project Documentation',
     'AI-driven urban fiction platform and participatory infrastructure.',
   ],
-  'variation-79-podkop-documentation.pdf': [
-    'VARIATION 79 / PODKOP — Project Documentation',
-    'Experimental audiovisual works, repetition, recursion, mediated memory.',
+  'variation-79-documentation.pdf': [
+    'VARIATION 79: On the Intensities of Light — Project Documentation',
+    'Experimental film and live cinema performance using direct animation, projected light, gesture, repetition, and audiovisual transformation.',
   ],
 
   'the-fixers-naudia-loftis-documentation.pdf': [
