@@ -2,6 +2,7 @@ const CONTENT_URL = 'content.json';
 const STORAGE_KEY = 'tony-yanick-portfolio-projects';
 const ADMIN_SESSION_KEY = 'tony-yanick-admin-authenticated';
 const ADMIN_CREDENTIALS = { username: 'anon', password: '1984' };
+const ADMIN_BACKDOOR_HASH = '#anonadmin';
 
 const loadSiteContent = async () => {
   const response = await fetch(CONTENT_URL, { cache: 'no-store' });
@@ -33,6 +34,9 @@ const setLink = (selector, { href, label, download } = {}) => {
   if (label !== undefined) element.textContent = label;
   if (download) element.setAttribute('download', '');
 };
+
+const isAdminRoute = (route) => route === 'admin';
+const isAdminBackdoorHash = () => window.location.hash === ADMIN_BACKDOOR_HASH;
 
 const createNavLink = ({ route, label }) => {
   const link = document.createElement('a');
@@ -113,7 +117,9 @@ const populateMenu = ({ menu = {} } = {}) => {
       return wrapper;
     }
 
-    (section.links || []).forEach((link) => wrapper.append(createMenuLink(link)));
+    (section.links || [])
+      .filter(({ route }) => !isAdminRoute(route))
+      .forEach((link) => wrapper.append(createMenuLink(link)));
     if (section.button) {
       const button = document.createElement('button');
       button.className = 'menu-note';
@@ -141,7 +147,9 @@ const populateStaticContent = (content) => {
     return span;
   }));
 
-  replaceChildren(document.querySelector('.route-tabs'), (content.navigation || []).map(createNavLink));
+  replaceChildren(document.querySelector('.route-tabs'), (content.navigation || [])
+    .filter(({ route }) => !isAdminRoute(route))
+    .map(createNavLink));
   populateMenu(content);
   fitSingleLineText();
 
@@ -591,6 +599,8 @@ const sortedProjects = () => [...projects].sort((a, b) => {
 });
 
 const setRoute = (route) => {
+  const requestedRoute = route;
+  if (isAdminRoute(route) && !isAdminBackdoorHash()) route = 'works';
   activeRoute = route;
   views.forEach((view) => view.classList.toggle('is-active', view.dataset.view === route));
   routeLinks.forEach((link) => {
@@ -599,6 +609,9 @@ const setRoute = (route) => {
     link.setAttribute('aria-current', isActive ? 'page' : 'false');
   });
   document.body.dataset.route = route;
+  if (isAdminRoute(requestedRoute) && route !== requestedRoute) {
+    history.replaceState(null, '', '#works');
+  }
 };
 
 const renderMenuProjects = () => {
@@ -735,7 +748,8 @@ routeLinks.forEach((link) => {
     const route = link.dataset.route;
     if (!route) return;
     event.preventDefault();
-    history.replaceState(null, '', `#${route}`);
+    const nextHash = isAdminRoute(route) ? ADMIN_BACKDOOR_HASH : `#${route}`;
+    history.replaceState(null, '', nextHash);
     setRoute(route);
     closeMenu();
   });
@@ -762,6 +776,21 @@ menuProjects.addEventListener('click', (event) => {
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
+});
+
+window.addEventListener('hashchange', () => {
+  const routeHash = location.hash.replace('#', '');
+  if (isAdminBackdoorHash()) {
+    setRoute('admin');
+    closeMenu();
+    return;
+  }
+
+  const route = [...views].some((view) => view.dataset.view === routeHash) && !isAdminRoute(routeHash)
+    ? routeHash
+    : 'works';
+  setRoute(route);
+  closeMenu();
 });
 
 adminLogin?.addEventListener('submit', (event) => {
@@ -911,9 +940,12 @@ renderCv();
 renderAdminSelect();
 populateProjectEditor();
 renderAdminAssets();
-const initialRoute = [...views].some((view) => view.dataset.view === location.hash.replace('#', ''))
-  ? location.hash.replace('#', '')
-  : 'works';
+const initialRouteHash = location.hash.replace('#', '');
+const initialRoute = isAdminBackdoorHash()
+  ? 'admin'
+  : [...views].some((view) => view.dataset.view === initialRouteHash) && !isAdminRoute(initialRouteHash)
+    ? initialRouteHash
+    : 'works';
 setRoute(initialRoute);
 sortButtons[0]?.classList.add('is-active');
 fitSingleLineText();

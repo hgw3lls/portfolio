@@ -40,10 +40,6 @@
     {
       "route": "cv",
       "label": "CV"
-    },
-    {
-      "route": "admin",
-      "label": "Admin"
     }
   ],
   "menu": {
@@ -71,10 +67,6 @@
           {
             "route": "cv",
             "label": "CV / files"
-          },
-          {
-            "route": "admin",
-            "label": "Admin editor"
           }
         ]
       },
