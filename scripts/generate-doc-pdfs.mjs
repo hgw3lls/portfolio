@@ -22,6 +22,14 @@ const documents = {
     'Tony Yanick — Teaching Portfolio',
     'Systems-based, cross-disciplinary media pedagogy.',
   ],
+  'teaching-portfolio.pdf': [
+    'Tony Yanick — Teaching Portfolio',
+    'Programming for digital art, media systems, and interdisciplinary pedagogy.',
+  ],
+  'fictional-worlds-possible-futures.pdf': [
+    'Fictional Worlds / Possible Futures — Example Syllabus',
+    'Collaborative world-building studio for shared conditions, platforms, archives, and participatory activation.',
+  ],
   'tony-yanick-project-documentation.pdf': [
     'Tony Yanick — Project Documentation Packet',
     'Selected works and installation documentation index.',
