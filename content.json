@@ -136,12 +136,12 @@
       "format": "Format"
     },
     "openLabel": "Open",
-    "title": "Works as environments to enter, activate, and never fully resolve.",
+    "title": "Works investigating how image, sound, computation, infrastructure, and fiction organize perception, memory, participation, and collective experience.",
     "projectListAriaLabel": "Selectable project list",
     "projectReaderAriaLabel": "Selected project detail",
     "pdfLabel": "PDF",
     "noPdfLabel": "No PDF",
-    "systemHeading": "System / environment",
+    "systemHeading": "Operational structure",
     "documentationHeading": "Documentation",
     "mediaModuleLabel": "media module",
     "mediaAriaSuffix": "media",
@@ -356,136 +356,42 @@
   },
   "projects": [
     {
-      "id": "hypnagnosis",
-      "title": "HYPNAGNOSIS",
-      "date": "Ongoing",
-      "format": "Risograph works, altered-state artifacts, print/media environment",
-      "tags": [
-        "printmaking",
-        "risograph aesthetics",
-        "sleep paralysis",
-        "liminal perception"
-      ],
-      "summary": "Artifacts of altered states: risograph works and media structures concerned with sleep paralysis, liminal perception, unstable embodiment, dream architectures, and psychological thresholds.",
-      "system": "The project treats the printed artifact as a perceptual interface: color separation, repetition, grain, and registration drift become evidence of an unstable body moving between waking and dream states.",
-      "documentation": [
-        "Risograph editions",
-        "installation views",
-        "detail scans",
-        "process plates"
-      ],
-      "embed": "Image sequence / print documentation embed slot",
-      "pdf": "docs/hypnagnosis-documentation.pdf"
-    },
-    {
-      "id": "cosmomorphosis",
-      "title": "COSMOMORPHOSIS",
-      "date": "Ongoing",
-      "format": "Generative audiovisual installation driven by ISS telemetry",
-      "tags": [
-        "telemetry",
-        "audiovisual installation",
-        "live data",
-        "temporal drift"
-      ],
-      "summary": "A generative audiovisual installation in which ISS telemetry modulates image, sound, duration, and nonlinear temporal behavior.",
-      "system": "Orbital data functions as more than input; it becomes an environmental condition that produces evolving audiovisual drift, delayed perception, and a sense of scale between body, signal, and planetary infrastructure.",
-      "documentation": [
-        "single-channel excerpt",
-        "installation diagram",
-        "telemetry mapping",
-        "sound/image stills"
-      ],
-      "embed": "Video / live data capture embed slot",
-      "pdf": "docs/cosmomorphosis-documentation.pdf"
-    },
-    {
-      "id": "transmissions",
-      "title": "TRANSMISSIONS",
-      "date": "Ongoing",
-      "format": "Speculative transmission system, sound, voice, distributed media",
-      "tags": [
-        "hip-hop",
-        "spoken word",
-        "science fiction",
-        "pirate radio",
-        "participatory media"
-      ],
-      "summary": "A speculative transmission system mixing hip-hop, spoken word, science fiction, pirate radio aesthetics, distributed signal structures, and broken broadcast environments.",
-      "system": "TRANSMISSIONS frames broadcast as a fractured commons: voice, rhythm, and signal circulate through unstable infrastructures where participation changes the conditions of reception.",
-      "documentation": [
-        "audio excerpts",
-        "broadcast scripts",
-        "installation views",
-        "participant signal traces"
-      ],
-      "embed": "Audio player / transmission archive embed slot",
-      "pdf": "docs/transmissions-documentation.pdf"
-    },
-    {
-      "id": "shape-of-a-packet",
-      "title": "SHAPE OF A PACKET",
-      "date": "Ongoing",
-      "format": "Networked participatory installation",
-      "tags": [
-        "mobile systems",
-        "local networks",
-        "mesh-style connectivity",
-        "archives"
-      ],
-      "summary": "A networked participatory installation involving mobile systems, local connectivity, archives, participant contribution, and distributed media.",
-      "system": "The work makes network behavior perceptible as social and spatial form: packets, contributions, and local archives become a temporary media environment assembled by participants.",
-      "documentation": [
-        "interface captures",
-        "network diagram",
-        "participant archive",
-        "installation documentation"
-      ],
-      "embed": "Local network interface / documentation embed slot",
-      "pdf": "docs/shape-of-a-packet-documentation.pdf"
-    },
-    {
-      "id": "n2-the-secretary",
-      "title": "N2: THE SECRETARY",
-      "date": "Selected work",
-      "format": "Language, signal, archive, synthetic image/sound system",
-      "tags": [
-        "fictional archive",
-        "language systems",
-        "signal",
-        "synthetic media"
-      ],
-      "summary": "A layered configuration of language, signal, sound, and image in which archives and synthetic media operate as unstable evidence.",
-      "system": "Documents, recordings, and generated images are organized as a speculative administrative system whose authority remains unresolved.",
-      "documentation": [
-        "archive fragments",
-        "scripted documents",
-        "synthetic image sets",
-        "sound documentation"
-      ],
-      "embed": "Archive reader / moving-image excerpt slot",
-      "pdf": "docs/n2-the-secretary-documentation.pdf"
-    },
-    {
       "id": "artificial-cinema",
       "title": "ARTIFICIAL CINEMA",
-      "date": "Ongoing",
-      "format": "Computational audiovisual environment",
+      "date": "2016",
+      "context": "Trazitdisplay Gallery, Prague",
+      "mode": "computational cinema environment",
+      "question": "What does a machine see when it 'watches' science fiction films?",
+      "format": "Computational audiovisual installation",
       "tags": [
-        "computational media",
-        "AI systems",
+        "computational cinema",
+        "machine vision",
+        "generative montage",
         "expanded cinema",
-        "operative environments"
+        "installation"
       ],
-      "summary": "A computational audiovisual environment treating AI and media systems as operative environments rather than output generators.",
-      "system": "The project approaches model behavior as cinematic condition: perception is reorganized through prompts, constraints, recursive feedback, generated fragments, and temporal arrangement.",
+      "summary": "A collaborative investigation into how cinematic perception changes when processed through machine logic.",
+      "system": "Artificial Cinema explored science fiction cinema not as narrative, but as a computational dataset composed of image data, motion, texture, rhythm, and temporal structure. Developed through custom-built algorithmic systems, the project reorganized cinematic material through machine vision, semantic analysis, and generative montage. Rather than presenting a fixed film, the installation operated as a continuously evolving audiovisual environment shaped through interaction between human subjectivity and computational perception.",
       "documentation": [
-        "system captures",
-        "prompt/interface studies",
-        "audiovisual excerpts",
-        "installation diagrams"
+        "Trazitdisplay Gallery installation",
+        "machine-vision processing systems",
+        "semantic montage experiments",
+        "custom software architecture",
+        "generative film synthesis"
       ],
-      "embed": "A/V excerpt / computational system capture embed slot",
+      "collaborators": [
+        "Lou Cantor",
+        "Manuel Correa",
+        "Quinn Dougherty",
+        "Jake Hamilton",
+        "Zev Konstantinos",
+        "Olivia Leister",
+        "Miri Nyrib",
+        "Mohamad Salehy",
+        "San Satine",
+        "Joshua Westerman"
+      ],
+      "embed": "Installation documentation / computational montage system",
       "pdf": "docs/artificial-cinema-documentation.pdf",
       "media": [
         {
@@ -498,168 +404,285 @@
       ]
     },
     {
-      "id": "variation-79-podkop",
-      "title": "VARIATION 79 / PODKOP",
-      "date": "Selected works",
-      "format": "Experimental audiovisual works",
+      "id": "podkop",
+      "title": "PODKOP",
+      "date": "2019",
+      "context": "Strelka Institute / The New Normal Residency",
+      "mode": "participatory fiction infrastructure",
+      "question": "How can language, infrastructure, and AI converge into city-scale narrative systems?",
+      "format": "AI-driven urban fiction platform",
       "tags": [
-        "film/video",
-        "sound",
-        "recursion",
-        "mediated memory"
+        "design fiction",
+        "urban systems",
+        "participatory infrastructure",
+        "generative language",
+        "Strelka Institute"
       ],
-      "summary": "Experimental audiovisual works concerned with repetition, recursion, mediated memory, and the residues of speculative systems.",
-      "system": "These works extend a recurring concern with temporal displacement: fragments return as altered signals, producing a field of repetition, delay, and unresolved evidence.",
+      "summary": "An urban-scale AI system generating and distributing interactive fictions across the city through live infrastructure and participatory interaction.",
+      "system": "PODKOP processes environmental data, movement patterns, infrastructural signals, and archival material through generative language systems trained on historical, cosmological, and philosophical texts. Operating through a Telegram-based interface embedded within urban space, the project functions simultaneously as fiction engine, navigational system, and participatory infrastructure.",
       "documentation": [
-        "video stills",
-        "sound excerpts",
-        "screening notes",
-        "process documentation"
+        "Telegram fiction interface",
+        "urban interaction systems",
+        "live narrative distribution",
+        "participatory infrastructure",
+        "The New Normal publication"
       ],
-      "embed": "Video excerpt / screening documentation embed slot",
-      "pdf": "docs/variation-79-podkop-documentation.pdf"
+      "collaborators": [
+        "Valdis Silins",
+        "Nataliya Tyshlerich",
+        "Mirs Zuberi"
+      ],
+      "embed": "Urban fiction system / Telegram interface documentation",
+      "pdf": "docs/podkop-documentation.pdf"
     },
     {
-      "id": "the-fixers-naudia-loftis",
-      "title": "The Fixers: Naudia Loftis",
-      "date": "Selected film/video work",
-      "format": "Collaborative documentary film",
+      "id": "transmissions",
+      "title": "TRANSMISSIONS",
+      "date": "2024–Present",
+      "context": "Distributed transmission series",
+      "mode": "distributed signal environment",
+      "question": "What if a signal doesn’t represent reality, but begins to produce it?",
+      "format": "Distributed broadcast-fiction system",
       "tags": [
-        "film/video",
-        "documentary",
-        "community organizing",
-        "social practice"
+        "spoken word",
+        "signal systems",
+        "pirate radio",
+        "speculative fiction",
+        "distributed media"
       ],
-      "summary": "A collaborative documentary centered on a seventeen-year-old community organizer in Cleveland’s Kinsman neighborhood.",
-      "system": "Structured through interviews with friends and family, the film foregrounds lived experience within conditions shaped by systemic violence and social instability. Rather than imposing an external narrative, the work creates space for participants to articulate their perspectives through dialogue, proximity, and trust.",
+      "summary": "An evolving transmission environment combining spoken word, sound, distributed media, speculative fiction, and signal drift into a fragmented broadcast infrastructure.",
+      "system": "Created in collaboration with Messiah in Glytch, TRANSMISSIONS operates as a distributed signal rather than a single work. Audio broadcasts emerge as transmissions from a speculative near-future world, leaking into the present through distortion, delay, recursion, and signal contamination. Fragments function simultaneously as archive and forecast, documenting and producing possible worlds at the same time.",
       "documentation": [
-        "community screenings",
-        "gallery presentations",
-        "public events",
-        "2016 Republican National Convention context"
+        "broadcast recordings",
+        "signal diagrams",
+        "installation artifacts",
+        "spoken word structures",
+        "transmission system studies"
       ],
-      "embed": "Documentary excerpt / screening documentation embed slot",
-      "pdf": "docs/the-fixers-naudia-loftis-documentation.pdf",
-      "media": []
+      "collaborators": [
+        "Messiah in Glytch"
+      ],
+      "embed": "Transmission archive / distributed broadcast environment",
+      "pdf": "docs/transmissions-documentation.pdf"
     },
     {
-      "id": "make-america-great-again-and-again",
-      "title": "Make America Great Again ... And Again",
-      "date": "Selected film/video work",
-      "format": "Experimental video work",
+      "id": "hypnagnosis",
+      "title": "HYPNAGNOSIS",
+      "date": "2024–Present",
+      "context": "Archive of Altered States",
+      "mode": "archive of altered states",
+      "question": "How can altered sleep-wake states become a shared visual system?",
+      "format": "Multimedia print and installation project",
       "tags": [
-        "film/video",
-        "experimental video",
-        "political language",
-        "speculative fiction"
+        "risograph",
+        "sleep paralysis",
+        "hypnagogia",
+        "collage",
+        "altered perception"
       ],
-      "summary": "An experimental video work and Short and Sweet Festival Outstanding Film award winner drawing on Octavia E. Butler’s Parable trilogy.",
-      "system": "The project examines political language as a mechanism of narrative construction and control, exploring the relationship between speculative fiction and contemporary political reality. Through montage, abstraction, and layered imagery, it asks not what greatness is, but for whom it is constructed and at what cost.",
+      "summary": "An ongoing multimedia project combining risograph print, collage, drawing, sound, installation, and moving image to investigate hypnagogic hallucination, sleep paralysis, lucid dreaming, and altered temporal states.",
+      "system": "Beginning from lived experience, HYPNAGNOSIS explores states where waking and dreaming collapse into one another, producing layered, delayed, and unstable perceptual conditions. Through cut-up collage, overprint, montage, symbolic repetition, occult diagrams, and fragmented image systems, the project constructs a visual language for experiences that resist ordinary description.",
       "documentation": [
-        "single-channel video",
-        "festival screening notes",
-        "montage stills",
-        "sound/image documentation"
+        "risograph editions",
+        "collage systems",
+        "archive structures",
+        "installation views",
+        "symbolic diagram studies"
       ],
-      "embed": "Experimental video excerpt / screening documentation embed slot",
-      "pdf": "docs/make-america-great-again-and-again-documentation.pdf",
-      "media": []
+      "embed": "Print archive / altered-state image environment",
+      "pdf": "docs/hypnagnosis-documentation.pdf"
     },
     {
-      "id": "surface",
-      "title": "surFACE",
-      "date": "Selected film/video work",
-      "format": "Short film, analog recording systems, tape-based process",
+      "id": "cosmomorphosis",
+      "title": "COSMOMORPHOSIS",
+      "date": "2025",
+      "context": "2-channel installation",
+      "mode": "generative telemetry environment",
+      "question": "How can data operate as pressure rather than representation?",
+      "format": "2-channel generative installation",
       "tags": [
-        "film/video",
-        "analog video",
-        "feedback",
-        "drawing",
-        "sound"
+        "ISS telemetry",
+        "live data",
+        "generative systems",
+        "signal drift",
+        "installation"
       ],
-      "summary": "A short film produced as part of the larger TAPEHEADS project, investigating analog recording systems, tape-based processes, and the material conditions of image and sound.",
-      "system": "Built from a repetitive drawing practice centered on abstracted faces, the film treats marks as raw material within recording, layering, playback, and transformation. The screen becomes an apparatus where image and sound co-evolve through repetition, distortion, and feedback.",
+      "summary": "An evolving audiovisual installation driven by live telemetry from the International Space Station.",
+      "system": "Rather than visualizing data directly, COSMOMORPHOSIS reroutes orbital information—position, velocity, electromagnetic fluctuation, and drift—into the procedural behavior of the image itself. Motion, rupture, decay, and transformation emerge through the continual pressure of real orbital conditions acting upon a generative audiovisual structure.",
       "documentation": [
-        "TAPEHEADS project context",
-        "drawing sequences",
-        "feedback recordings",
-        "screening stills"
+        "2-channel installation",
+        "ISS telemetry systems",
+        "live data mapping",
+        "signal fluctuation studies",
+        "generative visual behavior"
       ],
-      "embed": "Short film excerpt / analog feedback documentation embed slot",
-      "pdf": "docs/surface-documentation.pdf",
-      "media": []
-    },
-    {
-      "id": "flow-lines",
-      "title": "Flow Lines (3-channel video)",
-      "date": "Selected film/video work",
-      "format": "Three-channel collaborative video installation",
-      "tags": [
-        "film/video",
-        "three-channel video",
-        "landscape",
-        "migration",
-        "Niagara River"
-      ],
-      "summary": "A collaborative video work developed in response to Isaac Julien’s Kapital, exploring the movement of value through geography, history, and narrative.",
-      "system": "Centered on the Niagara River as both physical flow and historical boundary connected to the Underground Railroad, the piece layers landscape, memory, and migration through image, rhythm, and poetic language. It approaches landscape as a living system through which histories are carried, transformed, and reinterpreted.",
-      "documentation": [
-        "three-channel installation",
-        "Niagara River research",
-        "poetic language score",
-        "installation stills"
-      ],
-      "embed": "Three-channel video excerpt / installation documentation embed slot",
-      "pdf": "docs/flow-lines-documentation.pdf",
-      "media": []
-    },
-    {
-      "id": "bobbi-lynn",
-      "title": "BOBBI LYNN",
-      "date": "Selected film/video work",
-      "format": "Music video, generative image systems",
-      "tags": [
-        "film/video",
-        "music video",
-        "generative imagery",
-        "memory",
-        "family archive"
-      ],
-      "summary": "A music video that explores memory and familial relationships through generative image systems.",
-      "system": "Centered on a son’s recollection of his relationship with his mother, the work replaces photographic reconstruction with synthetic image generation. Drawing on Roland Barthes’ distinction between studium and punctum, it examines how memory, identity, intimacy, and representation become mediated through machine-generated imagery.",
-      "documentation": [
-        "music video",
-        "generative image studies",
-        "family memory framework",
-        "image-system process notes"
-      ],
-      "embed": "Music video excerpt / generative image documentation embed slot",
-      "pdf": "docs/bobbi-lynn-documentation.pdf",
-      "media": []
+      "embed": "Generative telemetry environment / installation documentation",
+      "pdf": "docs/cosmomorphosis-documentation.pdf"
     },
     {
       "id": "dossier-37",
       "title": "Dossier 37",
-      "date": "Selected film/video work",
+      "date": "2020",
+      "context": "AUDINT collaboration",
+      "mode": "forensic signal environment",
+      "question": "How do signals become geopolitical narratives?",
       "format": "Audiovisual work, forensic interface, data visualization",
       "tags": [
-        "film/video",
-        "audiovisual work",
         "AUDINT",
+        "forensic media",
+        "signal systems",
         "data visualization",
         "disinformation"
       ],
-      "summary": "An audiovisual work developed in collaboration with AUDINT that investigates the unstable territory between sonic warfare, disinformation, and state narrative production.",
-      "system": "Emerging from discourse surrounding alleged sonic attacks on US diplomatic personnel in Cuba and South China, the project examines how fear, rumor, and geopolitical speculation circulate through media systems as forms of perceptual instability. Structured as a forensic and speculative timeline, it visualizes Twitter activity and signal environments around Havana Syndrome.",
+      "summary": "An audiovisual work developed in collaboration with AUDINT investigating sonic warfare discourse, disinformation systems, and perceptual instability.",
+      "system": "Emerging from discourse surrounding alleged sonic attacks on US diplomatic personnel in Cuba and South China, the project examines how fear, rumor, and signal interpretation circulate through contemporary media systems. Structured through forensic interface aesthetics, Twitter visualization, speculative timelines, and audiovisual reconstruction, the work treats evidence itself as unstable media terrain.",
       "documentation": [
         "AUDINT collaboration",
-        "IREX2 interface study",
+        "IREX2 interface studies",
         "Twitter activity visualization",
-        "forensic timeline"
+        "forensic timelines",
+        "signal environment documentation"
       ],
-      "embed": "Audiovisual excerpt / forensic interface documentation embed slot",
-      "pdf": "docs/dossier-37-documentation.pdf",
-      "media": []
+      "collaborators": [
+        "AUDINT"
+      ],
+      "embed": "Audiovisual excerpt / forensic interface documentation",
+      "pdf": "docs/dossier-37-documentation.pdf"
+    },
+    {
+      "id": "flow-lines",
+      "title": "Flow Lines (3-channel video)",
+      "date": "2016–2017",
+      "context": "Collaborative multi-channel installation",
+      "mode": "cinematic landscape environment",
+      "question": "How do landscapes carry memory, migration, and historical movement?",
+      "format": "Three-channel collaborative installation",
+      "tags": [
+        "three-channel video",
+        "landscape",
+        "migration",
+        "Niagara River",
+        "historical memory"
+      ],
+      "summary": "A collaborative installation exploring migration, geography, historical memory, and movement through the Niagara River region.",
+      "system": "Developed in response to Isaac Julien’s Kapital, the project approaches the Niagara River simultaneously as landscape, historical boundary, and infrastructural flow system connected to the Underground Railroad. Through layered moving image, rhythm, and spoken language, the installation constructs landscape as an active carrier of memory and movement.",
+      "documentation": [
+        "three-channel installation",
+        "Niagara River research",
+        "spoken language score",
+        "installation stills",
+        "movement studies"
+      ],
+      "embed": "Three-channel installation / cinematic landscape documentation",
+      "pdf": "docs/flow-lines-documentation.pdf"
+    },
+    {
+      "id": "bobbi-lynn",
+      "title": "BOBBI LYNN",
+      "date": "2022",
+      "context": "Generative memory work",
+      "mode": "synthetic memory environment",
+      "question": "What happens when memory is reconstructed through machine vision?",
+      "format": "Music video, generative image systems",
+      "tags": [
+        "music video",
+        "generative imagery",
+        "memory",
+        "family archive",
+        "synthetic media"
+      ],
+      "summary": "A music video exploring grief, intimacy, and memory through generative image systems and synthetic reconstruction.",
+      "system": "Centered on recollections of familial relationships, the work replaces direct photographic reconstruction with unstable synthetic imagery generated through machine-learning systems. Memory becomes probabilistic, fragmented, and continuously reassembled through computational mediation.",
+      "documentation": [
+        "GAN image studies",
+        "music video",
+        "family archive structures",
+        "image-generation process",
+        "screening documentation"
+      ],
+      "embed": "Music video / synthetic memory documentation",
+      "pdf": "docs/bobbi-lynn-documentation.pdf"
+    },
+    {
+      "id": "surface",
+      "title": "surFACE",
+      "date": "2025",
+      "context": "TAPEHEADS project",
+      "mode": "analog feedback environment",
+      "question": "How can repetitive drawing become unstable audiovisual material?",
+      "format": "Short film, analog recording systems, tape-based process",
+      "tags": [
+        "analog video",
+        "feedback",
+        "drawing",
+        "sound",
+        "recording systems"
+      ],
+      "summary": "A short film investigating analog recording systems, repetitive drawing, feedback, and audiovisual instability.",
+      "system": "Constructed through iterative drawing, recording, playback, degradation, layering, and analog transformation, surFACE treats marks as unstable audiovisual material rather than static representation. Image and sound evolve together through recursive recording behavior and feedback structures.",
+      "documentation": [
+        "drawing sequences",
+        "analog feedback studies",
+        "tape-processing structures",
+        "screening stills",
+        "process documentation"
+      ],
+      "embed": "Analog feedback film / recording system documentation",
+      "pdf": "docs/surface-documentation.pdf"
+    },
+    {
+      "id": "the-fixers-naudia-loftis",
+      "title": "The Fixers: Naudia Loftis",
+      "date": "2016",
+      "context": "Collaborative documentary project",
+      "mode": "community documentary framework",
+      "question": "How can documentary operate through collaboration rather than extraction?",
+      "format": "Collaborative documentary film",
+      "tags": [
+        "documentary",
+        "community organizing",
+        "collaboration",
+        "social practice",
+        "Cleveland"
+      ],
+      "summary": "A collaborative documentary centered on Naudia Loftis and community organizing in Cleveland’s Kinsman neighborhood during the 2016 Republican National Convention.",
+      "system": "Built through interviews, collaboration, and community participation, the film foregrounds lived experience within conditions shaped by systemic violence, displacement, and political instability. The project prioritizes proximity, dialogue, and collective authorship over imposed narrative structure.",
+      "documentation": [
+        "community screenings",
+        "production stills",
+        "interview structures",
+        "public discussions",
+        "2016 RNC context"
+      ],
+      "embed": "Collaborative documentary / community screening documentation",
+      "pdf": "docs/the-fixers-naudia-loftis-documentation.pdf"
+    },
+    {
+      "id": "make-america-great-again-and-again",
+      "title": "Make America Great Again ... And Again",
+      "date": "2016",
+      "context": "Experimental political video work",
+      "mode": "speculative political montage",
+      "question": "How does political language reorganize collective perception?",
+      "format": "Experimental political video work",
+      "tags": [
+        "experimental video",
+        "political language",
+        "speculative fiction",
+        "montage",
+        "media systems"
+      ],
+      "summary": "An experimental video work drawing on Octavia E. Butler’s Parable trilogy to examine political language, mediated desire, and speculative power.",
+      "system": "Through montage, abstraction, recursive slogan structures, and layered media fragments, the project investigates how political narratives circulate as systems of emotional management, identity construction, and social control.",
+      "documentation": [
+        "festival screenings",
+        "editing structures",
+        "media collage studies",
+        "sound-image montage",
+        "political language experiments"
+      ],
+      "embed": "Experimental political montage / screening documentation",
+      "pdf": "docs/make-america-great-again-and-again-documentation.pdf"
     }
   ]
 }
