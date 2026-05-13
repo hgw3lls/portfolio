@@ -158,9 +158,12 @@
     "paragraphs": [
       "I am interested in how narrative, myth, mediated images, and technological systems organize collective desire, and how these structures persist, circulate, and mutate across media environments.",
       "The work develops across film, sound, installation, performance, and computational media—not as movement between disciplines, but as interference between forms. Image, sound, code, archives, and spatial systems interact to produce unstable relationships between perception, atmosphere, participation, and interpretation.",
-      "Many works unfold through projected image, live signal routing, synthetic voice, tape-based processes, generative image systems, networked participation, or computational feedback structures. Installations are treated less as static objects than as evolving conditions in which viewers encounter fragments, delays, repetitions, and unstable narrative relations over time.",
-      "I return repeatedly to temporal displacement. Fragments of possible worlds appear out of sequence—past events reconfigured as future projections, speculative structures embedded within existing archives, signals that arrive too early or too late.",
-      "Computational systems extend this condition. I engage generative and networked media not simply as tools for production, but as infrastructures that compress, redistribute, and reorganize perception.",
+      "Rather than constructing fixed narratives, these works build environments that audiences enter, navigate, and activate through participation and duration. Installations and audiovisual systems often unfold through projected image, fragmented archives, distorted voice, live transmission, feedback systems, and accumulated audiovisual residue.",
+      "I return repeatedly to temporal displacement. Fragments of possible worlds appear out of sequence—past events reconfigured as future projections, speculative structures embedded within existing archives, signals that arrive too early or too late. These works accumulate through repetition, drift, and recursion, allowing fiction to operate not as storytelling alone, but as an active condition shaping perception and experience.",
+      "Sound functions as an affective force before interpretation stabilizes, producing atmospheres of instability, delay, and pressure. Images are not treated as fixed objects, but as contingent forms shaped by the conditions under which they are encountered.",
+      "Computational systems extend this condition. I engage generative and networked media not simply as tools for production, but as infrastructures that compress, redistribute, and reorganize perception. Works such as Artificial Cinema, N2: The Secretary, HYPNAGNOSIS, TRANSMISSIONS, and COSMOMORPHOSIS operate as layered configurations of language, signal, sound, image, and live systems—environments that can be entered, but never fully resolved.",
+      "Archives—both real and fictional—are treated as material. Documents, recordings, found media, synthetic images, and historical traces are recombined into unstable configurations that blur distinctions between memory, projection, simulation, and evidence.",
+      "Collaboration operates as another layer within this structure. Performers, participants, audiences, and systems interact to produce outcomes that cannot emerge through isolated authorship alone. These works often evolve through accumulation, interference, and collective activation, allowing perception to shift as elements overlap, repeat, and destabilize one another.",
       "There is no stable image at the end of this process—only signals that continue to circulate."
     ]
   },
@@ -168,19 +171,31 @@
     "number": "03",
     "pdfHref": "docs/tony-yanick-research-statement.pdf",
     "pdfLabel": "Download PDF",
-    "title": "Investigating computational media as operational environments rather than neutral tools.",
+    "title": "Researching computational media as operative environments whose internal conditions can be examined, altered, and reorganized through intervention.",
     "cards": [
       {
         "title": "Limits of CTRL",
-        "text": "Limits of CTRL: Neural Bending and the Generic Machine investigates generative AI models as infrastructural cultural systems rather than image-generation tools. The research focuses on intervention, probabilistic behavior, recursion, operational constraints, and the relationship between synthetic media and collective perception."
+        "text": "Limits of CTRL: Neural Bending and the Generic Machine reframes trained generative models as computational media architectures that organize relational possibility rather than systems that simply produce representations or execute commands. The project investigates how coherence emerges through distributed operations including embedding, attention, normalization, temporal propagation, and infrastructural execution."
       },
       {
         "title": "Neural bending",
-        "text": "Neural bending treats generative systems as mutable environments whose internal operations can be redirected through interference, recursion, constraint, feedback, and distributed procedural modification rather than prompt-based output extraction alone."
+        "text": "Neural bending is developed as a research-creation method for experimentally intervening within generative systems through controlled architectural perturbation. Rather than optimizing outputs, the method modifies embedding relations, attention distributions, normalization behavior, temporal propagation, and execution conditions in order to observe how generative coherence reorganizes under constraint."
       },
       {
-        "title": "Media environments",
-        "text": "The research examines how computational media reorganizes spectatorship, memory, labor, authorship, and perception through interfaces, datasets, network structures, synthetic imagery, and algorithmic distribution systems."
+        "title": "Operative media theory",
+        "text": "The research extends media-theoretical inquiry into the architectural interior of contemporary machine learning systems by treating trained models as operative media environments rather than opaque technical tools. Computational systems are approached as metastable infrastructures that shape articulation, visibility, coherence, memory, and perception through distributed internal operations."
+      },
+      {
+        "title": "Research-creation environments",
+        "text": "These investigations extend into installations, live audiovisual systems, speculative broadcasts, generative environments, and computational media works including Artificial Cinema, TRANSMISSIONS, COSMOMORPHOSIS, and PODKOP. Across these projects, image, sound, code, archives, and live systems operate as interconnected environments shaped through instability, recursion, participation, and temporal drift."
+      },
+      {
+        "title": "Fiction as operational structure",
+        "text": "Another axis of the research examines fiction not as narrative content alone, but as an operational structure embedded within technical and social systems. Through speculative and design-fiction methodologies, distributed environments emerge in which meaning is produced through interfaces, archives, signals, protocols, participation, and generative processes."
+      },
+      {
+        "title": "Distributed perception and infrastructure",
+        "text": "The broader research examines how computational, audiovisual, and infrastructural systems organize collective perception and social experience. Rather than treating media as neutral channels of representation, the work approaches technical systems as active environments through which perception, participation, memory, and collective meaning are continuously reorganized."
       }
     ]
   },
@@ -188,27 +203,51 @@
     "number": "04",
     "pdfHref": "docs/tony-yanick-teaching-portfolio.pdf",
     "pdfLabel": "Teaching PDF",
-    "title": "Teaching across systems rather than fixed disciplines.",
-    "intro": "Courses combine moving image production, sound design, editing, installation practice, computational media, experimental publishing, and critical media theory through project-based collaborative learning environments. Students are encouraged to move fluidly between analog and digital processes while developing technical literacy, conceptual rigor, and sustainable creative workflows.",
+    "title": "Teaching across media systems, computation, audiovisual practice, and speculative world-building.",
+    "intro": "My teaching approaches media—analog, digital, networked, and computational—not as isolated disciplines, but as interconnected systems that shape perception, behavior, participation, and collective experience. Courses are structured as collaborative environments where students develop technical, conceptual, and critical frameworks through experimentation, production, discussion, and iterative research across sound, moving image, computation, installation, writing, and hybrid media practices.",
     "downloadLabel": "Download material",
     "materials": [
       {
-        "title": "Systems-based media studio",
-        "type": "Course framework",
-        "text": "A studio model that asks students to build relationships between image, sound, code, archive, installation, and spatial experience rather than treating media as separate disciplines.",
-        "href": "docs/systems-based-media-studio.pdf"
+        "title": "Programming for Digital Art",
+        "type": "University at Buffalo · Lecturer",
+        "text": "Designed and taught a studio-based course integrating computational media, audiovisual systems, code, generative processes, and conceptual frameworks. Students developed interdisciplinary projects spanning sound, video, interaction, installation, and hybrid media environments.",
+        "href": "docs/teaching-portfolio.pdf"
       },
       {
-        "title": "Computational media as environment",
-        "type": "Workshop / seminar",
-        "text": "Assignments introduce computational systems as cultural and perceptual infrastructures, foregrounding constraints, feedback, iteration, recursion, and critical technical literacy through hands-on experimentation.",
-        "href": "docs/computational-media-environment.pdf"
+        "title": "Fictional Worlds / Possible Futures: Building Conditions",
+        "type": "Integrated Arts Workshop / Example Syllabus",
+        "text": "A collaborative world-building studio approaching fiction as the construction of shared conditions rather than narrative alone. Students developed evolving systems through archives, platforms, spatial structures, performance, distributed media, and participatory activation models.",
+        "href": "docs/fictional-worlds-possible-futures.pdf"
       },
       {
-        "title": "Analog / digital publication systems",
-        "type": "Teaching material",
-        "text": "A hybrid print and screen sequence connecting risograph processes, archives, typography, sequencing, networked distribution, and experimental publishing workflows.",
-        "href": "docs/analog-digital-publication-systems.pdf"
+        "title": "Machines, Codes and Cultures",
+        "type": "University at Buffalo · Teaching Assistant",
+        "text": "Facilitated discussions connecting media technologies, computational systems, and network culture to historical, theoretical, and political contexts while supporting students in critically analyzing media infrastructures and digital culture.",
+        "href": "docs/teaching-portfolio.pdf"
+      },
+      {
+        "title": "World Cinema",
+        "type": "University at Buffalo · Teaching Assistant",
+        "text": "Supported students in analyzing cinematic language, spectatorship, historical film movements, and global moving-image traditions through screening analysis, discussion, and critical writing.",
+        "href": "docs/teaching-portfolio.pdf"
+      },
+      {
+        "title": "Semiotics and Media Interpretation",
+        "type": "Case Western Reserve University · Teaching Assistant",
+        "text": "Introduced students to frameworks for analyzing language, meaning, representation, textual systems, and visual culture across philosophy, media, and communication practices.",
+        "href": "docs/teaching-portfolio.pdf"
+      },
+      {
+        "title": "The New Centre for Research & Practice",
+        "type": "Co-Founder & Educator",
+        "text": "Developed interdisciplinary courses integrating philosophy, art, technology, computation, and experimental media within a globally distributed learning environment. Mentored students across artistic, technical, and theoretical practices through collaborative and research-driven pedagogical models.",
+        "href": "docs/teaching-portfolio.pdf"
+      },
+      {
+        "title": "NewBridge Cleveland",
+        "type": "Art Educator",
+        "text": "Designed and facilitated arts education programs for youth and community participants, emphasizing experimentation, accessibility, collaboration, and creative confidence through interdisciplinary media practices.",
+        "href": "docs/teaching-portfolio.pdf"
       }
     ]
   },
