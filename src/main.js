@@ -323,6 +323,8 @@ let activeSort = 'date';
 let activeFilter = 'all';
 let activeQuery = '';
 let activeRoute = 'works';
+let isProjectLocked = false;
+let isReaderExpanded = false;
 let isAdminAuthenticated = sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true';
 let lastFocusedElement = null;
 let liveStatusTimer;
@@ -715,6 +717,9 @@ const renderWorkControls = () => {
 const renderProjectReader = () => {
   const visible = visibleProjects();
   if (!visible.length) {
+    isProjectLocked = false;
+    isReaderExpanded = false;
+    document.body.classList.remove('project-is-locked', 'reader-expanded');
     projectReader.innerHTML = `
       <div class="reader-empty">
         <p>No works match the current filters.</p>
@@ -724,6 +729,8 @@ const renderProjectReader = () => {
   }
   const project = visible.find((item) => item.id === activeProjectId) || visible[0];
   activeProjectId = project.id;
+  document.body.classList.toggle('project-is-locked', isProjectLocked);
+  document.body.classList.toggle('reader-expanded', isReaderExpanded);
 
   const index = projects.indexOf(project);
   const pdf = safeUrl(project.pdf);
@@ -732,6 +739,8 @@ const renderProjectReader = () => {
   projectReader.innerHTML = `
     <div class="reader-actions">
       <button class="reader-return" type="button" data-reader-return>Browse works</button>
+      <button class="reader-action" type="button" data-reader-lock aria-pressed="${isProjectLocked}">${isProjectLocked ? 'Locked' : 'Lock work'}</button>
+      <button class="reader-action" type="button" data-reader-expand aria-pressed="${isReaderExpanded}">${isReaderExpanded ? 'Exit full' : 'Full frame'}</button>
       ${pdf ? `<a class="reader-action" href="${pdf}" download>${escapeHtml(siteContent.works?.pdfLabel || 'PDF')}</a>` : `<span class="reader-action is-disabled">${escapeHtml(siteContent.works?.noPdfLabel || 'No PDF')}</span>`}
     </div>
     <div class="reader-meta">
@@ -760,15 +769,33 @@ const renderProjectReader = () => {
   `;
 
   projectReader.querySelector('[data-reader-return]')?.addEventListener('click', () => {
+    if (isReaderExpanded) {
+      isReaderExpanded = false;
+      renderProjectList();
+      renderProjectReader();
+    }
     projectList?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  });
+  projectReader.querySelector('[data-reader-lock]')?.addEventListener('click', () => {
+    isProjectLocked = !isProjectLocked;
+    renderProjectList();
+    renderProjectReader();
+  });
+  projectReader.querySelector('[data-reader-expand]')?.addEventListener('click', () => {
+    isReaderExpanded = !isReaderExpanded;
+    renderProjectList();
+    renderProjectReader();
+    projectReader?.focus({ preventScroll: true });
   });
 
   fitSingleLineText(projectReader);
 };
 
-const selectProject = (projectId, { scrollReader = false, focusReader = false } = {}) => {
+const selectProject = (projectId, { scrollReader = false, focusReader = false, lock = false, preview = false } = {}) => {
   if (!projects.some((project) => project.id === projectId)) return;
+  if (preview && isProjectLocked) return;
   activeProjectId = projectId;
+  if (lock) isProjectLocked = true;
   renderProjectList();
   renderProjectReader();
 
@@ -782,6 +809,7 @@ const renderProjectList = () => {
   const visible = visibleProjects();
   if (visible.length && !visible.some((project) => project.id === activeProjectId)) {
     activeProjectId = visible[0].id;
+    isProjectLocked = false;
   }
 
   if (!visible.length) {
@@ -800,7 +828,7 @@ const renderProjectList = () => {
       const index = projects.indexOf(project);
       const tags = (project.tags || []).slice(0, 3);
       return `
-        <button class="project-row" type="button" data-project="${project.id}" aria-pressed="${project.id === activeProjectId}">
+        <button class="project-row${project.id === activeProjectId && isProjectLocked ? ' is-locked' : ''}" type="button" data-project="${project.id}" aria-pressed="${project.id === activeProjectId}" aria-label="${escapeHtml(`${project.title}${project.id === activeProjectId && isProjectLocked ? ', locked' : ''}`)}">
           <span>${slugNumber(index)}</span>
           <strong>${escapeHtml(project.title)}</strong>
           <em>${escapeHtml(project.format)}</em>
@@ -817,13 +845,16 @@ const renderProjectList = () => {
 
   projectList.querySelectorAll('[data-project]').forEach((button) => {
     button.addEventListener('click', () => {
-      selectProject(button.dataset.project, { scrollReader: true });
+      selectProject(button.dataset.project, { scrollReader: true, lock: true });
     });
 
-    button.addEventListener('pointerenter', (event) => {
+    const previewProject = (event) => {
       if (event.pointerType && event.pointerType !== 'mouse') return;
-      selectProject(button.dataset.project);
-    });
+      selectProject(button.dataset.project, { preview: true });
+    };
+
+    button.addEventListener('pointerenter', previewProject);
+    button.addEventListener('mouseenter', previewProject);
   });
 };
 
@@ -962,7 +993,7 @@ menuProjects.addEventListener('click', (event) => {
   setRoute('works');
   closeMenu();
   renderWorkControls();
-  selectProject(link.dataset.projectJump, { scrollReader: true });
+  selectProject(link.dataset.projectJump, { scrollReader: true, lock: true });
 });
 
 document.addEventListener('keydown', (event) => {
