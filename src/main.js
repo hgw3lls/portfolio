@@ -1,5 +1,6 @@
 const CONTENT_URL = 'content.json';
 const STORAGE_KEY = 'tony-yanick-portfolio-projects';
+const MODE_STORAGE_KEY = 'tony-yanick-portfolio-mode';
 const ADMIN_SESSION_KEY = 'tony-yanick-admin-authenticated';
 const ADMIN_CREDENTIALS = { username: 'anon', password: '1984' };
 const ADMIN_BACKDOOR_HASH = '#anonadmin';
@@ -65,6 +66,9 @@ const FIT_TEXT_SELECTOR = [
   '.project-row em',
   '.project-row small',
   '.project-row-cta',
+  '.filter-chip',
+  '.reader-action',
+  '.reader-return',
 ].join(', ');
 
 const fitSingleLineText = (root = document) => {
@@ -137,6 +141,7 @@ const populateStaticContent = (content) => {
   setText('.wordmark', content.site?.wordmark);
   document.querySelector('.wordmark')?.setAttribute('aria-label', content.site?.wordmarkAriaLabel || content.site?.wordmark || 'Home');
   document.querySelector('.menu-toggle').textContent = content.site?.menuToggleLabel || '+';
+  document.querySelector('.menu-toggle')?.setAttribute('aria-label', content.site?.menuOpenAriaLabel || 'Open navigation');
   document.querySelector('.menu-close').textContent = content.site?.menuCloseLabel || '−';
   document.querySelector('.menu-close')?.setAttribute('aria-label', content.site?.menuCloseAriaLabel || 'Close navigation');
 
@@ -284,6 +289,9 @@ populateStaticContent(siteContent);
 
 const projectList = document.querySelector('#project-list');
 const projectReader = document.querySelector('#project-reader');
+const projectSearch = document.querySelector('#project-search');
+const projectFilters = document.querySelector('#project-filters');
+const projectCount = document.querySelector('#project-count');
 const teachingGrid = document.querySelector('#teaching-grid');
 const cvWorkList = document.querySelector('#cv-work-list');
 const downloadList = document.querySelector('#download-list');
@@ -312,8 +320,11 @@ const adminLiveStatus = document.querySelector('#admin-live-status');
 
 let activeProjectId = projects[0].id;
 let activeSort = 'date';
+let activeFilter = 'all';
+let activeQuery = '';
 let activeRoute = 'works';
 let isAdminAuthenticated = sessionStorage.getItem(ADMIN_SESSION_KEY) === 'true';
+let lastFocusedElement = null;
 let liveStatusTimer;
 
 
@@ -336,6 +347,63 @@ const listFromText = (value = '') => String(value)
   .split(/[\n,]/)
   .map((item) => item.trim())
   .filter(Boolean);
+
+const normalizeSearchValue = (value = '') => String(value).trim().toLowerCase();
+
+const getProjectSearchText = (project = {}) => [
+  project.title,
+  project.date,
+  project.format,
+  project.summary,
+  project.system,
+  ...(project.tags || []),
+  ...(project.documentation || []),
+].join(' ').toLowerCase();
+
+const projectMatchesControls = (project) => {
+  const searchText = getProjectSearchText(project);
+  const query = normalizeSearchValue(activeQuery);
+  const matchesQuery = !query || searchText.includes(query);
+  const filter = normalizeSearchValue(activeFilter);
+  const matchesFilter = filter === 'all'
+    || (project.tags || []).some((tag) => normalizeSearchValue(tag) === filter)
+    || normalizeSearchValue(project.format).includes(filter);
+
+  return matchesQuery && matchesFilter;
+};
+
+const getFilterOptions = () => {
+  const preferred = [
+    'installation',
+    'generative systems',
+    'speculative fiction',
+    'signal systems',
+    'experimental film',
+    'participatory infrastructure',
+  ];
+  const counts = new Map();
+
+  projects.forEach((project) => {
+    (project.tags || []).forEach((tag) => {
+      const label = String(tag).trim();
+      if (!label) return;
+      const key = normalizeSearchValue(label);
+      counts.set(key, { label, count: (counts.get(key)?.count || 0) + 1 });
+    });
+  });
+
+  const preferredOptions = preferred
+    .map((key) => counts.get(key))
+    .filter(Boolean);
+  const rankedOptions = [...counts.values()]
+    .filter((option) => !preferred.includes(normalizeSearchValue(option.label)))
+    .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label));
+
+  return [
+    { label: 'All', value: 'all' },
+    ...[...preferredOptions, ...rankedOptions].slice(0, 7).map(({ label }) => ({ label, value: label })),
+  ];
+};
 
 const fileToDataUrl = (file) => new Promise((resolve, reject) => {
   if (!file) {
@@ -534,6 +602,7 @@ const refreshAdminEditableContent = ({ clearDrafts = false } = {}) => {
 
 const refreshPublicPortfolio = () => {
   renderMenuProjects();
+  renderWorkControls();
   renderProjectList();
   renderProjectReader();
   renderCv();
@@ -598,6 +667,8 @@ const sortedProjects = () => [...projects].sort((a, b) => {
   return projects.indexOf(a) - projects.indexOf(b);
 });
 
+const visibleProjects = () => sortedProjects().filter(projectMatchesControls);
+
 const setRoute = (route) => {
   const requestedRoute = route;
   if (isAdminRoute(route) && !isAdminBackdoorHash()) route = 'works';
@@ -615,18 +686,54 @@ const setRoute = (route) => {
 };
 
 const renderMenuProjects = () => {
+  if (!menuProjects) return;
   menuProjects.innerHTML = projects
     .map((project, index) => `<a href="#works" data-project-jump="${project.id}">${slugNumber(index)} ${escapeHtml(project.title)}</a>`)
     .join('');
 };
 
+const renderWorkControls = () => {
+  if (projectSearch && projectSearch.value !== activeQuery) projectSearch.value = activeQuery;
+
+  if (projectFilters) {
+    projectFilters.innerHTML = getFilterOptions()
+      .map((option) => {
+        const isActive = normalizeSearchValue(option.value) === normalizeSearchValue(activeFilter);
+        return `<button class="filter-chip" type="button" data-filter="${escapeHtml(option.value)}" aria-pressed="${isActive}">${escapeHtml(option.label)}</button>`;
+      })
+      .join('');
+  }
+
+  if (projectCount) {
+    const count = visibleProjects().length;
+    projectCount.textContent = `${count} ${count === 1 ? 'work' : 'works'}`;
+  }
+
+  fitSingleLineText(projectFilters || document);
+};
+
 const renderProjectReader = () => {
-  const project = projects.find((item) => item.id === activeProjectId) || projects[0];
+  const visible = visibleProjects();
+  if (!visible.length) {
+    projectReader.innerHTML = `
+      <div class="reader-empty">
+        <p>No works match the current filters.</p>
+      </div>
+    `;
+    return;
+  }
+  const project = visible.find((item) => item.id === activeProjectId) || visible[0];
+  activeProjectId = project.id;
+
   const index = projects.indexOf(project);
   const pdf = safeUrl(project.pdf);
   const mediaItems = (project.media || []).map(renderMediaItem).join('');
 
   projectReader.innerHTML = `
+    <div class="reader-actions">
+      <button class="reader-return" type="button" data-reader-return>Browse works</button>
+      ${pdf ? `<a class="reader-action" href="${pdf}" download>${escapeHtml(siteContent.works?.pdfLabel || 'PDF')}</a>` : `<span class="reader-action is-disabled">${escapeHtml(siteContent.works?.noPdfLabel || 'No PDF')}</span>`}
+    </div>
     <div class="reader-meta">
       <span>${slugNumber(index)}</span>
       <span>${escapeHtml(project.date)}</span>
@@ -652,19 +759,53 @@ const renderProjectReader = () => {
     <ul class="tag-list">${(project.tags || []).map((tag) => `<li>${escapeHtml(tag)}</li>`).join('')}</ul>
   `;
 
+  projectReader.querySelector('[data-reader-return]')?.addEventListener('click', () => {
+    projectList?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  });
+
   fitSingleLineText(projectReader);
 };
 
+const selectProject = (projectId, { scrollReader = false, focusReader = false } = {}) => {
+  if (!projects.some((project) => project.id === projectId)) return;
+  activeProjectId = projectId;
+  renderProjectList();
+  renderProjectReader();
+
+  if (focusReader) projectReader?.focus({ preventScroll: true });
+  if (scrollReader && window.matchMedia('(max-width: 760px)').matches) {
+    projectReader?.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  }
+};
+
 const renderProjectList = () => {
-  projectList.innerHTML = sortedProjects()
+  const visible = visibleProjects();
+  if (visible.length && !visible.some((project) => project.id === activeProjectId)) {
+    activeProjectId = visible[0].id;
+  }
+
+  if (!visible.length) {
+    projectList.innerHTML = `
+      <div class="project-empty">
+        <strong>No matching works</strong>
+        <p>Try another search term or clear the active filter.</p>
+      </div>
+    `;
+    if (projectCount) projectCount.textContent = '0 works';
+    return;
+  }
+
+  projectList.innerHTML = visible
     .map((project) => {
       const index = projects.indexOf(project);
+      const tags = (project.tags || []).slice(0, 3);
       return `
         <button class="project-row" type="button" data-project="${project.id}" aria-pressed="${project.id === activeProjectId}">
           <span>${slugNumber(index)}</span>
           <strong>${escapeHtml(project.title)}</strong>
           <em>${escapeHtml(project.format)}</em>
           <small>${escapeHtml(project.date)}</small>
+          <span class="project-row-tags">${tags.map((tag) => `<b>${escapeHtml(tag)}</b>`).join('')}</span>
           <p class="project-row-summary">${escapeHtml(project.summary)}</p>
           <span class="project-row-cta" aria-hidden="true">${escapeHtml(siteContent.works?.viewDetailsLabel || 'View details ↓')}</span>
         </button>
@@ -676,21 +817,12 @@ const renderProjectList = () => {
 
   projectList.querySelectorAll('[data-project]').forEach((button) => {
     button.addEventListener('click', () => {
-      activeProjectId = button.dataset.project;
-      renderProjectList();
-      renderProjectReader();
-
-      if (window.matchMedia('(max-width: 760px)').matches) {
-        projectReader.scrollIntoView({ block: 'start', behavior: 'smooth' });
-      }
+      selectProject(button.dataset.project, { scrollReader: true });
     });
 
     button.addEventListener('pointerenter', (event) => {
       if (event.pointerType && event.pointerType !== 'mouse') return;
-
-      activeProjectId = button.dataset.project;
-      renderProjectList();
-      renderProjectReader();
+      selectProject(button.dataset.project);
     });
   });
 };
@@ -723,16 +855,38 @@ const updateToggleLabel = () => {
   toggle.setAttribute('aria-pressed', String(isNight));
 };
 
+const restoreModePreference = () => {
+  const savedMode = localStorage.getItem(MODE_STORAGE_KEY);
+  if (savedMode === 'night' || savedMode === 'day') {
+    document.body.classList.toggle('night-mode', savedMode === 'night');
+  }
+  updateToggleLabel();
+};
+
+const updateSortButtons = () => {
+  sortButtons.forEach((button) => {
+    const isActive = button.dataset.sort === activeSort;
+    button.classList.toggle('is-active', isActive);
+    button.setAttribute('aria-pressed', String(isActive));
+  });
+};
+
 const openMenu = () => {
+  lastFocusedElement = document.activeElement;
   document.body.classList.add('menu-open');
   menuToggle.setAttribute('aria-expanded', 'true');
   siteMenu.setAttribute('aria-hidden', 'false');
+  menuClose?.focus();
 };
 
 const closeMenu = () => {
+  const wasOpen = document.body.classList.contains('menu-open');
   document.body.classList.remove('menu-open');
   menuToggle.setAttribute('aria-expanded', 'false');
   siteMenu.setAttribute('aria-hidden', 'true');
+  if (wasOpen && lastFocusedElement instanceof HTMLElement) {
+    lastFocusedElement.focus({ preventScroll: true });
+  }
 };
 
 menuToggle.addEventListener('click', openMenu);
@@ -740,6 +894,7 @@ menuClose.addEventListener('click', closeMenu);
 
 toggle.addEventListener('click', () => {
   document.body.classList.toggle('night-mode');
+  localStorage.setItem(MODE_STORAGE_KEY, document.body.classList.contains('night-mode') ? 'night' : 'day');
   updateToggleLabel();
 });
 
@@ -758,24 +913,75 @@ routeLinks.forEach((link) => {
 sortButtons.forEach((button) => {
   button.addEventListener('click', () => {
     activeSort = button.dataset.sort;
-    sortButtons.forEach((item) => item.classList.toggle('is-active', item === button));
+    updateSortButtons();
     renderProjectList();
+    renderProjectReader();
   });
+});
+
+projectSearch?.addEventListener('input', () => {
+  activeQuery = projectSearch.value;
+  renderWorkControls();
+  renderProjectList();
+  renderProjectReader();
+});
+
+projectFilters?.addEventListener('click', (event) => {
+  const button = event.target.closest('[data-filter]');
+  if (!button) return;
+  activeFilter = button.dataset.filter || 'all';
+  renderWorkControls();
+  renderProjectList();
+  renderProjectReader();
+});
+
+projectList?.addEventListener('keydown', (event) => {
+  const keys = ['ArrowDown', 'ArrowUp', 'Home', 'End'];
+  if (!keys.includes(event.key)) return;
+  const visible = visibleProjects();
+  if (!visible.length) return;
+  const currentIndex = Math.max(0, visible.findIndex((project) => project.id === activeProjectId));
+  const nextIndex = {
+    ArrowDown: Math.min(visible.length - 1, currentIndex + 1),
+    ArrowUp: Math.max(0, currentIndex - 1),
+    Home: 0,
+    End: visible.length - 1,
+  }[event.key];
+
+  event.preventDefault();
+  selectProject(visible[nextIndex].id);
+  projectList.querySelector(`[data-project="${visible[nextIndex].id}"]`)?.focus();
 });
 
 menuProjects.addEventListener('click', (event) => {
   const link = event.target.closest('[data-project-jump]');
   if (!link) return;
   event.preventDefault();
-  activeProjectId = link.dataset.projectJump;
+  activeFilter = 'all';
+  activeQuery = '';
   setRoute('works');
   closeMenu();
-  renderProjectList();
-  renderProjectReader();
+  renderWorkControls();
+  selectProject(link.dataset.projectJump, { scrollReader: true });
 });
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
+  if (event.key !== 'Tab' || !document.body.classList.contains('menu-open')) return;
+
+  const focusable = [...siteMenu.querySelectorAll('a[href], button:not([disabled])')]
+    .filter((element) => element.offsetParent !== null);
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable.at(-1);
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
 });
 
 window.addEventListener('hashchange', () => {
@@ -931,8 +1137,10 @@ window.addEventListener('storage', (event) => {
 
 loadProjects();
 updateAdminAccess();
+restoreModePreference();
 
 renderMenuProjects();
+renderWorkControls();
 renderProjectList();
 renderProjectReader();
 renderTeaching();
@@ -947,6 +1155,6 @@ const initialRoute = isAdminBackdoorHash()
     ? initialRouteHash
     : 'works';
 setRoute(initialRoute);
-sortButtons[0]?.classList.add('is-active');
+updateSortButtons();
 fitSingleLineText();
 window.addEventListener('resize', () => fitSingleLineText());

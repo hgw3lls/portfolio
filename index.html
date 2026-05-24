@@ -15,7 +15,7 @@
     <div class="grid-lines" aria-hidden="true"></div>
 
     <header class="topbar" id="top">
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">+</button>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-menu">+</button>
       <a class="wordmark" href="#works" data-route="works" aria-label="Tony Yanick home">Tony Yanick</a>
       <div class="ticker" aria-label="Site description">
         <span>artist / educator</span>
@@ -82,12 +82,20 @@
             <button type="button" data-sort="format">Format</button>
             <span>Open</span>
           </div>
+          <div class="work-controls" aria-label="Work filters">
+            <label class="search-control" for="project-search">
+              <span>Search works</span>
+              <input id="project-search" type="search" autocomplete="off" placeholder="Search title, format, tag, or system" />
+            </label>
+            <div class="filter-chips" id="project-filters" aria-label="Filter works"></div>
+            <p class="result-count" id="project-count" aria-live="polite"></p>
+          </div>
           <div class="work-layout">
             <div>
               <h2 id="works-title">Works as environments to enter, activate, and never fully resolve.</h2>
               <div class="project-list" id="project-list" aria-label="Selectable project list"></div>
             </div>
-            <article class="project-reader" id="project-reader" aria-label="Selected project detail"></article>
+            <article class="project-reader" id="project-reader" tabindex="-1" aria-label="Selected project detail"></article>
           </div>
         </div>
 
