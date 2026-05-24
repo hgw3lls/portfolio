@@ -1902,3 +1902,726 @@ h1 {
     transition-duration: 1ms !important;
   }
 }
+
+/* Minimal brutalist compact pass */
+:root {
+  --bg: #ffffff;
+  --paper: #ffffff;
+  --panel: #ffffff;
+  --ink: #050505;
+  --muted: #565656;
+  --line: #050505;
+  --line-soft: rgba(5, 5, 5, 0.24);
+  --accent: #00ff66;
+  --accent-2: #050505;
+  --accent-3: #050505;
+  --shadow: none;
+  --radius: 0;
+  --topbar-height: 3rem;
+  --route-tabs-height: 2.75rem;
+  --sticky-controls-height: 2.5rem;
+}
+
+body.night-mode {
+  --bg: #050505;
+  --paper: #050505;
+  --panel: #050505;
+  --ink: #f5f5f5;
+  --muted: #9a9a9a;
+  --line: #f5f5f5;
+  --line-soft: rgba(245, 245, 245, 0.28);
+  --accent: #d7ff00;
+  --accent-2: #f5f5f5;
+  --accent-3: #f5f5f5;
+}
+
+body {
+  background: var(--bg);
+  font-size: 14px;
+}
+
+body::before {
+  display: none;
+}
+
+.grid-lines {
+  opacity: 0.16;
+  background-size: calc(100vw / 6) 100%;
+}
+
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--accent);
+}
+
+.topbar {
+  grid-template-columns: 3rem minmax(10rem, 1fr) minmax(0, 1.5fr) 5rem;
+  min-height: var(--topbar-height);
+  border-bottom: 2px solid var(--line);
+  background: var(--bg);
+  box-shadow: none;
+}
+
+.topbar > * {
+  min-height: var(--topbar-height);
+  padding: 0.42rem 0.55rem;
+  border-right: 2px solid var(--line);
+}
+
+.menu-toggle,
+.menu-close {
+  font-size: 1.45rem;
+}
+
+.wordmark {
+  align-items: center;
+  font-size: 1.55rem;
+  line-height: 0.92;
+}
+
+.ticker {
+  gap: 0.8rem;
+  font-size: 0.68rem;
+}
+
+.mode-toggle {
+  font-size: 0.68rem;
+}
+
+.route-tabs {
+  min-height: var(--route-tabs-height);
+  border-bottom: 2px solid var(--line);
+  background: var(--bg);
+  box-shadow: none;
+}
+
+.route-tabs a {
+  min-height: var(--route-tabs-height);
+  padding: 0.42rem 0.55rem;
+  border-right: 2px solid var(--line);
+  color: var(--ink);
+  font-size: 0.72rem;
+}
+
+.route-tabs a:hover,
+.route-tabs a:focus-visible {
+  background: var(--accent);
+  color: #050505;
+  box-shadow: none;
+}
+
+.route-tabs a.is-active {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.site-menu a,
+.menu-note {
+  padding: 0.28rem 0;
+  font-size: clamp(1.25rem, 2.6vw, 2.6rem);
+}
+
+.menu-columns section {
+  padding: 0.8rem;
+  border-right: 2px solid #fff;
+}
+
+.interface-shell {
+  grid-template-columns: minmax(17rem, 24vw) minmax(0, 1fr);
+}
+
+.identity-panel {
+  gap: 1rem;
+  padding: 0.65rem;
+  border-right: 2px solid var(--line);
+  background: var(--bg);
+}
+
+.eyebrow,
+.reader-meta,
+.sticky-head,
+.view-head,
+.project-row small,
+.project-row em,
+.card-grid span,
+.admin-kicker,
+.admin-login label,
+.admin-panel label,
+.search-control,
+.result-count {
+  font-size: 0.68rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.65rem;
+}
+
+h1 {
+  max-width: 13ch;
+  font-size: clamp(2rem, 2.5vw, 3rem);
+  line-height: 0.95;
+}
+
+.lede,
+.reader-summary,
+.section-intro {
+  margin-top: 0.75rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  line-height: 1.28;
+}
+
+.view {
+  padding: 0.65rem;
+}
+
+.view h2 {
+  max-width: 22ch;
+  font-size: clamp(1.65rem, 2.25vw, 2.6rem);
+  line-height: 0.98;
+}
+
+.view-head {
+  margin: -0.65rem -0.65rem 0.65rem;
+  padding: 0.45rem 0.65rem;
+  border-bottom: 2px solid var(--line);
+  background: var(--bg);
+}
+
+.view-head a,
+.view-head button,
+.reader-return,
+.reader-action,
+.card-grid a,
+.admin-actions button,
+.admin-reset {
+  min-height: 2rem;
+  border: 2px solid var(--line);
+  padding: 0.34rem 0.48rem;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.sticky-head {
+  margin: -0.65rem -0.65rem 0;
+  border-bottom: 2px solid var(--line);
+  background: var(--bg);
+  backdrop-filter: none;
+}
+
+.sticky-head > * {
+  padding: 0.4rem 0.55rem;
+  border-right: 2px solid var(--line);
+}
+
+.sticky-head button {
+  min-height: var(--sticky-controls-height);
+}
+
+.sticky-head button:hover,
+.sticky-head button:focus-visible,
+.filter-chip:hover,
+.filter-chip:focus-visible,
+.filter-chip[aria-pressed='true'],
+.view-head a:hover,
+.view-head a:focus-visible,
+.view-head button:hover,
+.view-head button:focus-visible,
+.reader-return:hover,
+.reader-return:focus-visible,
+.reader-action:hover,
+.reader-action:focus-visible,
+.card-grid a:hover,
+.card-grid a:focus-visible {
+  border-color: var(--line);
+  background: var(--accent);
+  color: #050505;
+}
+
+.work-controls {
+  grid-template-columns: minmax(11rem, 0.9fr) minmax(0, 2fr) auto;
+  gap: 0.45rem;
+  margin: 0 -0.65rem 0.65rem;
+  padding: 0.5rem 0.65rem;
+  border-bottom: 2px solid var(--line);
+  background: var(--bg);
+}
+
+.search-control {
+  gap: 0.25rem;
+}
+
+.search-control input,
+.filter-chip {
+  min-height: 2.05rem;
+  border: 2px solid var(--line);
+  padding: 0.35rem 0.45rem;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.filter-chips {
+  gap: 0.3rem;
+}
+
+.result-count {
+  margin: 0 0 0.45rem;
+}
+
+.work-layout {
+  grid-template-columns: minmax(20rem, 1fr) minmax(21rem, 0.9fr);
+  gap: 0.65rem;
+}
+
+.project-list {
+  gap: 0;
+  margin-top: 0.65rem;
+  border-top: 2px solid var(--line);
+}
+
+.project-row {
+  grid-template-columns: 2.4rem minmax(0, 1.2fr) minmax(7rem, 0.75fr) minmax(5.3rem, auto);
+  grid-template-areas: 'num title format date';
+  border: 0;
+  border-bottom: 2px solid var(--line);
+  border-radius: 0;
+  background: var(--bg);
+  transform: none;
+}
+
+.project-row:hover,
+.project-row:focus-visible {
+  background: var(--accent);
+  color: #050505;
+  transform: none;
+}
+
+.project-row > span:first-child {
+  padding: 0.42rem 0.25rem;
+  border-right: 2px solid var(--line);
+  color: currentColor;
+  font-size: 0.68rem;
+}
+
+.project-row strong {
+  padding: 0.42rem 0.5rem;
+  font-size: 0.96rem;
+  line-height: 1.05;
+}
+
+.project-row em,
+.project-row small {
+  margin: 0;
+  padding: 0.44rem 0.5rem;
+  color: currentColor;
+  border-left: 2px solid var(--line);
+}
+
+.project-row small {
+  justify-self: stretch;
+  text-align: right;
+}
+
+.project-row-tags,
+.project-row-summary,
+.project-row-cta {
+  display: none;
+}
+
+.project-row[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.project-row[aria-pressed='true'] > span:first-child,
+.project-row[aria-pressed='true'] em,
+.project-row[aria-pressed='true'] small {
+  border-color: currentColor;
+  color: currentColor;
+}
+
+.project-reader {
+  top: calc(var(--topbar-height) + var(--route-tabs-height) + var(--sticky-controls-height) + 0.65rem);
+  border: 2px solid var(--line);
+  border-radius: 0;
+  background: var(--bg);
+  box-shadow: none;
+}
+
+.project-reader > * {
+  padding: 0.55rem;
+  border-bottom: 2px solid var(--line);
+}
+
+.reader-actions {
+  gap: 0.35rem;
+  background: var(--bg);
+}
+
+.reader-meta {
+  gap: 0.5rem;
+}
+
+.project-reader h3 {
+  font-size: clamp(1.65rem, 2.6vw, 2.55rem);
+  line-height: 0.98;
+}
+
+.reader-summary {
+  font-size: 1rem;
+}
+
+.reader-sections section {
+  padding: 0.55rem;
+  border-right: 2px solid var(--line);
+}
+
+p,
+li {
+  line-height: 1.34;
+}
+
+.media-module {
+  min-height: 7rem;
+  background: var(--bg);
+}
+
+.media-module p {
+  margin-top: 0.55rem;
+  font-size: 1rem;
+  line-height: 1.05;
+}
+
+.media-item {
+  border: 2px solid var(--line);
+  border-radius: 0;
+}
+
+.tag-list {
+  gap: 0;
+  padding: 0;
+}
+
+.tag-list li {
+  border: 0;
+  border-right: 2px solid var(--line);
+  border-bottom: 2px solid var(--line);
+  border-radius: 0;
+  padding: 0.25rem 0.42rem;
+}
+
+.longform p {
+  max-width: 56rem;
+  font-size: 1rem;
+  line-height: 1.48;
+}
+
+.card-grid {
+  gap: 0;
+  margin-top: 0.65rem;
+  border-top: 2px solid var(--line);
+  border-left: 2px solid var(--line);
+}
+
+.card-grid article {
+  min-height: 10rem;
+  border: 0;
+  border-right: 2px solid var(--line);
+  border-bottom: 2px solid var(--line);
+  border-radius: 0;
+  background: var(--bg);
+}
+
+.card-grid h3 {
+  font-size: clamp(1.25rem, 1.65vw, 1.8rem);
+  line-height: 1;
+}
+
+.card-grid p,
+.card-grid li {
+  line-height: 1.34;
+}
+
+.site-footer {
+  border-top: 2px solid var(--line);
+  background: var(--bg);
+}
+
+.site-footer > * {
+  padding: 0.45rem 0.55rem;
+  border-right: 2px solid var(--line);
+}
+
+.admin-login,
+.admin-session,
+.admin-panel,
+.admin-asset-list article,
+.project-empty,
+.reader-empty {
+  border: 2px solid var(--line);
+  border-radius: 0;
+  background: var(--bg);
+}
+
+@media (max-width: 1180px) {
+  .interface-shell {
+    grid-template-columns: minmax(15rem, 22vw) minmax(0, 1fr);
+  }
+
+  .work-layout {
+    grid-template-columns: minmax(18rem, 1fr) minmax(19rem, 0.95fr);
+  }
+}
+
+@media (min-width: 981px) {
+  .project-row strong,
+  .project-row em,
+  .project-row small {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 980px) {
+  :root {
+    --topbar-height: 2.85rem;
+    --route-tabs-height: 3rem;
+    --sticky-controls-height: 2.4rem;
+  }
+
+  .topbar {
+    grid-template-columns: 2.85rem minmax(0, 1fr) 4.2rem;
+  }
+
+  .topbar > * {
+    min-height: var(--topbar-height);
+    padding: 0.35rem 0.48rem;
+    border-right: 2px solid var(--line);
+  }
+
+  .wordmark {
+    font-size: 1.28rem;
+  }
+
+  .route-tabs {
+    gap: 0;
+    padding: 0;
+    border-bottom: 2px solid var(--line);
+  }
+
+  .route-tabs a {
+    min-width: 5.8rem;
+    min-height: var(--route-tabs-height);
+    border: 0;
+    border-right: 2px solid var(--line);
+    border-radius: 0;
+  }
+
+  .identity-panel {
+    padding: 0.55rem;
+    border-bottom: 2px solid var(--line);
+  }
+
+  h1 {
+    max-width: 18ch;
+    font-size: 1.9rem;
+  }
+
+  .lede,
+  .reader-summary,
+  .section-intro {
+    font-size: 0.95rem;
+  }
+
+  .view {
+    padding: 0.55rem;
+  }
+
+  .view h2 {
+    max-width: 24ch;
+    font-size: 1.55rem;
+  }
+
+  .sticky-head {
+    margin: -0.55rem -0.55rem 0;
+    gap: 0;
+    padding: 0;
+  }
+
+  .sticky-head > * {
+    border: 0;
+    border-right: 2px solid var(--line);
+    border-radius: 0;
+  }
+
+  .work-controls {
+    margin: 0 -0.55rem 0.55rem;
+    padding: 0.45rem 0.55rem;
+  }
+
+  .work-layout {
+    gap: 0.55rem;
+  }
+
+  .project-list {
+    margin-top: 0.55rem;
+  }
+
+  .project-row {
+    grid-template-columns: 2.15rem minmax(0, 1fr) minmax(5.4rem, auto);
+    grid-template-areas:
+      'num title date'
+      'num format format';
+  }
+
+  .project-row strong {
+    font-size: 1rem;
+  }
+
+  .project-row em {
+    border-top: 2px solid var(--line);
+  }
+
+  .project-row small {
+    border-left: 2px solid var(--line);
+  }
+
+  .project-reader {
+    border-width: 2px;
+  }
+
+  .project-reader h3 {
+    font-size: 1.65rem;
+  }
+
+  .card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --topbar-height: 2.75rem;
+    --route-tabs-height: 2.8rem;
+    --sticky-controls-height: 2.35rem;
+  }
+
+  body {
+    font-size: 13px;
+  }
+
+  .topbar {
+    grid-template-columns: 2.75rem minmax(0, 1fr) 3.8rem;
+  }
+
+  .wordmark {
+    font-size: 1.12rem;
+  }
+
+  .route-tabs a {
+    min-width: 4.9rem;
+    padding: 0.4rem;
+    font-size: 0.66rem;
+  }
+
+  .site-menu a,
+  .menu-note {
+    font-size: 1.55rem;
+  }
+
+  .identity-panel {
+    padding: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.55rem;
+    line-height: 1;
+  }
+
+  .eyebrow {
+    margin-bottom: 0.45rem;
+  }
+
+  .lede {
+    margin-top: 0.5rem;
+  }
+
+  .view {
+    padding: 0.5rem;
+  }
+
+  .view h2 {
+    font-size: 1.28rem;
+  }
+
+  .view-head {
+    margin: -0.5rem -0.5rem 0.5rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .sticky-head {
+    margin: -0.5rem -0.5rem 0;
+  }
+
+  .work-controls {
+    margin: 0 -0.5rem 0.5rem;
+    padding: 0.4rem 0.5rem;
+  }
+
+  .search-control input,
+  .filter-chip {
+    min-height: 1.95rem;
+  }
+
+  .project-row {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    grid-template-areas:
+      'num title'
+      'num format'
+      'num date';
+  }
+
+  .project-row small {
+    justify-self: stretch;
+    text-align: left;
+    border-top: 2px solid var(--line);
+    border-left: 2px solid var(--line);
+  }
+
+  .reader-actions {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .project-reader h3 {
+    font-size: 1.45rem;
+  }
+
+  .reader-sections section {
+    border-right: 0;
+    border-bottom: 2px solid var(--line);
+  }
+
+  .media-module {
+    min-height: 5.5rem;
+  }
+
+  .card-grid article {
+    min-height: 7rem;
+  }
+
+  .card-grid h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .route-tabs a {
+    min-width: 4.5rem;
+  }
+
+  h1 {
+    font-size: 1.42rem;
+  }
+}
