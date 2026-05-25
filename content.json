@@ -743,7 +743,16 @@
         "political language experiments"
       ],
       "embed": "Experimental political montage / screening documentation",
-      "pdf": "docs/make-america-great-again-and-again-documentation.pdf"
+      "pdf": "docs/make-america-great-again-and-again-documentation.pdf",
+      "media": [
+    {
+      "type": "video",
+      "title": "Make America Great Again (and again...)",
+      "url": "https://vimeo.com/201921786?fl=ip&fe=ec",
+      "caption": "2016. Director: Tony Yanick. Cinematographer: Robert Banks. Sound Design/Editing: Tony Yanick",
+      "fileName": ""
+    }
+  ]
     }
   ]
 }
