@@ -739,7 +739,6 @@ const renderProjectReader = () => {
   projectReader.innerHTML = `
     <div class="reader-actions">
       <button class="reader-return" type="button" data-reader-return>Browse works</button>
-      <button class="reader-action" type="button" data-reader-lock aria-pressed="${isProjectLocked}">${isProjectLocked ? 'Locked' : 'Lock work'}</button>
       <button class="reader-action" type="button" data-reader-expand aria-pressed="${isReaderExpanded}">${isReaderExpanded ? 'Exit full' : 'Full frame'}</button>
       ${pdf ? `<a class="reader-action" href="${pdf}" download>${escapeHtml(siteContent.works?.pdfLabel || 'PDF')}</a>` : `<span class="reader-action is-disabled">${escapeHtml(siteContent.works?.noPdfLabel || 'No PDF')}</span>`}
     </div>
@@ -776,11 +775,6 @@ const renderProjectReader = () => {
     }
     projectList?.scrollIntoView({ block: 'start', behavior: 'smooth' });
   });
-  projectReader.querySelector('[data-reader-lock]')?.addEventListener('click', () => {
-    isProjectLocked = !isProjectLocked;
-    renderProjectList();
-    renderProjectReader();
-  });
   projectReader.querySelector('[data-reader-expand]')?.addEventListener('click', () => {
     isReaderExpanded = !isReaderExpanded;
     renderProjectList();
@@ -791,10 +785,14 @@ const renderProjectReader = () => {
   fitSingleLineText(projectReader);
 };
 
-const selectProject = (projectId, { scrollReader = false, focusReader = false, lock = false, preview = false } = {}) => {
+const selectProject = (projectId, { scrollReader = false, focusReader = false, lock = false, preview = false, toggleLock = false } = {}) => {
   if (!projects.some((project) => project.id === projectId)) return;
   if (preview && isProjectLocked) return;
+  const isSameProject = activeProjectId === projectId;
   activeProjectId = projectId;
+  if (toggleLock) {
+    isProjectLocked = isSameProject ? !isProjectLocked : true;
+  }
   if (lock) isProjectLocked = true;
   renderProjectList();
   renderProjectReader();
@@ -845,7 +843,7 @@ const renderProjectList = () => {
 
   projectList.querySelectorAll('[data-project]').forEach((button) => {
     button.addEventListener('click', () => {
-      selectProject(button.dataset.project, { scrollReader: true, lock: true });
+      selectProject(button.dataset.project, { scrollReader: true, toggleLock: true });
     });
 
     const previewProject = (event) => {
